@@ -1,11 +1,19 @@
 Xalan-j
 
+Summary of the reports
 
+  THREAD_SAFETY_VIOLATION: 238
+         NULL_DEREFERENCE: 40
+            RESOURCE_LEAK: 14
+  
+Total issues found: 292 issues 
+Total false_positives: 23
 
+Null_dereference: 21
+Resource_Leak: 2
 
-
-
-False postives :
+/***********************************************************************
+False positives:
 
 src/org/apache/xalan/xsltc/compiler/FormatNumberCall.java:59: error: NULL_DEREFERENCE
   object returned by `getStylesheet()` could be null and is dereferenced at line 59.

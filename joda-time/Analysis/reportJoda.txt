@@ -5,8 +5,7 @@ Summary of the reports:
                 RESOURCE_LEAK: 9
   INEFFICIENT_KEYSET_ITERATOR: 1
   
- Total issues found: 92 issues
-  
+Total issues found: 92 issues
 Total false_positives: 1
 
 Null_dereference: 1

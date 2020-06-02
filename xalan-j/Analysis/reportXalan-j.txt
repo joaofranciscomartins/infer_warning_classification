@@ -1,0 +1,229 @@
+Xalan-j
+
+
+
+
+
+
+False postives :
+
+src/org/apache/xalan/xsltc/compiler/FormatNumberCall.java:59: error: NULL_DEREFERENCE
+  object returned by `getStylesheet()` could be null and is dereferenced at line 59.
+  57.   
+  58.   	// Inform stylesheet to instantiate a DecimalFormat object
+  59. > 	getStylesheet().numberFormattingUsed();
+  60.   
+  61.   	final Type tvalue = _value.typeCheck(stable);
+  
+  src/org/apache/xalan/xsltc/compiler/ApplyImports.java:65: error: NULL_DEREFERENCE
+  object `includeRoot` last assigned on line 64 could be null and is dereferenced at line 65.
+  63.           // Move to root of include tree
+  64.           Stylesheet includeRoot = getStylesheet();
+  65. >         while (includeRoot._includedFrom != null) {
+  66.               includeRoot = includeRoot._includedFrom;
+  67.           }
+  
+  src/org/apache/xml/serializer/SerializerBase.java:71: error: NULL_DEREFERENCE
+  object `fullyQualifiedName` last assigned on line 70 could be null and is dereferenced at line 71.
+  69.       static {
+  70.           String fullyQualifiedName = SerializerBase.class.getName();
+  71. >         int lastDot = fullyQualifiedName.lastIndexOf('.');
+  72.           if (lastDot < 0) {
+  73.               PKG_NAME = "";
+
+src/org/apache/xalan/xsltc/compiler/ApplyImports.java:79: error: NULL_DEREFERENCE
+  object `stylesheet` last assigned on line 78 could be null and is dereferenced at line 79.
+  77.   	// compiled into separate methods.
+  78.   	Stylesheet stylesheet = getStylesheet();
+  79. > 	stylesheet.setTemplateInlining(false);
+  80.   
+  81.   	// Get the mode we are currently in (might not be any)
+
+src/org/apache/xalan/xsltc/trax/TrAXFilter.java:116: error: NULL_DEREFERENCE
+  object returned by `getParent()` could be null and is dereferenced at line 116.
+  114.   
+  115.               // call parse on the parent
+  116. >             getParent().parse(input);
+  117.           } finally {
+  118.               if (managedReader != null) {
+  
+  
+  src/org/apache/xalan/xsltc/compiler/DocumentCall.java:148: error: NULL_DEREFERENCE
+  object returned by `getStylesheet()` could be null and is dereferenced at line 148.
+  146.       
+  147.           // Process the rest of the parameters on the stack
+  148. >         il.append(new PUSH(cpg, getStylesheet().getSystemId()));
+  149.           il.append(classGen.loadTranslet());
+  150.           il.append(DUP);
+  
+  
+  src/org/apache/xalan/xsltc/runtime/output/TransletOutputHandlerFactory.java:149: error: NULL_DEREFERENCE
+  object `result` last assigned on line 116 could be null and is dereferenced at line 149.
+  147.                   }
+  148.   
+  149. >                 result.setEncoding(_encoding);
+  150.   
+  151.                   if (_writer != null)
+  
+  
+  src/org/apache/xml/serializer/CharInfo.java:301: error: RESOURCE_LEAK
+  resource of type `java.io.InputStreamReader` acquired by call to `InputStreamReader(...)` at line 260 is not released after line 301.
+**Note**: potential exception at line 265
+  299.   
+  300.                   is.close();
+  301. >             } catch (Exception e) {
+  302.                   throw new RuntimeException(
+  303.                       Utils.messages.createMessage(
+
+src/org/apache/xalan/xsltc/trax/TransformerImpl.java:223: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `TransformerImpl(...)` at line 223.
+  221.   	TransformerFactoryImpl tfactory) 
+  222.       {
+  223. > 	this(null, outputProperties, indentNumber, tfactory);
+  224.   	_isIdentity = true;
+  225.   	// _properties.put(OutputKeys.METHOD, "xml");
+
+src/org/apache/xml/serializer/NamespaceMappings.java:272: error: NULL_DEREFERENCE
+  object `map` last assigned on line 271 could be null and is dereferenced at line 272.
+  270.                   return;
+  271.               MappingRecord map = (MappingRecord) (m_nodeStack.peek());
+  272. >             int depth = map.m_declarationDepth;
+  273.               if (elemDepth < 1 || map.m_declarationDepth < elemDepth)
+  274.                   break;
+
+
+src/org/apache/xalan/xsltc/trax/TemplatesImpl.java:369: error: NULL_DEREFERENCE
+  object returned by `getTransletInstance(this)` could be null and is dereferenced by call to `TransformerImpl(...)` at line 369.
+  367.   	TransformerImpl transformer;
+  368.   
+  369. > 	transformer = new TransformerImpl(getTransletInstance(), _outputProperties,
+  370.   	    _indentNumber, _tfactory);
+  371.
+
+src/org/apache/xalan/xsltc/compiler/LiteralElement.java:413: error: NULL_DEREFERENCE
+  object returned by `getStylesheet()` could be null and is dereferenced at line 413.
+  411.        */
+  412.       private boolean isHTMLOutput() {
+  413. >         return getStylesheet().getOutputMethod() == Stylesheet.HTML_OUTPUT;
+  414.       }
+  415.       
+  
+  src/org/apache/xalan/xsltc/compiler/util/MethodGenerator.java:679: error: NULL_DEREFERENCE
+  object returned by `getLocalVariable(name)` could be null and is dereferenced at line 679.
+  677.   
+  678.       public int getLocalIndex(String name) {
+  679. > 	return getLocalVariable(name).getIndex();
+  680.       }
+  681.   
+  
+  src/org/apache/xalan/lib/sql/XConnection.java:873: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `addParameterWithType(...)` at line 873.
+  871.     public void addParameter( String value )
+  872.     {
+  873. >     addParameterWithType(value, null);
+  874.     }
+  875. 
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:904: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired by call to `FileOutputStream(...)` at line 904 is not released after line 904.
+  902.   
+  903.   	final File jarFile = new File(_destDir, _jarFileName);
+  904. > 	final JarOutputStream jos =
+  905.   	    new JarOutputStream(new FileOutputStream(jarFile), manifest);
+  906.   	classes = _bcelClasses.elements();
+
+src/org/apache/xalan/lib/sql/XConnection.java:903: error: NULL_DEREFERENCE
+  object returned by `Type.getNodeValue()` could be null and is dereferenced by call to `QueryParameter(...)` at line 903.
+  901.         String value = n1.getNodeValue();
+  902.         if (value == null) value = "";
+  903. >       m_ParameterList.addElement( new QueryParameter(value, Type.getNodeValue()) );
+  904.       }
+  905.     }
+
+src/org/apache/xalan/lib/sql/XConnection.java:978: error: NULL_DEREFERENCE
+  object `TypeStr` last assigned on line 969 could be null and is dereferenced by call to `QueryParameter(...)` at line 978.
+  976.   
+  977.   
+  978. >           m_ParameterList.addElement(
+  979.               new QueryParameter(value, TypeStr) );
+  980.           }
+
+
+rc/org/apache/xalan/lib/sql/SQLDocument.java:970: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `setError(...)` at line 970.
+  968.       {
+  969.         SQLWarning warn = checkWarnings();
+  970. >       if ( warn != null ) m_XConnection.setError(null, null, warn);
+  971.       }
+  972.       catch(Exception e) {}
+
+*Doubt*
+src/org/apache/xml/dtm/ref/DTMDocumentImpl.java:1559: error: NULL_DEREFERENCE
+  object `expandedName` last assigned on line 1557 could be null and is dereferenced at line 1559.
+  1557.              String expandedName = m_localNames.indexToString(ExpandedNameID);
+  1558.              // Remove prefix from expanded name
+  1559. >            int colonpos = expandedName.indexOf(":");
+  1560.              String localName = expandedName.substring(colonpos+1);
+  1561.              return localName;
+  
+  *Doubt*
+  src/org/apache/xml/dtm/ref/DTMDocumentImpl.java:1515: error: NULL_DEREFERENCE
+  object `qName` last assigned on line 1512 could be null and is dereferenced at line 1515.
+  1513.              // Remove prefix from qName
+  1514.              // %TBD% jjk This is assuming the elementName is the qName.
+  1515. >            int colonpos = qName.indexOf(":");
+  1516.              String localName = qName.substring(colonpos+1);
+  1517.              // Get NS
+
+  *Doubt*
+src/org/apache/xml/dtm/ref/DTMDocumentImpl.java:1576: error: NULL_DEREFERENCE
+  object `expandedName` last assigned on line 1574 could be null and is dereferenced at line 1576.
+  1574.              String expandedName = m_localNames.indexToString(ExpandedNameID);
+  1575.              // Remove local name from expanded name
+  1576. >            int colonpos = expandedName.indexOf(":");
+  1577.              String nsName = expandedName.substring(0, colonpos);
+  1578.   
+
+
+src/org/apache/xml/dtm/ref/DTMNodeProxy.java:1645: error: NULL_DEREFERENCE
+  object `attr` last assigned on line 1644 could be null and is dereferenced at line 1645.
+  1643.                       for (int i=0;i<length;i++) {
+  1644.                           Node attr = map.item(i);
+  1645. >                         String attrPrefix = attr.getPrefix();
+  1646.                           String value = attr.getNodeValue();
+  1647.                           namespace = attr.getNamespaceURI();
+
+*doubt*
+src/org/apache/xml/dtm/ref/sax2dtm/SAX2DTM2.java:3220: error: NULL_DEREFERENCE
+  object `qName` last assigned on line 3218 could be null and is dereferenced at line 3220.
+  3218.               String qName = m_valuesOrPrefixes.indexToString(qnameIndex);
+  3219.               handler.startElement(qName);
+  3220. >             int prefixIndex = qName.indexOf(':');
+  3221.               String prefix;
+  3222.               if (prefixIndex > 0) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

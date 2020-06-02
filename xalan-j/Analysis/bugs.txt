@@ -1,0 +1,2585 @@
+Found 292 issues
+
+src/org/apache/xalan/xsltc/runtime/output/WriterOutputBuffer.java:38: error: NULL_DEREFERENCE
+  object `osName` last assigned on line 37 could be null and is dereferenced at line 38.
+  36.   	// Set a larger buffer size for Solaris
+  37.   	final String osName = System.getProperty("os.name");
+  38. > 	if (osName.equalsIgnoreCase("solaris")) {
+  39.   	    BUFFER_SIZE = 32 * KB;
+  40.   	}
+
+src/org/apache/xalan/extensions/XPathFunctionResolverImpl.java:61: error: NULL_DEREFERENCE
+  object `className` last assigned on line 52 could be null and is dereferenced at line 61.
+  59.           else if (!uri.equals(ExtensionNamespaceContext.JAVA_EXT_URI))
+  60.           {
+  61. >             int lastSlash = className.lastIndexOf('/');
+  62.               if (-1 != lastSlash)
+  63.                   className = className.substring(lastSlash + 1);
+
+src/org/apache/xalan/xsltc/util/JavaCupRedirect.java:63: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 68 is not released after line 63.
+  61.   		     if (args[i].equals("-stdin")) {
+  62.   		 		 // This option must have an argument
+  63. > 		 		 if ((++i >= argc) || (args[i].startsWith("-"))) {
+  64.   		 		     System.err.println(ERRMSG);
+  65.                        throw new RuntimeException(ERRMSG);
+
+src/org/apache/xalan/xsltc/compiler/FormatNumberCall.java:59: error: NULL_DEREFERENCE
+  object returned by `getStylesheet()` could be null and is dereferenced at line 59.
+  57.   
+  58.   	// Inform stylesheet to instantiate a DecimalFormat object
+  59. > 	getStylesheet().numberFormattingUsed();
+  60.   
+  61.   	final Type tvalue = _value.typeCheck(stable);
+
+src/org/apache/xalan/xsltc/compiler/ApplyImports.java:65: error: NULL_DEREFERENCE
+  object `includeRoot` last assigned on line 64 could be null and is dereferenced at line 65.
+  63.           // Move to root of include tree
+  64.           Stylesheet includeRoot = getStylesheet();
+  65. >         while (includeRoot._includedFrom != null) {
+  66.               includeRoot = includeRoot._includedFrom;
+  67.           }
+
+src/org/apache/xml/serializer/SerializerBase.java:71: error: NULL_DEREFERENCE
+  object `fullyQualifiedName` last assigned on line 70 could be null and is dereferenced at line 71.
+  69.       static {
+  70.           String fullyQualifiedName = SerializerBase.class.getName();
+  71. >         int lastDot = fullyQualifiedName.lastIndexOf('.');
+  72.           if (lastDot < 0) {
+  73.               PKG_NAME = "";
+
+src/org/apache/xalan/xsltc/compiler/ApplyImports.java:79: error: NULL_DEREFERENCE
+  object `stylesheet` last assigned on line 78 could be null and is dereferenced at line 79.
+  77.   	// compiled into separate methods.
+  78.   	Stylesheet stylesheet = getStylesheet();
+  79. > 	stylesheet.setTemplateInlining(false);
+  80.   
+  81.   	// Get the mode we are currently in (might not be any)
+
+src/org/apache/xalan/xsltc/compiler/ApplyImports.java:83: error: NULL_DEREFERENCE
+  object `template` last assigned on line 82 could be null and is dereferenced at line 83.
+  81.   	// Get the mode we are currently in (might not be any)
+  82.   	Template template = getTemplate();
+  83. > 	_modeName = template.getModeName();
+  84.   	_precedence = template.getImportPrecedence();
+  85.   
+
+src/org/apache/xalan/xsltc/compiler/Key.java:90: error: NULL_DEREFERENCE
+  object returned by `getSymbolTable()` could be null and is dereferenced at line 90.
+  88.           // Parse key name and add to symbol table
+  89.           _name = parser.getQNameIgnoreDefaultNs(name);
+  90. >         getSymbolTable().addKey(_name, this);
+  91.           
+  92.   	_match = parser.parsePattern(this, "match", null);
+
+src/org/apache/xalan/xsltc/trax/TrAXFilter.java:116: error: NULL_DEREFERENCE
+  object returned by `getParent()` could be null and is dereferenced at line 116.
+  114.   
+  115.               // call parse on the parent
+  116. >             getParent().parse(input);
+  117.           } finally {
+  118.               if (managedReader != null) {
+
+src/org/apache/xalan/xslt/EnvironmentCheck.java:134: error: RESOURCE_LEAK
+  resource of type `java.io.PrintWriter` acquired by call to `new()` at line 117 is not released after line 134.
+  132.   
+  133.       EnvironmentCheck app = new EnvironmentCheck();
+  134. >     app.checkEnvironment(sendOutputTo);
+  135.     }
+  136.   
+
+src/org/apache/xalan/xsltc/compiler/DocumentCall.java:148: error: NULL_DEREFERENCE
+  object returned by `getStylesheet()` could be null and is dereferenced at line 148.
+  146.       
+  147.           // Process the rest of the parameters on the stack
+  148. >         il.append(new PUSH(cpg, getStylesheet().getSystemId()));
+  149.           il.append(classGen.loadTranslet());
+  150.           il.append(DUP);
+
+src/org/apache/xalan/xsltc/runtime/output/TransletOutputHandlerFactory.java:149: error: NULL_DEREFERENCE
+  object `result` last assigned on line 116 could be null and is dereferenced at line 149.
+  147.                   }
+  148.   
+  149. >                 result.setEncoding(_encoding);
+  150.   
+  151.                   if (_writer != null)
+
+src/org/apache/xalan/extensions/ExtensionHandlerGeneral.java:190: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `getInputStream()` at line 188 is not released after line 190.
+  188.             InputStream is = uc.getInputStream();
+  189.             byte []bArray = new byte[uc.getContentLength()];
+  190. >           is.read(bArray);
+  191.             m_scriptSrc = new String(bArray);
+  192.             
+
+src/org/apache/xalan/xsltc/trax/TrAXFilter.java:140: error: NULL_DEREFERENCE
+  object returned by `getParent()` could be null and is dereferenced at line 140.
+  138.                   }
+  139.   	}
+  140. > 	getParent().setContentHandler(_transformerHandler);
+  141.       }
+  142.   
+
+src/org/apache/xalan/xsltc/compiler/TestSeq.java:134: error: NULL_DEREFERENCE
+  object `template` last assigned on line 133 could be null and is dereferenced at line 134.
+  132.   	final Template template = (_patterns.size() == 0) ? _default 
+  133.   	    : ((Pattern) _patterns.elementAt(0)).getTemplate();
+  134. > 	return template.getPriority();
+  135.       }
+  136.   
+
+src/org/apache/xalan/xsltc/compiler/TestSeq.java:144: error: NULL_DEREFERENCE
+  object `template` last assigned on line 143 could be null and is dereferenced at line 144.
+  142.   	final Template template = (_patterns.size() == 0) ? _default 
+  143.   	    : ((Pattern) _patterns.elementAt(0)).getTemplate();
+  144. > 	return template.getPosition();
+  145.       }
+  146.   
+
+src/org/apache/xml/serializer/CharInfo.java:301: error: RESOURCE_LEAK
+  resource of type `java.io.InputStreamReader` acquired by call to `InputStreamReader(...)` at line 260 is not released after line 301.
+**Note**: potential exception at line 265
+  299.   
+  300.                   is.close();
+  301. >             } catch (Exception e) {
+  302.                   throw new RuntimeException(
+  303.                       Utils.messages.createMessage(
+
+src/org/apache/xalan/extensions/ExtensionHandlerJavaClass.java:267: error: NULL_DEREFERENCE
+  object `trans` last assigned on line 197 could be null and is dereferenced at line 267.
+  265.             m = (Method) getFromCache(methodKey, null, methodArgs);
+  266.           
+  267. >         if (m != null && !trans.getDebug())
+  268.           {
+  269.             try
+
+src/org/apache/xalan/xsltc/dom/DOMAdapter.java:184: error: NULL_DEREFERENCE
+  object returned by `getNSReverse(this)` could be null and is dereferenced at line 184.
+  182.       public DTMAxisIterator getNamespaceAxisIterator(final int axis,
+  183.                                                       final int ns) {
+  184. >         return _dom.getNamespaceAxisIterator(axis, getNSReverse()[ns]);
+  185.       }
+  186.   
+
+src/org/apache/xalan/xsltc/compiler/CallTemplate.java:189: error: NULL_DEREFERENCE
+  object `foundTemplate` last assigned on line 187 could be null and is dereferenced at line 189.
+  187.               = getXSLTC().getParser().getSymbolTable().lookupTemplate(_name);
+  188.   
+  189. >         return foundTemplate.isSimpleNamedTemplate() ? foundTemplate : null;
+  190.       }
+  191.       
+
+src/org/apache/xml/serializer/dom3/NamespaceSupport.java:220: error: NULL_DEREFERENCE
+  object returned by `getURI(*NamespaceSupport.fNamespace[(i+-2)])` could be null and is dereferenced at line 220.
+  218.           	if (fNamespace[i - 1].equals(uri) ) {
+  219.                   //if (getURI(fNamespace[i - 2]) == uri)
+  220. >         		if (getURI(fNamespace[i - 2]).equals(uri) )
+  221.                       return fNamespace[i - 2];
+  222.               }
+
+src/org/apache/xalan/xsltc/dom/DOMAdapter.java:216: error: NULL_DEREFERENCE
+  object returned by `getReverse(this)` could be null and is dereferenced at line 216.
+  214.       public DTMAxisIterator getNthDescendant(int type, int n,
+  215.                                               boolean includeself) {
+  216. >         return _dom.getNthDescendant(getReverse()[type], n, includeself);
+  217.       }
+  218.   
+
+src/org/apache/xalan/xsltc/trax/TransformerImpl.java:223: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `TransformerImpl(...)` at line 223.
+  221.   	TransformerFactoryImpl tfactory) 
+  222.       {
+  223. > 	this(null, outputProperties, indentNumber, tfactory);
+  224.   	_isIdentity = true;
+  225.   	// _properties.put(OutputKeys.METHOD, "xml");
+
+src/org/apache/xalan/xsltc/dom/DOMAdapter.java:249: error: NULL_DEREFERENCE
+  object returned by `getNSMapping(this)` could be null and is dereferenced at line 249.
+  247.   
+  248.       public int getNamespaceType(final int node) {
+  249. >     	return getNSMapping()[_dom.getNSType(node)];
+  250.       }
+  251.   
+
+src/org/apache/xalan/xsltc/dom/DOMAdapter.java:261: error: NULL_DEREFERENCE
+  object returned by `getReverse(this)` could be null and is dereferenced at line 261.
+  259.   
+  260.       public int getAttributeNode(final int type, final int element) {
+  261. > 	return _dom.getAttributeNode(getReverse()[type], element);
+  262.       }
+  263.       
+
+src/org/apache/xml/serializer/NamespaceMappings.java:272: error: NULL_DEREFERENCE
+  object `map` last assigned on line 271 could be null and is dereferenced at line 272.
+  270.                   return;
+  271.               MappingRecord map = (MappingRecord) (m_nodeStack.peek());
+  272. >             int depth = map.m_declarationDepth;
+  273.               if (elemDepth < 1 || map.m_declarationDepth < elemDepth)
+  274.                   break;
+
+src/org/apache/xalan/lib/Redirect.java:428: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired to `ostream` by call to `FileOutputStream(...)` at line 413 is not released after line 428.
+  426.           throw new TransformerException(se);
+  427.         }
+  428. >       if(shouldPutInTable)
+  429.         {
+  430.           m_outputStreams.put(fileName, ostream);
+
+src/org/apache/xalan/xsltc/trax/TemplatesImpl.java:369: error: NULL_DEREFERENCE
+  object returned by `getTransletInstance(this)` could be null and is dereferenced by call to `TransformerImpl(...)` at line 369.
+  367.   	TransformerImpl transformer;
+  368.   
+  369. > 	transformer = new TransformerImpl(getTransletInstance(), _outputProperties,
+  370.   	    _indentNumber, _tfactory);
+  371.   	
+
+src/org/apache/xml/utils/ListingErrorHandler.java:462: error: NULL_DEREFERENCE
+  object `br` last assigned on line 442 could be null and is dereferenced at line 462.
+  460.           finally
+  461.           {
+  462. >             br.close();
+  463.               is.close();
+  464.           }
+
+src/org/apache/xalan/xsltc/compiler/LiteralElement.java:413: error: NULL_DEREFERENCE
+  object returned by `getStylesheet()` could be null and is dereferenced at line 413.
+  411.        */
+  412.       private boolean isHTMLOutput() {
+  413. >         return getStylesheet().getOutputMethod() == Stylesheet.HTML_OUTPUT;
+  414.       }
+  415.       
+
+src/org/apache/xalan/xsltc/compiler/SyntaxTreeNode.java:429: error: NULL_DEREFERENCE
+  object returned by `parser.getSymbolTable()` could be null and is dereferenced at line 429.
+  427.   	for (int i=0; i<count; i++) {
+  428.   	    SyntaxTreeNode child = (SyntaxTreeNode)_contents.elementAt(i);
+  429. > 	    parser.getSymbolTable().setCurrentNode(child);
+  430.   	    child.parseContents(parser);
+  431.   	    // if variable or parameter, add it to scope
+
+src/org/apache/xalan/xsltc/compiler/SyntaxTreeNode.java:441: error: NULL_DEREFERENCE
+  object returned by `parser.getSymbolTable()` could be null and is dereferenced at line 441.
+  439.   	}
+  440.   
+  441. > 	parser.getSymbolTable().setCurrentNode(this);
+  442.   
+  443.   	// after the last element, remove any locals from scope
+
+src/org/apache/xalan/lib/sql/DTMDocument.java:622: error: RESOURCE_LEAK
+  resource of type `java.io.PrintStream` acquired by call to `new()` at line 495 is not released after line 622.
+  620.         throw new RuntimeException(ioe.getMessage());
+  621.       }
+  622. >   }
+  623.   
+  624.   
+
+src/org/apache/xalan/xsltc/runtime/AbstractTranslet.java:561: error: RESOURCE_LEAK
+  resource of type `java.io.FileWriter` acquired by call to `new()` at line 557 is not released after line 561.
+  559.   
+  560.   	    final SerializationHandler handler 
+  561. > 		= factory.getSerializationHandler();
+  562.   
+  563.   	    transferOutputSettings(handler);
+
+src/org/apache/xml/dtm/ref/DTMDefaultBase.java:775: error: RESOURCE_LEAK
+  resource of type `java.io.PrintStream` acquired by call to `new()` at line 647 is not released after line 775.
+  773.           throw new RuntimeException(ioe.getMessage());
+  774.       }
+  775. >   }
+  776.     
+  777.     /**
+
+src/org/apache/xalan/xsltc/compiler/util/MethodGenerator.java:679: error: NULL_DEREFERENCE
+  object returned by `getLocalVariable(name)` could be null and is dereferenced at line 679.
+  677.   
+  678.       public int getLocalIndex(String name) {
+  679. > 	return getLocalVariable(name).getIndex();
+  680.       }
+  681.   
+
+src/org/apache/xml/dtm/ref/DTMManagerDefault.java:739: error: NULL_DEREFERENCE
+  object `ids` last assigned on line 738 could be null and is dereferenced at line 739.
+  737.   		{
+  738.   			org.apache.xml.utils.SuballocatedIntVector ids=((DTMDefaultBase)dtm).getDTMIDs();
+  739. > 			for(int i=ids.size()-1;i>=0;--i)
+  740.   				m_dtms[ids.elementAt(i)>>>DTMManager.IDENT_DTM_NODE_BITS]=null;
+  741.   		}
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:843: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired by call to `FileOutputStream(...)` at line 846 is not released after line 843.
+  841.   	    switch (_outputType) {
+  842.   	    case FILE_OUTPUT:
+  843. > 		clazz.dump(
+  844.   		    new BufferedOutputStream(
+  845.   			new FileOutputStream(
+
+src/org/apache/xalan/lib/sql/XConnection.java:873: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `addParameterWithType(...)` at line 873.
+  871.     public void addParameter( String value )
+  872.     {
+  873. >     addParameterWithType(value, null);
+  874.     }
+  875.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:904: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired by call to `FileOutputStream(...)` at line 904 is not released after line 904.
+  902.   
+  903.   	final File jarFile = new File(_destDir, _jarFileName);
+  904. > 	final JarOutputStream jos =
+  905.   	    new JarOutputStream(new FileOutputStream(jarFile), manifest);
+  906.   	classes = _bcelClasses.elements();
+
+src/org/apache/xalan/lib/sql/XConnection.java:903: error: NULL_DEREFERENCE
+  object returned by `Type.getNodeValue()` could be null and is dereferenced by call to `QueryParameter(...)` at line 903.
+  901.         String value = n1.getNodeValue();
+  902.         if (value == null) value = "";
+  903. >       m_ParameterList.addElement( new QueryParameter(value, Type.getNodeValue()) );
+  904.       }
+  905.     }
+
+src/org/apache/xalan/lib/sql/XConnection.java:978: error: NULL_DEREFERENCE
+  object `TypeStr` last assigned on line 969 could be null and is dereferenced by call to `QueryParameter(...)` at line 978.
+  976.   
+  977.   
+  978. >           m_ParameterList.addElement(
+  979.               new QueryParameter(value, TypeStr) );
+  980.           }
+
+src/org/apache/xalan/lib/sql/SQLDocument.java:970: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `setError(...)` at line 970.
+  968.       {
+  969.         SQLWarning warn = checkWarnings();
+  970. >       if ( warn != null ) m_XConnection.setError(null, null, warn);
+  971.       }
+  972.       catch(Exception e) {}
+
+src/org/apache/xalan/xsltc/trax/TransformerFactoryImpl.java:1209: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired to `auxinput` by call to `FileInputStream(...)` at line 1197 is not released after line 1209.
+**Note**: potential exception at line 1206
+  1207.       	      	    auxinput.close();
+  1208.       	    	}
+  1209. >     	    	catch (IOException e) {
+  1210.       	      	    continue;
+  1211.       	    	}
+
+src/org/apache/xalan/xsltc/trax/TransformerFactoryImpl.java:1164: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired to `input` by call to `FileInputStream(...)` at line 1153 is not released after line 1164.
+**Note**: potential exception at line 1161
+  1162.   	    	input.close();
+  1163.   	    }
+  1164. > 	    catch (IOException e) {
+  1165.       	    	return null;
+  1166.       	    }
+
+src/org/apache/xalan/xsltc/trax/TransformerFactoryImpl.java:1305: error: RESOURCE_LEAK
+  resource of type `java.util.zip.ZipFile` acquired by call to `ZipFile(...)` at line 1273 is not released after line 1305.
+**Note**: potential exception at line 1301
+  1303.                 	    bytecodes.add(bytes);
+  1304.               	}
+  1305. >             	catch (IOException e) {
+  1306.                 	    return null;
+  1307.               	}          
+
+src/org/apache/xalan/xsltc/trax/TransformerFactoryImpl.java:1312: error: RESOURCE_LEAK
+  resource of type `java.util.zip.ZipFile` acquired by call to `ZipFile(...)` at line 1273 is not released after line 1312.
+  1310.         
+  1311.           // Convert the Vector of byte[] to byte[][].
+  1312. >     	final int count = bytecodes.size();
+  1313.       	if (count > 0) {
+  1314.       	    final byte[][] result = new byte[count][1];
+
+src/org/apache/xml/dtm/ref/DTMDocumentImpl.java:1515: error: NULL_DEREFERENCE
+  object `qName` last assigned on line 1512 could be null and is dereferenced at line 1515.
+  1513.              // Remove prefix from qName
+  1514.              // %TBD% jjk This is assuming the elementName is the qName.
+  1515. >            int colonpos = qName.indexOf(":");
+  1516.              String localName = qName.substring(colonpos+1);
+  1517.              // Get NS
+
+src/org/apache/xml/dtm/ref/DTMDocumentImpl.java:1559: error: NULL_DEREFERENCE
+  object `expandedName` last assigned on line 1557 could be null and is dereferenced at line 1559.
+  1557.              String expandedName = m_localNames.indexToString(ExpandedNameID);
+  1558.              // Remove prefix from expanded name
+  1559. >            int colonpos = expandedName.indexOf(":");
+  1560.              String localName = expandedName.substring(colonpos+1);
+  1561.              return localName;
+
+src/org/apache/xml/dtm/ref/DTMDocumentImpl.java:1576: error: NULL_DEREFERENCE
+  object `expandedName` last assigned on line 1574 could be null and is dereferenced at line 1576.
+  1574.              String expandedName = m_localNames.indexToString(ExpandedNameID);
+  1575.              // Remove local name from expanded name
+  1576. >            int colonpos = expandedName.indexOf(":");
+  1577.              String nsName = expandedName.substring(0, colonpos);
+  1578.   
+
+src/org/apache/xml/dtm/ref/DTMNodeProxy.java:1645: error: NULL_DEREFERENCE
+  object `attr` last assigned on line 1644 could be null and is dereferenced at line 1645.
+  1643.                       for (int i=0;i<length;i++) {
+  1644.                           Node attr = map.item(i);
+  1645. >                         String attrPrefix = attr.getPrefix();
+  1646.                           String value = attr.getNodeValue();
+  1647.                           namespace = attr.getNamespaceURI();
+
+src/org/apache/xml/dtm/ref/DTMNodeProxy.java:1810: error: NULL_DEREFERENCE
+  object returned by `getOwnerElement()` could be null and is dereferenced at line 1810.
+  1808.               return null;
+  1809.           case Node.ATTRIBUTE_NODE:{
+  1810. >                 if (this.getOwnerElement().getNodeType() == Node.ELEMENT_NODE) {
+  1811.                       return getOwnerElement().lookupPrefix(namespaceURI);
+  1812.   
+
+src/org/apache/xml/dtm/ref/sax2dtm/SAX2DTM2.java:3220: error: NULL_DEREFERENCE
+  object `qName` last assigned on line 3218 could be null and is dereferenced at line 3220.
+  3218.               String qName = m_valuesOrPrefixes.indexToString(qnameIndex);
+  3219.               handler.startElement(qName);
+  3220. >             int prefixIndex = qName.indexOf(':');
+  3221.               String prefix;
+  3222.               if (prefixIndex > 0) {
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:306: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(InputStream,String)` indirectly writes to field `element._parent` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  304.   	final InputSource input = new InputSource(stream);
+  305.   	input.setSystemId(name); // We have nothing else!!!
+  306. > 	return compile(input, name);
+  307.       }
+  308.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:460: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `byte[][] XSLTC.compile(String,InputSource)` indirectly writes to field `element._parent` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  458.        */
+  459.       public byte[][] compile(String name, InputSource input) {
+  460. >         return compile(name, input, BYTEARRAY_OUTPUT);
+  461.       }
+  462.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:446: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `byte[][] XSLTC.compile(String,InputSource,int)` indirectly writes to field `element._parent` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  444.       public byte[][] compile(String name, InputSource input, int outputType) {
+  445.   	_outputType = outputType;
+  446. > 	if (compile(input, name))
+  447.   	    return getBytecodes();
+  448.   	else
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:270: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(URL)` indirectly writes to field `element._parent` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  268.   	    final InputSource input = new InputSource(stream);
+  269.   	    input.setSystemId(url.toString());
+  270. > 	    return compile(input, _className);
+  271.   	}
+  272.   	catch (IOException e) {
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:289: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(URL,String)` indirectly writes to field `element._parent` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  287.   	    final InputSource input = new InputSource(stream);
+  288.   	    input.setSystemId(url.toString());
+  289. > 	    return compile(input, name);
+  290.   	}
+  291.   	catch (IOException e) {
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:414: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(Vector)` writes to field `this._className` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  412.   	    final Enumeration urls = stylesheets.elements();
+  413.   	    while (urls.hasMoreElements()) {
+  414. > 		_className = null; // reset, so that new name will be computed
+  415.   		final Object url = urls.nextElement();
+  416.   		if (url instanceof URL) {
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:417: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean XSLTC.compile(Vector)` indirectly reads without synchronization from `element._parent`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  415.   		final Object url = urls.nextElement();
+  416.   		if (url instanceof URL) {
+  417. > 		    if (!compile((URL)url)) return false;
+  418.   		}
+  419.   	    }
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:406: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(Vector)` indirectly writes to field `element._parent` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  404.   	    final Object url = stylesheets.firstElement();
+  405.   	    if (url instanceof URL)
+  406. > 		return compile((URL)url);
+  407.   	    else
+  408.   		return false;
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:361: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(InputSource,String)` indirectly writes to field `node._line` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  359.   
+  360.   		// Create AST under the Stylesheet element (parse & type-check)
+  361. > 		_parser.createAST(_stylesheet);
+  362.   	    }
+  363.   	    // Generate the bytecodes and output the translet class(es)
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:344: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean XSLTC.compile(InputSource,String)` indirectly reads without synchronization from `this._parser._root`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because this access may occur on a background thread.
+  342.   	    SyntaxTreeNode element = null;
+  343.   	    if (_reader == null) {
+  344. > 		element = _parser.parse(input);
+  345.   	    }
+  346.   	    else {
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:371: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean XSLTC.compile(InputSource,String)` reads with synchronization from `this._stylesheet`. Potentially races with unsynchronized write in method `XSLTC.compile(...)`.
+ Reporting because this access may occur on a background thread.
+  369.   		// Class synchronization is needed for BCEL
+  370.   		synchronized (getClass()) {
+  371. > 		    _stylesheet.translate();
+  372.   		}
+  373.   	    }
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:353: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(InputSource,String)` indirectly writes to field `element._parent` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  351.   	    if ((!_parser.errorsFound()) && (element != null)) {
+  352.   		// Create a Stylesheet element from the root node
+  353. > 		_stylesheet = _parser.makeStylesheet(element);
+  354.   		_stylesheet.setSourceLoader(_loader);
+  355.   		_stylesheet.setSystemId(systemId);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:384: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(InputSource,String)` writes to field `this._reader` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  382.   	}
+  383.   	finally {
+  384. > 	    _reader = null; // reset this here to be sure it is not re-used
+  385.   	}
+  386.   	return !_parser.errorsFound();
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:365: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean XSLTC.compile(InputSource,String)` reads without synchronization from `this._callsNodeset`. Potentially races with write in method `XSLTC.setCallsNodeset(...)`.
+ Reporting because this access may occur on a background thread.
+  363.   	    // Generate the bytecodes and output the translet class(es)
+  364.   	    if ((!_parser.errorsFound()) && (_stylesheet != null)) {
+  365. > 		_stylesheet.setCallsNodeset(_callsNodeset);
+  366.   		_stylesheet.setMultiDocument(_multiDocument);
+  367.   		_stylesheet.setHasIdCall(_hasIdCall);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:355: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(InputSource,String)` indirectly writes to field `this._stylesheet._systemId` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  353.   		_stylesheet = _parser.makeStylesheet(element);
+  354.   		_stylesheet.setSourceLoader(_loader);
+  355. > 		_stylesheet.setSystemId(systemId);
+  356.   		_stylesheet.setParentStylesheet(null);
+  357.   		_stylesheet.setTemplateInlining(_templateInlining);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:343: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean XSLTC.compile(InputSource,String)` reads without synchronization from `this._reader`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because this access may occur on a background thread.
+  341.   	    // Get the root node of the abstract syntax tree
+  342.   	    SyntaxTreeNode element = null;
+  343. > 	    if (_reader == null) {
+  344.   		element = _parser.parse(input);
+  345.   	    }
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:354: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean XSLTC.compile(InputSource,String)` reads without synchronization from `this._loader`. Potentially races with write in method `XSLTC.setSourceLoader(...)`.
+ Reporting because this access may occur on a background thread.
+  352.   		// Create a Stylesheet element from the root node
+  353.   		_stylesheet = _parser.makeStylesheet(element);
+  354. > 		_stylesheet.setSourceLoader(_loader);
+  355.   		_stylesheet.setSystemId(systemId);
+  356.   		_stylesheet.setParentStylesheet(null);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:357: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(InputSource,String)` indirectly writes to field `this._stylesheet._templateInlining` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  355.   		_stylesheet.setSystemId(systemId);
+  356.   		_stylesheet.setParentStylesheet(null);
+  357. > 		_stylesheet.setTemplateInlining(_templateInlining);
+  358.   		_parser.setCurrentStylesheet(_stylesheet);
+  359.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:327: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean XSLTC.compile(InputSource,String)` reads without synchronization from `this._className`. Potentially races with write in method `XSLTC.setPackageName(...)`.
+ Reporting because this access may occur on a background thread.
+  325.   
+  326.   	    // Set the translet class name if not already set
+  327. > 	    if (_className == null) {
+  328.   		if (name != null) {
+  329.   		    setClassName(name);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:356: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(InputSource,String)` indirectly writes to field `this._stylesheet._parentStylesheet` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  354.   		_stylesheet.setSourceLoader(_loader);
+  355.   		_stylesheet.setSystemId(systemId);
+  356. > 		_stylesheet.setParentStylesheet(null);
+  357.   		_stylesheet.setTemplateInlining(_templateInlining);
+  358.   		_parser.setCurrentStylesheet(_stylesheet);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:367: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean XSLTC.compile(InputSource,String)` reads without synchronization from `this._hasIdCall`. Potentially races with write in method `XSLTC.setHasIdCall(...)`.
+ Reporting because this access may occur on a background thread.
+  365.   		_stylesheet.setCallsNodeset(_callsNodeset);
+  366.   		_stylesheet.setMultiDocument(_multiDocument);
+  367. > 		_stylesheet.setHasIdCall(_hasIdCall);
+  368.   
+  369.   		// Class synchronization is needed for BCEL
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:351: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean XSLTC.compile(InputSource,String)` indirectly reads without synchronization from `this._parser._errors`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because this access may occur on a background thread.
+  349.   
+  350.   	    // Compile the translet - this is where the work is done!
+  351. > 	    if ((!_parser.errorsFound()) && (element != null)) {
+  352.   		// Create a Stylesheet element from the root node
+  353.   		_stylesheet = _parser.makeStylesheet(element);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:366: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean XSLTC.compile(InputSource,String)` reads without synchronization from `this._multiDocument`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because this access may occur on a background thread.
+  364.   	    if ((!_parser.errorsFound()) && (_stylesheet != null)) {
+  365.   		_stylesheet.setCallsNodeset(_callsNodeset);
+  366. > 		_stylesheet.setMultiDocument(_multiDocument);
+  367.   		_stylesheet.setHasIdCall(_hasIdCall);
+  368.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:329: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(InputSource,String)` indirectly writes to field `this._className` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  327.   	    if (_className == null) {
+  328.   		if (name != null) {
+  329. > 		    setClassName(name);
+  330.                   }
+  331.   		else if (systemId != null && systemId.length() != 0) {
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:318: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `boolean XSLTC.compile(InputSource,String)` indirectly writes to field `this._attributeSetSerial` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  316.   	try {
+  317.   	    // Reset globals in case we're called by compile(Vector v);
+  318. > 	    reset();
+  319.   
+  320.   	    // The systemId may not be set, so we'll have to check the URL
+
+src/org/apache/xalan/lib/ObjectFactory.java:103: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `lib.ObjectFactory.class$org$apache$xalan$lib$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       static Object createObject(String factoryId, String fallbackClassName)
+  102.           throws ConfigurationError {
+  103. >         return createObject(factoryId, null, fallbackClassName);
+  104.       } // createObject(String,String):Object
+  105.   
+
+src/org/apache/xalan/lib/sql/ObjectFactory.java:103: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `sql.ObjectFactory.class$org$apache$xalan$lib$sql$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       static Object createObject(String factoryId, String fallbackClassName)
+  102.           throws ConfigurationError {
+  103. >         return createObject(factoryId, null, fallbackClassName);
+  104.       } // createObject(String,String):Object
+  105.   
+
+src/org/apache/xalan/xslt/ObjectFactory.java:103: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `xslt.ObjectFactory.class$org$apache$xalan$xslt$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       static Object createObject(String factoryId, String fallbackClassName)
+  102.           throws ConfigurationError {
+  103. >         return createObject(factoryId, null, fallbackClassName);
+  104.       } // createObject(String,String):Object
+  105.   
+
+src/org/apache/xalan/xsltc/cmdline/ObjectFactory.java:103: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `cmdline.ObjectFactory.class$org$apache$xalan$xsltc$cmdline$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       static Object createObject(String factoryId, String fallbackClassName)
+  102.           throws ConfigurationError {
+  103. >         return createObject(factoryId, null, fallbackClassName);
+  104.       } // createObject(String,String):Object
+  105.   
+
+src/org/apache/xalan/xsltc/compiler/ObjectFactory.java:103: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `compiler.ObjectFactory.class$org$apache$xalan$xsltc$compiler$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       static Object createObject(String factoryId, String fallbackClassName)
+  102.           throws ConfigurationError {
+  103. >         return createObject(factoryId, null, fallbackClassName);
+  104.       } // createObject(String,String):Object
+  105.   
+
+src/org/apache/xalan/xsltc/compiler/util/ObjectFactory.java:103: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `util.ObjectFactory.class$org$apache$xalan$xsltc$compiler$util$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       static Object createObject(String factoryId, String fallbackClassName)
+  102.           throws ConfigurationError {
+  103. >         return createObject(factoryId, null, fallbackClassName);
+  104.       } // createObject(String,String):Object
+  105.   
+
+src/org/apache/xalan/xsltc/dom/ObjectFactory.java:103: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `dom.ObjectFactory.class$org$apache$xalan$xsltc$dom$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       static Object createObject(String factoryId, String fallbackClassName)
+  102.           throws ConfigurationError {
+  103. >         return createObject(factoryId, null, fallbackClassName);
+  104.       } // createObject(String,String):Object
+  105.   
+
+src/org/apache/xalan/xsltc/runtime/ObjectFactory.java:103: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `runtime.ObjectFactory.class$org$apache$xalan$xsltc$runtime$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       static Object createObject(String factoryId, String fallbackClassName)
+  102.           throws ConfigurationError {
+  103. >         return createObject(factoryId, null, fallbackClassName);
+  104.       } // createObject(String,String):Object
+  105.   
+
+src/org/apache/xalan/xsltc/trax/ObjectFactory.java:103: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `trax.ObjectFactory.class$org$apache$xalan$xsltc$trax$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       static Object createObject(String factoryId, String fallbackClassName)
+  102.           throws ConfigurationError {
+  103. >         return createObject(factoryId, null, fallbackClassName);
+  104.       } // createObject(String,String):Object
+  105.   
+
+src/org/apache/xml/dtm/ObjectFactory.java:103: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `dtm.ObjectFactory.class$org$apache$xml$dtm$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       static Object createObject(String factoryId, String fallbackClassName)
+  102.           throws ConfigurationError {
+  103. >         return createObject(factoryId, null, fallbackClassName);
+  104.       } // createObject(String,String):Object
+  105.   
+
+src/org/apache/xml/dtm/ref/ObjectFactory.java:103: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `ref.ObjectFactory.class$org$apache$xml$dtm$ref$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       static Object createObject(String factoryId, String fallbackClassName)
+  102.           throws ConfigurationError {
+  103. >         return createObject(factoryId, null, fallbackClassName);
+  104.       } // createObject(String,String):Object
+  105.   
+
+src/org/apache/xml/serializer/ObjectFactory.java:102: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `serializer.ObjectFactory.class$org$apache$xml$serializer$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  100.       static Object createObject(String factoryId, String fallbackClassName)
+  101.           throws ConfigurationError {
+  102. >         return createObject(factoryId, null, fallbackClassName);
+  103.       } // createObject(String,String):Object
+  104.   
+
+src/org/apache/xml/utils/ObjectFactory.java:103: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String)` indirectly writes to field `utils.ObjectFactory.class$org$apache$xml$utils$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       static Object createObject(String factoryId, String fallbackClassName)
+  102.           throws ConfigurationError {
+  103. >         return createObject(factoryId, null, fallbackClassName);
+  104.       } // createObject(String,String):Object
+  105.   
+
+src/org/apache/xalan/lib/ObjectFactory.java:133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `lib.ObjectFactory.class$org$apache$xalan$lib$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  131.           throws ConfigurationError
+  132.       {
+  133. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  134.                                                   propertiesFilename,
+  135.                                                   fallbackClassName);
+
+src/org/apache/xalan/lib/sql/ObjectFactory.java:133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `sql.ObjectFactory.class$org$apache$xalan$lib$sql$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  131.           throws ConfigurationError
+  132.       {
+  133. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  134.                                                   propertiesFilename,
+  135.                                                   fallbackClassName);
+
+src/org/apache/xalan/xslt/ObjectFactory.java:133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `xslt.ObjectFactory.class$org$apache$xalan$xslt$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  131.           throws ConfigurationError
+  132.       {
+  133. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  134.                                                   propertiesFilename,
+  135.                                                   fallbackClassName);
+
+src/org/apache/xalan/xsltc/cmdline/ObjectFactory.java:133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `cmdline.ObjectFactory.class$org$apache$xalan$xsltc$cmdline$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  131.           throws ConfigurationError
+  132.       {
+  133. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  134.                                                   propertiesFilename,
+  135.                                                   fallbackClassName);
+
+src/org/apache/xalan/xsltc/compiler/ObjectFactory.java:133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `compiler.ObjectFactory.class$org$apache$xalan$xsltc$compiler$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  131.           throws ConfigurationError
+  132.       {
+  133. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  134.                                                   propertiesFilename,
+  135.                                                   fallbackClassName);
+
+src/org/apache/xalan/xsltc/compiler/util/ObjectFactory.java:133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `util.ObjectFactory.class$org$apache$xalan$xsltc$compiler$util$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  131.           throws ConfigurationError
+  132.       {
+  133. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  134.                                                   propertiesFilename,
+  135.                                                   fallbackClassName);
+
+src/org/apache/xalan/xsltc/dom/ObjectFactory.java:133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `dom.ObjectFactory.class$org$apache$xalan$xsltc$dom$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  131.           throws ConfigurationError
+  132.       {
+  133. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  134.                                                   propertiesFilename,
+  135.                                                   fallbackClassName);
+
+src/org/apache/xalan/xsltc/runtime/ObjectFactory.java:133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `runtime.ObjectFactory.class$org$apache$xalan$xsltc$runtime$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  131.           throws ConfigurationError
+  132.       {
+  133. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  134.                                                   propertiesFilename,
+  135.                                                   fallbackClassName);
+
+src/org/apache/xalan/xsltc/trax/ObjectFactory.java:133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `trax.ObjectFactory.class$org$apache$xalan$xsltc$trax$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  131.           throws ConfigurationError
+  132.       {
+  133. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  134.                                                   propertiesFilename,
+  135.                                                   fallbackClassName);
+
+src/org/apache/xml/dtm/ObjectFactory.java:133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `dtm.ObjectFactory.class$org$apache$xml$dtm$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  131.           throws ConfigurationError
+  132.       {
+  133. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  134.                                                   propertiesFilename,
+  135.                                                   fallbackClassName);
+
+src/org/apache/xml/dtm/ref/ObjectFactory.java:133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `ref.ObjectFactory.class$org$apache$xml$dtm$ref$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  131.           throws ConfigurationError
+  132.       {
+  133. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  134.                                                   propertiesFilename,
+  135.                                                   fallbackClassName);
+
+src/org/apache/xml/serializer/ObjectFactory.java:132: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `serializer.ObjectFactory.class$org$apache$xml$serializer$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  130.           throws ConfigurationError
+  131.       {
+  132. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  133.                                                   propertiesFilename,
+  134.                                                   fallbackClassName);
+
+src/org/apache/xml/utils/ObjectFactory.java:133: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Object ObjectFactory.createObject(String,String,String)` indirectly writes to field `utils.ObjectFactory.class$org$apache$xml$utils$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  131.           throws ConfigurationError
+  132.       {
+  133. >         Class factoryClass = lookUpFactoryClass(factoryId,
+  134.                                                   propertiesFilename,
+  135.                                                   fallbackClassName);
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:316: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTProcessorApplet.destroy()` writes to field `this.m_trustedWorker` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  314.   
+  315.         // m_trustedWorker.destroy();
+  316. >       m_trustedWorker = null;
+  317.       }
+  318.       m_styleURLOfCached = null;
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:311: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void XSLTProcessorApplet.destroy()` reads without synchronization from `this.m_trustedWorker`. Potentially races with write in method `XSLTProcessorApplet.start()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  309.     public void destroy()
+  310.     {
+  311. >     if (null != m_trustedWorker)
+  312.       {
+  313.         m_trustedWorker.stop();
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:195: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void TemplatesHandlerImpl.endDocument()` reads without synchronization from `this._systemId`. Potentially races with write in method `TemplatesHandlerImpl.setSystemId(...)`.
+ Reporting because this access may occur on a background thread.
+  193.               // Set the translet class name if not already set
+  194.               String transletName;
+  195. >             if (_systemId != null) {
+  196.                   transletName = Util.baseName(_systemId);
+  197.               }
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:229: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly writes to field `xsltc._stylesheet` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  227.   
+  228.                   // Set it as top-level in the XSLTC object
+  229. >                 xsltc.setStylesheet(stylesheet);
+  230.   
+  231.                   // Create AST under the Stylesheet element
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:204: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly reads without synchronization from `xsltc._className`. Potentially races with write in method `TemplatesHandlerImpl.endDocument()`.
+ Reporting because this access may occur on a background thread.
+  202.   
+  203.               // Get java-legal class name from XSLTC module
+  204. >             transletName = xsltc.getClassName();
+  205.   
+  206.               Stylesheet stylesheet = null;
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:255: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void TemplatesHandlerImpl.endDocument()` reads without synchronization from `this._uriResolver`. Potentially races with write in method `TemplatesHandlerImpl.setURIResolver(...)`.
+ Reporting because this access may occur on a background thread.
+  253.   
+  254.                       // Set URIResolver on templates object
+  255. >                     if (_uriResolver != null) {
+  256.                           _templates.setURIResolver(_uriResolver);
+  257.                       }
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:256: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void TemplatesHandlerImpl.endDocument()` reads without synchronization from `this._templates`. Potentially races with write in method `TemplatesHandlerImpl.endDocument()`.
+ Reporting because this access may occur on a background thread.
+  254.                       // Set URIResolver on templates object
+  255.                       if (_uriResolver != null) {
+  256. >                         _templates.setURIResolver(_uriResolver);
+  257.                       }
+  258.                   }
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:217: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly writes to field `stylesheet._templateInlining` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  215.   
+  216.                   if (xsltc.getTemplateInlining())
+  217. >                    stylesheet.setTemplateInlining(true);
+  218.                   else
+  219.                      stylesheet.setTemplateInlining(false);
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:238: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly writes to field `stylesheet._hasIdCall` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  236.               if (!_parser.errorsFound() && stylesheet != null) {
+  237.                   stylesheet.setMultiDocument(xsltc.isMultiDocument());
+  238. >                 stylesheet.setHasIdCall(xsltc.hasIdCall());
+  239.   
+  240.                   // Class synchronization is needed for BCEL
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:226: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly writes to field `this._parser._currentStylesheet` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  224.                   }
+  225.   
+  226. >                 _parser.setCurrentStylesheet(stylesheet);
+  227.   
+  228.                   // Set it as top-level in the XSLTC object
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:201: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly writes to field `xsltc._className` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  199.                   transletName = (String)_tfactory.getAttribute("translet-name");
+  200.               }
+  201. >             xsltc.setClassName(transletName);
+  202.   
+  203.               // Get java-legal class name from XSLTC module
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:252: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly reads without synchronization from `this._parser._xsltc._stylesheet`. Potentially races with write in method `TemplatesHandlerImpl.startElement(...)`.
+ Reporting because this access may occur on a background thread.
+  250.                       _templates =
+  251.                       new TemplatesImpl(xsltc.getBytecodes(), transletName,
+  252. >                         _parser.getOutputProperties(), _indentNumber, _tfactory);
+  253.   
+  254.                       // Set URIResolver on templates object
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:214: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly writes to field `stylesheet._parentStylesheet` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  212.                   stylesheet = _parser.makeStylesheet(root);
+  213.                   stylesheet.setSystemId(_systemId);
+  214. >                 stylesheet.setParentStylesheet(null);
+  215.   
+  216.                   if (xsltc.getTemplateInlining())
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:232: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly reads without synchronization from `stylesheet._templateInlining`. Potentially races with write in method `TemplatesHandlerImpl.endDocument()`.
+ Reporting because this access may occur on a background thread.
+  230.   
+  231.                   // Create AST under the Stylesheet element
+  232. >                 _parser.createAST(stylesheet);
+  233.               }
+  234.   
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:242: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly reads with synchronization from `stylesheet._hasIdCall`. Potentially races with unsynchronized write in method `TemplatesHandlerImpl.endDocument()`.
+ Reporting because this access may occur on a background thread.
+  240.                   // Class synchronization is needed for BCEL
+  241.                   synchronized (xsltc.getClass()) {
+  242. >                     stylesheet.translate();
+  243.                   }
+  244.               }
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:207: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly reads without synchronization from `this._parser._root`. Potentially races with write in method `TemplatesHandlerImpl.startDocument()`.
+ Reporting because this access may occur on a background thread.
+  205.   
+  206.               Stylesheet stylesheet = null;
+  207. >             SyntaxTreeNode root = _parser.getDocumentRoot();
+  208.   
+  209.               // Compile the translet - this is where the work is done!
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:213: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly writes to field `stylesheet._systemId` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  211.                   // Create a Stylesheet element from the root node
+  212.                   stylesheet = _parser.makeStylesheet(root);
+  213. >                 stylesheet.setSystemId(_systemId);
+  214.                   stylesheet.setParentStylesheet(null);
+  215.   
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:212: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly writes to field `stylesheet._name` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  210.               if (!_parser.errorsFound() && root != null) {
+  211.                   // Create a Stylesheet element from the root node
+  212. >                 stylesheet = _parser.makeStylesheet(root);
+  213.                   stylesheet.setSystemId(_systemId);
+  214.                   stylesheet.setParentStylesheet(null);
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:237: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly writes to field `stylesheet._multiDocument` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  235.               // Generate the bytecodes and output the translet class(es)
+  236.               if (!_parser.errorsFound() && stylesheet != null) {
+  237. >                 stylesheet.setMultiDocument(xsltc.isMultiDocument());
+  238.                   stylesheet.setHasIdCall(xsltc.hasIdCall());
+  239.   
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:223: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void TemplatesHandlerImpl.endDocument()` indirectly writes to field `stylesheet._loader` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  221.                   // Set a document loader (for xsl:include/import) if defined
+  222.                   if (_uriResolver != null) {
+  223. >                     stylesheet.setSourceLoader(this);
+  224.                   }
+  225.   
+
+src/org/apache/xalan/lib/ObjectFactory.java:410: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `lib.ObjectFactory.class$org$apache$xalan$lib$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  408.                   // back to system ClassLoader first so this widening doesn't
+  409.                   // change the fact that context ClassLoader will be consulted
+  410. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  411.   
+  412.                   chain = system;
+
+src/org/apache/xalan/lib/sql/ObjectFactory.java:410: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `sql.ObjectFactory.class$org$apache$xalan$lib$sql$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  408.                   // back to system ClassLoader first so this widening doesn't
+  409.                   // change the fact that context ClassLoader will be consulted
+  410. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  411.   
+  412.                   chain = system;
+
+src/org/apache/xalan/xslt/ObjectFactory.java:410: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `xslt.ObjectFactory.class$org$apache$xalan$xslt$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  408.                   // back to system ClassLoader first so this widening doesn't
+  409.                   // change the fact that context ClassLoader will be consulted
+  410. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  411.   
+  412.                   chain = system;
+
+src/org/apache/xalan/xsltc/cmdline/ObjectFactory.java:410: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `cmdline.ObjectFactory.class$org$apache$xalan$xsltc$cmdline$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  408.                   // back to system ClassLoader first so this widening doesn't
+  409.                   // change the fact that context ClassLoader will be consulted
+  410. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  411.   
+  412.                   chain = system;
+
+src/org/apache/xalan/xsltc/compiler/ObjectFactory.java:410: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `compiler.ObjectFactory.class$org$apache$xalan$xsltc$compiler$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  408.                   // back to system ClassLoader first so this widening doesn't
+  409.                   // change the fact that context ClassLoader will be consulted
+  410. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  411.   
+  412.                   chain = system;
+
+src/org/apache/xalan/xsltc/compiler/util/ObjectFactory.java:410: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `util.ObjectFactory.class$org$apache$xalan$xsltc$compiler$util$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  408.                   // back to system ClassLoader first so this widening doesn't
+  409.                   // change the fact that context ClassLoader will be consulted
+  410. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  411.   
+  412.                   chain = system;
+
+src/org/apache/xalan/xsltc/dom/ObjectFactory.java:410: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `dom.ObjectFactory.class$org$apache$xalan$xsltc$dom$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  408.                   // back to system ClassLoader first so this widening doesn't
+  409.                   // change the fact that context ClassLoader will be consulted
+  410. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  411.   
+  412.                   chain = system;
+
+src/org/apache/xalan/xsltc/runtime/ObjectFactory.java:410: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `runtime.ObjectFactory.class$org$apache$xalan$xsltc$runtime$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  408.                   // back to system ClassLoader first so this widening doesn't
+  409.                   // change the fact that context ClassLoader will be consulted
+  410. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  411.   
+  412.                   chain = system;
+
+src/org/apache/xalan/xsltc/trax/ObjectFactory.java:410: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `trax.ObjectFactory.class$org$apache$xalan$xsltc$trax$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  408.                   // back to system ClassLoader first so this widening doesn't
+  409.                   // change the fact that context ClassLoader will be consulted
+  410. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  411.   
+  412.                   chain = system;
+
+src/org/apache/xml/dtm/ObjectFactory.java:410: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `dtm.ObjectFactory.class$org$apache$xml$dtm$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  408.                   // back to system ClassLoader first so this widening doesn't
+  409.                   // change the fact that context ClassLoader will be consulted
+  410. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  411.   
+  412.                   chain = system;
+
+src/org/apache/xml/dtm/ref/ObjectFactory.java:410: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `ref.ObjectFactory.class$org$apache$xml$dtm$ref$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  408.                   // back to system ClassLoader first so this widening doesn't
+  409.                   // change the fact that context ClassLoader will be consulted
+  410. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  411.   
+  412.                   chain = system;
+
+src/org/apache/xml/serializer/ObjectFactory.java:409: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `serializer.ObjectFactory.class$org$apache$xml$serializer$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  407.                   // back to system ClassLoader first so this widening doesn't
+  408.                   // change the fact that context ClassLoader will be consulted
+  409. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  410.   
+  411.                   chain = system;
+
+src/org/apache/xml/utils/ObjectFactory.java:410: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `ClassLoader ObjectFactory.findClassLoader()` writes to field `utils.ObjectFactory.class$org$apache$xml$utils$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  408.                   // back to system ClassLoader first so this widening doesn't
+  409.                   // change the fact that context ClassLoader will be consulted
+  410. >                 ClassLoader current = ObjectFactory.class.getClassLoader();
+  411.   
+  412.                   chain = system;
+
+src/org/apache/xml/dtm/DTMException.java:85: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Throwable DTMException.getCause()` reads without synchronization from `this.containedException`. Potentially races with write in method `DTMException.initCause(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  83.       public Throwable getCause() {
+  84.   
+  85. >         return ((containedException == this)
+  86.                   ? null
+  87.                   : containedException);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:562: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String XSLTC.getClassName()` reads without synchronization from `this._className`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  560.        */
+  561.       public String getClassName() {
+  562. > 	return _className;
+  563.       }
+  564.   
+
+src/org/apache/xml/serializer/OutputPropertiesFactory.java:279: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Properties OutputPropertiesFactory.getDefaultMethodProperties(String)` writes to field `serializer.OutputPropertiesFactory.m_html_properties` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  277.                       fileName = PROP_FILE_HTML;
+  278.                       m_html_properties =
+  279. >                         loadPropertiesFile(fileName, m_xml_properties);
+  280.                   }
+  281.   
+
+src/org/apache/xml/serializer/OutputPropertiesFactory.java:265: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Properties OutputPropertiesFactory.getDefaultMethodProperties(String)` indirectly reads with synchronization from `serializer.OutputPropertiesFactory.class$org$apache$xml$serializer$OutputPropertiesFactory`. Potentially races with unsynchronized write in method `OutputPropertiesFactory.getDefaultMethodProperties(...)`.
+ Reporting because this access may occur on a background thread.
+  263.                   {
+  264.                       fileName = PROP_FILE_XML;
+  265. >                     m_xml_properties = loadPropertiesFile(fileName, null);
+  266.                   }
+  267.               }
+
+src/org/apache/xml/serializer/OutputPropertiesFactory.java:295: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Properties OutputPropertiesFactory.getDefaultMethodProperties(String)` mutates container `serializer.OutputPropertiesFactory.m_text_properties` via call to `put` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  293.                       {
+  294.                           String mimeEncoding = Encodings.getMimeEncoding(null);
+  295. >                         m_text_properties.put(
+  296.                               OutputKeys.ENCODING,
+  297.                               mimeEncoding);
+
+src/org/apache/xml/serializer/OutputPropertiesFactory.java:271: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Properties OutputPropertiesFactory.getDefaultMethodProperties(String)` reads without synchronization from `serializer.OutputPropertiesFactory.m_xml_properties`. Potentially races with write in method `OutputPropertiesFactory.getDefaultMethodProperties(...)`.
+ Reporting because this access may occur on a background thread.
+  269.               if (method.equals(Method.XML))
+  270.               {
+  271. >                 defaultProperties = m_xml_properties;
+  272.               }
+  273.               else if (method.equals(Method.HTML))
+
+src/org/apache/xml/serializer/OutputPropertiesFactory.java:305: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Properties OutputPropertiesFactory.getDefaultMethodProperties(String)` reads without synchronization from `serializer.OutputPropertiesFactory.m_unknown_properties`. Potentially races with write in method `OutputPropertiesFactory.getDefaultMethodProperties(...)`.
+ Reporting because this access may occur on a background thread.
+  303.               else if (method.equals(Method.UNKNOWN))
+  304.               {
+  305. >                 if (null == m_unknown_properties) // double check
+  306.                   {
+  307.                       fileName = PROP_FILE_UNKNOWN;
+
+src/org/apache/xml/serializer/OutputPropertiesFactory.java:309: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Properties OutputPropertiesFactory.getDefaultMethodProperties(String)` writes to field `serializer.OutputPropertiesFactory.m_unknown_properties` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  307.                       fileName = PROP_FILE_UNKNOWN;
+  308.                       m_unknown_properties =
+  309. >                         loadPropertiesFile(fileName, m_xml_properties);
+  310.                   }
+  311.   
+
+src/org/apache/xml/serializer/OutputPropertiesFactory.java:290: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Properties OutputPropertiesFactory.getDefaultMethodProperties(String)` indirectly writes to field `serializer.OutputPropertiesFactory.class$org$apache$xml$serializer$OutputPropertiesFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  288.                       fileName = PROP_FILE_TEXT;
+  289.                       m_text_properties =
+  290. >                         loadPropertiesFile(fileName, m_xml_properties);
+  291.                       if (null
+  292.                           == m_text_properties.getProperty(OutputKeys.ENCODING))
+
+src/org/apache/xml/serializer/OutputPropertiesFactory.java:286: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Properties OutputPropertiesFactory.getDefaultMethodProperties(String)` reads without synchronization from `serializer.OutputPropertiesFactory.m_text_properties`. Potentially races with write in method `OutputPropertiesFactory.getDefaultMethodProperties(...)`.
+ Reporting because this access may occur on a background thread.
+  284.               else if (method.equals(Method.TEXT))
+  285.               {
+  286. >                 if (null == m_text_properties) // double check
+  287.                   {
+  288.                       fileName = PROP_FILE_TEXT;
+
+src/org/apache/xml/serializer/OutputPropertiesFactory.java:275: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Properties OutputPropertiesFactory.getDefaultMethodProperties(String)` reads without synchronization from `serializer.OutputPropertiesFactory.m_html_properties`. Potentially races with write in method `OutputPropertiesFactory.getDefaultMethodProperties(...)`.
+ Reporting because this access may occur on a background thread.
+  273.               else if (method.equals(Method.HTML))
+  274.               {
+  275. >                 if (null == m_html_properties) // double check
+  276.                   {
+  277.                       fileName = PROP_FILE_HTML;
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:483: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Vector XSLTC.getErrors()` indirectly reads without synchronization from `this._parser._errors`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  481.        */
+  482.       public Vector getErrors() {
+  483. > 	return _parser.getErrors();
+  484.       }
+  485.   
+
+src/org/apache/xml/dtm/DTMException.java:75: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Throwable DTMException.getException()` reads without synchronization from `this.containedException`. Potentially races with write in method `DTMException.initCause(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  73.        */
+  74.       public Throwable getException() {
+  75. >         return containedException;
+  76.       }
+  77.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:823: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String XSLTC.getHelperClassName()` indirectly reads without synchronization from `this._className`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  821.        */
+  822.       public String getHelperClassName() {
+  823. > 	return getClassName() + '$' + _helperClassSerial++;
+  824.       }
+  825.   
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:474: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String XSLTProcessorApplet.getHtmlText()` reads with synchronization from `this.m_callThread`. Potentially races with unsynchronized write in method `XSLTProcessorApplet.getHtmlText()`.
+ Reporting because this access may occur on a background thread.
+  472.         synchronized (m_callThread)
+  473.         {
+  474. >         m_callThread.wait();
+  475.         }
+  476.       }
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:469: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String XSLTProcessorApplet.getHtmlText()` writes to field `this.m_callThread` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  467.     {
+  468.       m_trustedAgent.m_getData = true;
+  469. >     m_callThread = Thread.currentThread();
+  470.       try
+  471.       {
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:468: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String XSLTProcessorApplet.getHtmlText()` reads without synchronization from `this.m_trustedAgent`. Potentially races with write in method `XSLTProcessorApplet.start()`.
+ Reporting because this access may occur on a background thread.
+  466.     public String getHtmlText()
+  467.     {
+  468. >     m_trustedAgent.m_getData = true;
+  469.       m_callThread = Thread.currentThread();
+  470.       try
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:775: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Vector XSLTC.getNSAncestorPointers()` reads without synchronization from `this._stylesheetNSAncestorPointers`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  773.   
+  774.       public Vector getNSAncestorPointers() {
+  775. >         return _stylesheetNSAncestorPointers;
+  776.       }
+  777.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:811: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Vector XSLTC.getNamesIndex()` reads without synchronization from `this._namesIndex`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  809.   
+  810.       public Vector getNamesIndex() {
+  811. > 	return _namesIndex;
+  812.       }
+  813.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:815: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Vector XSLTC.getNamespaceIndex()` reads without synchronization from `this._namespaceIndex`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  813.   
+  814.       public Vector getNamespaceIndex() {
+  815. > 	return _namespaceIndex;
+  816.       }
+  817.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:799: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int[] XSLTC.getNumberFieldIndexes()` reads without synchronization from `this._numberFieldIndexes`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  797.   
+  798.       public int[] getNumberFieldIndexes() {
+  799. > 	return _numberFieldIndexes;
+  800.       }
+  801.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:779: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Vector XSLTC.getPrefixURIPairs()` reads without synchronization from `this._prefixURIPairs`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  777.   
+  778.       public Vector getPrefixURIPairs() {
+  779. >         return _prefixURIPairs;
+  780.       }
+  781.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:783: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Vector XSLTC.getPrefixURIPairsIdx()` reads without synchronization from `this._prefixURIPairsIdx`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  781.   
+  782.       public Vector getPrefixURIPairsIdx() {
+  783. >         return _prefixURIPairsIdx;
+  784.       }
+  785.   
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:584: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String XSLTProcessorApplet.getResultTreeAsText()` indirectly writes to field `this.m_callThread` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  582.     public String getResultTreeAsText() throws Exception
+  583.     {
+  584. >     return escapeString(getHtmlText());
+  585.     }
+  586.   
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:558: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String XSLTProcessorApplet.getSourceTreeAsText()` indirectly writes to field `this.m_callThread` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  556.     public String getSourceTreeAsText() throws Exception
+  557.     {
+  558. >     return getTreeAsText(m_documentURL);
+  559.     }
+  560.   
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:571: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String XSLTProcessorApplet.getStyleTreeAsText()` indirectly writes to field `this.m_callThread` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  569.     public String getStyleTreeAsText() throws Exception
+  570.     {
+  571. >     return getTreeAsText(m_styleURL);
+  572.     }
+  573.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:635: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Stylesheet XSLTC.getStylesheet()` reads without synchronization from `this._stylesheet`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  633.        */
+  634.       public Stylesheet getStylesheet() {
+  635. > 	return _stylesheet;
+  636.       }
+  637.   
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:145: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Templates TemplatesHandlerImpl.getTemplates()` reads without synchronization from `this._templates`. Potentially races with write in method `TemplatesHandlerImpl.endDocument()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  143.        */
+  144.       public Templates getTemplates() {
+  145. >         return _templates;
+  146.       }
+  147.   
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:498: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String XSLTProcessorApplet.getTreeAsText(String)` writes to field `this.m_callThread` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  496.       m_trustedAgent.m_getData = true;
+  497.       m_trustedAgent.m_getSource = true;
+  498. >     m_callThread = Thread.currentThread();
+  499.       try
+  500.       {
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:496: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String XSLTProcessorApplet.getTreeAsText(String)` reads without synchronization from `this.m_trustedAgent`. Potentially races with write in method `XSLTProcessorApplet.start()`.
+ Reporting because this access may occur on a background thread.
+  494.     {
+  495.       m_treeURL = treeURL;
+  496. >     m_trustedAgent.m_getData = true;
+  497.       m_trustedAgent.m_getSource = true;
+  498.       m_callThread = Thread.currentThread();
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:503: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String XSLTProcessorApplet.getTreeAsText(String)` reads with synchronization from `this.m_callThread`. Potentially races with unsynchronized write in method `XSLTProcessorApplet.getHtmlText()`.
+ Reporting because this access may occur on a background thread.
+  501.         synchronized (m_callThread)
+  502.         {
+  503. >         m_callThread.wait();
+  504.         }
+  505.       }
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:497: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String XSLTProcessorApplet.getTreeAsText(String)` writes to field `this.m_trustedAgent.m_getSource` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  495.       m_treeURL = treeURL;
+  496.       m_trustedAgent.m_getData = true;
+  497. >     m_trustedAgent.m_getSource = true;
+  498.       m_callThread = Thread.currentThread();
+  499.       try
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:495: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String XSLTProcessorApplet.getTreeAsText(String)` writes to field `this.m_treeURL` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  493.     public String getTreeAsText(String treeURL) throws IOException
+  494.     {
+  495. >     m_treeURL = treeURL;
+  496.       m_trustedAgent.m_getData = true;
+  497.       m_trustedAgent.m_getSource = true;
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:491: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Vector XSLTC.getWarnings()` indirectly reads without synchronization from `this._parser._warnings`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  489.        */
+  490.       public Vector getWarnings() {
+  491. > 	return _parser.getWarnings();
+  492.       }
+  493.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:475: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `XMLReader XSLTC.getXMLReader()` reads without synchronization from `this._reader`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  473.        */
+  474.       public XMLReader getXMLReader() {
+  475. > 	return _reader ;
+  476.       }
+  477.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:538: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean XSLTC.hasIdCall()` reads without synchronization from `this._hasIdCall`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  536.   
+  537.       public boolean hasIdCall() {
+  538. >     	return _hasIdCall;
+  539.       }
+  540.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:183: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTC.init()` indirectly writes to field `this._attributeSetSerial` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  181.        */
+  182.       public void init() {
+  183. > 	reset();
+  184.   	_reader = null;
+  185.   	_classes = new Vector();
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:184: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTC.init()` writes to field `this._reader` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  182.       public void init() {
+  183.   	reset();
+  184. > 	_reader = null;
+  185.   	_classes = new Vector();
+  186.   	_bcelClasses = new Vector();
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:517: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `boolean XSLTC.isMultiDocument()` reads without synchronization from `this._multiDocument`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  515.   
+  516.       public boolean isMultiDocument() {
+  517. > 	return _multiDocument;
+  518.       }
+  519.   
+
+src/org/apache/xalan/lib/ObjectFactory.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `lib.ObjectFactory.class$org$apache$xalan$lib$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.           throws ConfigurationError
+  177.       {
+  178. >         return lookUpFactoryClass(factoryId, null, null);
+  179.       } // lookUpFactoryClass(String):Class
+  180.   
+
+src/org/apache/xalan/lib/sql/ObjectFactory.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `sql.ObjectFactory.class$org$apache$xalan$lib$sql$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.           throws ConfigurationError
+  177.       {
+  178. >         return lookUpFactoryClass(factoryId, null, null);
+  179.       } // lookUpFactoryClass(String):Class
+  180.   
+
+src/org/apache/xalan/xslt/ObjectFactory.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `xslt.ObjectFactory.class$org$apache$xalan$xslt$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.           throws ConfigurationError
+  177.       {
+  178. >         return lookUpFactoryClass(factoryId, null, null);
+  179.       } // lookUpFactoryClass(String):Class
+  180.   
+
+src/org/apache/xalan/xsltc/cmdline/ObjectFactory.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `cmdline.ObjectFactory.class$org$apache$xalan$xsltc$cmdline$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.           throws ConfigurationError
+  177.       {
+  178. >         return lookUpFactoryClass(factoryId, null, null);
+  179.       } // lookUpFactoryClass(String):Class
+  180.   
+
+src/org/apache/xalan/xsltc/compiler/ObjectFactory.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `compiler.ObjectFactory.class$org$apache$xalan$xsltc$compiler$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.           throws ConfigurationError
+  177.       {
+  178. >         return lookUpFactoryClass(factoryId, null, null);
+  179.       } // lookUpFactoryClass(String):Class
+  180.   
+
+src/org/apache/xalan/xsltc/compiler/util/ObjectFactory.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `util.ObjectFactory.class$org$apache$xalan$xsltc$compiler$util$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.           throws ConfigurationError
+  177.       {
+  178. >         return lookUpFactoryClass(factoryId, null, null);
+  179.       } // lookUpFactoryClass(String):Class
+  180.   
+
+src/org/apache/xalan/xsltc/dom/ObjectFactory.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `dom.ObjectFactory.class$org$apache$xalan$xsltc$dom$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.           throws ConfigurationError
+  177.       {
+  178. >         return lookUpFactoryClass(factoryId, null, null);
+  179.       } // lookUpFactoryClass(String):Class
+  180.   
+
+src/org/apache/xalan/xsltc/runtime/ObjectFactory.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `runtime.ObjectFactory.class$org$apache$xalan$xsltc$runtime$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.           throws ConfigurationError
+  177.       {
+  178. >         return lookUpFactoryClass(factoryId, null, null);
+  179.       } // lookUpFactoryClass(String):Class
+  180.   
+
+src/org/apache/xalan/xsltc/trax/ObjectFactory.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `trax.ObjectFactory.class$org$apache$xalan$xsltc$trax$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.           throws ConfigurationError
+  177.       {
+  178. >         return lookUpFactoryClass(factoryId, null, null);
+  179.       } // lookUpFactoryClass(String):Class
+  180.   
+
+src/org/apache/xml/dtm/ObjectFactory.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `dtm.ObjectFactory.class$org$apache$xml$dtm$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.           throws ConfigurationError
+  177.       {
+  178. >         return lookUpFactoryClass(factoryId, null, null);
+  179.       } // lookUpFactoryClass(String):Class
+  180.   
+
+src/org/apache/xml/dtm/ref/ObjectFactory.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `ref.ObjectFactory.class$org$apache$xml$dtm$ref$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.           throws ConfigurationError
+  177.       {
+  178. >         return lookUpFactoryClass(factoryId, null, null);
+  179.       } // lookUpFactoryClass(String):Class
+  180.   
+
+src/org/apache/xml/serializer/ObjectFactory.java:177: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `serializer.ObjectFactory.class$org$apache$xml$serializer$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  175.           throws ConfigurationError
+  176.       {
+  177. >         return lookUpFactoryClass(factoryId, null, null);
+  178.       } // lookUpFactoryClass(String):Class
+  179.   
+
+src/org/apache/xml/utils/ObjectFactory.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String)` indirectly writes to field `utils.ObjectFactory.class$org$apache$xml$utils$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.           throws ConfigurationError
+  177.       {
+  178. >         return lookUpFactoryClass(factoryId, null, null);
+  179.       } // lookUpFactoryClass(String):Class
+  180.   
+
+src/org/apache/xalan/lib/ObjectFactory.java:208: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `lib.ObjectFactory.class$org$apache$xalan$lib$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  206.           throws ConfigurationError
+  207.       {
+  208. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+
+src/org/apache/xalan/lib/ObjectFactory.java:211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `lib.ObjectFactory.class$org$apache$xalan$lib$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+  211. >         ClassLoader cl = findClassLoader();
+  212.   
+  213.           if (factoryClassName == null) {
+
+src/org/apache/xalan/lib/sql/ObjectFactory.java:208: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `sql.ObjectFactory.class$org$apache$xalan$lib$sql$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  206.           throws ConfigurationError
+  207.       {
+  208. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+
+src/org/apache/xalan/lib/sql/ObjectFactory.java:211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `sql.ObjectFactory.class$org$apache$xalan$lib$sql$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+  211. >         ClassLoader cl = findClassLoader();
+  212.   
+  213.           if (factoryClassName == null) {
+
+src/org/apache/xalan/xslt/ObjectFactory.java:211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `xslt.ObjectFactory.class$org$apache$xalan$xslt$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+  211. >         ClassLoader cl = findClassLoader();
+  212.   
+  213.           if (factoryClassName == null) {
+
+src/org/apache/xalan/xslt/ObjectFactory.java:208: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `xslt.ObjectFactory.class$org$apache$xalan$xslt$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  206.           throws ConfigurationError
+  207.       {
+  208. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+
+src/org/apache/xalan/xsltc/cmdline/ObjectFactory.java:211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `cmdline.ObjectFactory.class$org$apache$xalan$xsltc$cmdline$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+  211. >         ClassLoader cl = findClassLoader();
+  212.   
+  213.           if (factoryClassName == null) {
+
+src/org/apache/xalan/xsltc/cmdline/ObjectFactory.java:208: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `cmdline.ObjectFactory.class$org$apache$xalan$xsltc$cmdline$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  206.           throws ConfigurationError
+  207.       {
+  208. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+
+src/org/apache/xalan/xsltc/compiler/ObjectFactory.java:208: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `compiler.ObjectFactory.class$org$apache$xalan$xsltc$compiler$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  206.           throws ConfigurationError
+  207.       {
+  208. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+
+src/org/apache/xalan/xsltc/compiler/ObjectFactory.java:211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `compiler.ObjectFactory.class$org$apache$xalan$xsltc$compiler$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+  211. >         ClassLoader cl = findClassLoader();
+  212.   
+  213.           if (factoryClassName == null) {
+
+src/org/apache/xalan/xsltc/compiler/util/ObjectFactory.java:208: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `util.ObjectFactory.class$org$apache$xalan$xsltc$compiler$util$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  206.           throws ConfigurationError
+  207.       {
+  208. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+
+src/org/apache/xalan/xsltc/compiler/util/ObjectFactory.java:211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `util.ObjectFactory.class$org$apache$xalan$xsltc$compiler$util$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+  211. >         ClassLoader cl = findClassLoader();
+  212.   
+  213.           if (factoryClassName == null) {
+
+src/org/apache/xalan/xsltc/dom/ObjectFactory.java:211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `dom.ObjectFactory.class$org$apache$xalan$xsltc$dom$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+  211. >         ClassLoader cl = findClassLoader();
+  212.   
+  213.           if (factoryClassName == null) {
+
+src/org/apache/xalan/xsltc/dom/ObjectFactory.java:208: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `dom.ObjectFactory.class$org$apache$xalan$xsltc$dom$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  206.           throws ConfigurationError
+  207.       {
+  208. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+
+src/org/apache/xalan/xsltc/runtime/ObjectFactory.java:208: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `runtime.ObjectFactory.class$org$apache$xalan$xsltc$runtime$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  206.           throws ConfigurationError
+  207.       {
+  208. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+
+src/org/apache/xalan/xsltc/runtime/ObjectFactory.java:211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `runtime.ObjectFactory.class$org$apache$xalan$xsltc$runtime$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+  211. >         ClassLoader cl = findClassLoader();
+  212.   
+  213.           if (factoryClassName == null) {
+
+src/org/apache/xalan/xsltc/trax/ObjectFactory.java:211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `trax.ObjectFactory.class$org$apache$xalan$xsltc$trax$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+  211. >         ClassLoader cl = findClassLoader();
+  212.   
+  213.           if (factoryClassName == null) {
+
+src/org/apache/xalan/xsltc/trax/ObjectFactory.java:208: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `trax.ObjectFactory.class$org$apache$xalan$xsltc$trax$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  206.           throws ConfigurationError
+  207.       {
+  208. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+
+src/org/apache/xml/dtm/ObjectFactory.java:211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `dtm.ObjectFactory.class$org$apache$xml$dtm$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+  211. >         ClassLoader cl = findClassLoader();
+  212.   
+  213.           if (factoryClassName == null) {
+
+src/org/apache/xml/dtm/ObjectFactory.java:208: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `dtm.ObjectFactory.class$org$apache$xml$dtm$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  206.           throws ConfigurationError
+  207.       {
+  208. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+
+src/org/apache/xml/dtm/ref/ObjectFactory.java:211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `ref.ObjectFactory.class$org$apache$xml$dtm$ref$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+  211. >         ClassLoader cl = findClassLoader();
+  212.   
+  213.           if (factoryClassName == null) {
+
+src/org/apache/xml/dtm/ref/ObjectFactory.java:208: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `ref.ObjectFactory.class$org$apache$xml$dtm$ref$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  206.           throws ConfigurationError
+  207.       {
+  208. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+
+src/org/apache/xml/serializer/ObjectFactory.java:207: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `serializer.ObjectFactory.class$org$apache$xml$serializer$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  205.           throws ConfigurationError
+  206.       {
+  207. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  208.                                                            propertiesFilename,
+  209.                                                            fallbackClassName);
+
+src/org/apache/xml/serializer/ObjectFactory.java:210: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `serializer.ObjectFactory.class$org$apache$xml$serializer$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  208.                                                            propertiesFilename,
+  209.                                                            fallbackClassName);
+  210. >         ClassLoader cl = findClassLoader();
+  211.   
+  212.           if (factoryClassName == null) {
+
+src/org/apache/xml/utils/ObjectFactory.java:211: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly reads without synchronization from `utils.ObjectFactory.class$org$apache$xml$utils$ObjectFactory`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+  211. >         ClassLoader cl = findClassLoader();
+  212.   
+  213.           if (factoryClassName == null) {
+
+src/org/apache/xml/utils/ObjectFactory.java:208: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `Class ObjectFactory.lookUpFactoryClass(String,String,String)` indirectly writes to field `utils.ObjectFactory.class$org$apache$xml$utils$ObjectFactory` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  206.           throws ConfigurationError
+  207.       {
+  208. >         String factoryClassName = lookUpFactoryClassName(factoryId,
+  209.                                                            propertiesFilename,
+  210.                                                            fallbackClassName);
+
+src/org/apache/xalan/lib/ObjectFactory.java:340: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `lib.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.createObject(...)`.
+ Reporting because this access may occur on a background thread.
+  338.                   }	            
+  339.               }
+  340. >             if(fXalanProperties != null) {
+  341.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  342.               }
+
+src/org/apache/xalan/lib/ObjectFactory.java:292: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `lib.ObjectFactory.class$org$apache$xalan$lib$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  290.               }
+  291.   
+  292. >             synchronized (ObjectFactory.class) {
+  293.                   boolean loadProperties = false;
+  294.                   FileInputStream fis = null;
+
+src/org/apache/xalan/lib/sql/ObjectFactory.java:340: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `sql.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.createObject(...)`.
+ Reporting because this access may occur on a background thread.
+  338.                   }	            
+  339.               }
+  340. >             if(fXalanProperties != null) {
+  341.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  342.               }
+
+src/org/apache/xalan/lib/sql/ObjectFactory.java:292: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `sql.ObjectFactory.class$org$apache$xalan$lib$sql$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  290.               }
+  291.   
+  292. >             synchronized (ObjectFactory.class) {
+  293.                   boolean loadProperties = false;
+  294.                   FileInputStream fis = null;
+
+src/org/apache/xalan/xslt/ObjectFactory.java:340: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `xslt.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.lookUpFactoryClass(...)`.
+ Reporting because this access may occur on a background thread.
+  338.                   }	            
+  339.               }
+  340. >             if(fXalanProperties != null) {
+  341.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  342.               }
+
+src/org/apache/xalan/xslt/ObjectFactory.java:292: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `xslt.ObjectFactory.class$org$apache$xalan$xslt$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  290.               }
+  291.   
+  292. >             synchronized (ObjectFactory.class) {
+  293.                   boolean loadProperties = false;
+  294.                   FileInputStream fis = null;
+
+src/org/apache/xalan/xsltc/cmdline/ObjectFactory.java:340: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `cmdline.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.createObject(...)`.
+ Reporting because this access may occur on a background thread.
+  338.                   }	            
+  339.               }
+  340. >             if(fXalanProperties != null) {
+  341.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  342.               }
+
+src/org/apache/xalan/xsltc/cmdline/ObjectFactory.java:292: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `cmdline.ObjectFactory.class$org$apache$xalan$xsltc$cmdline$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  290.               }
+  291.   
+  292. >             synchronized (ObjectFactory.class) {
+  293.                   boolean loadProperties = false;
+  294.                   FileInputStream fis = null;
+
+src/org/apache/xalan/xsltc/compiler/ObjectFactory.java:292: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `compiler.ObjectFactory.class$org$apache$xalan$xsltc$compiler$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  290.               }
+  291.   
+  292. >             synchronized (ObjectFactory.class) {
+  293.                   boolean loadProperties = false;
+  294.                   FileInputStream fis = null;
+
+src/org/apache/xalan/xsltc/compiler/ObjectFactory.java:340: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `compiler.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.lookUpFactoryClass(...)`.
+ Reporting because this access may occur on a background thread.
+  338.                   }	            
+  339.               }
+  340. >             if(fXalanProperties != null) {
+  341.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  342.               }
+
+src/org/apache/xalan/xsltc/compiler/util/ObjectFactory.java:292: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `util.ObjectFactory.class$org$apache$xalan$xsltc$compiler$util$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  290.               }
+  291.   
+  292. >             synchronized (ObjectFactory.class) {
+  293.                   boolean loadProperties = false;
+  294.                   FileInputStream fis = null;
+
+src/org/apache/xalan/xsltc/compiler/util/ObjectFactory.java:340: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `util.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because this access may occur on a background thread.
+  338.                   }	            
+  339.               }
+  340. >             if(fXalanProperties != null) {
+  341.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  342.               }
+
+src/org/apache/xalan/xsltc/dom/ObjectFactory.java:292: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `dom.ObjectFactory.class$org$apache$xalan$xsltc$dom$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  290.               }
+  291.   
+  292. >             synchronized (ObjectFactory.class) {
+  293.                   boolean loadProperties = false;
+  294.                   FileInputStream fis = null;
+
+src/org/apache/xalan/xsltc/dom/ObjectFactory.java:340: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `dom.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.lookUpFactoryClass(...)`.
+ Reporting because this access may occur on a background thread.
+  338.                   }	            
+  339.               }
+  340. >             if(fXalanProperties != null) {
+  341.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  342.               }
+
+src/org/apache/xalan/xsltc/runtime/ObjectFactory.java:292: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `runtime.ObjectFactory.class$org$apache$xalan$xsltc$runtime$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  290.               }
+  291.   
+  292. >             synchronized (ObjectFactory.class) {
+  293.                   boolean loadProperties = false;
+  294.                   FileInputStream fis = null;
+
+src/org/apache/xalan/xsltc/runtime/ObjectFactory.java:340: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `runtime.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.createObject(...)`.
+ Reporting because this access may occur on a background thread.
+  338.                   }	            
+  339.               }
+  340. >             if(fXalanProperties != null) {
+  341.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  342.               }
+
+src/org/apache/xalan/xsltc/trax/ObjectFactory.java:340: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `trax.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.lookUpFactoryClassName(...)`.
+ Reporting because this access may occur on a background thread.
+  338.                   }	            
+  339.               }
+  340. >             if(fXalanProperties != null) {
+  341.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  342.               }
+
+src/org/apache/xalan/xsltc/trax/ObjectFactory.java:292: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `trax.ObjectFactory.class$org$apache$xalan$xsltc$trax$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  290.               }
+  291.   
+  292. >             synchronized (ObjectFactory.class) {
+  293.                   boolean loadProperties = false;
+  294.                   FileInputStream fis = null;
+
+src/org/apache/xml/dtm/ObjectFactory.java:340: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `dtm.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.lookUpFactoryClass(...)`.
+ Reporting because this access may occur on a background thread.
+  338.                   }	            
+  339.               }
+  340. >             if(fXalanProperties != null) {
+  341.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  342.               }
+
+src/org/apache/xml/dtm/ObjectFactory.java:292: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `dtm.ObjectFactory.class$org$apache$xml$dtm$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  290.               }
+  291.   
+  292. >             synchronized (ObjectFactory.class) {
+  293.                   boolean loadProperties = false;
+  294.                   FileInputStream fis = null;
+
+src/org/apache/xml/dtm/ref/ObjectFactory.java:340: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `ref.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.createObject(...)`.
+ Reporting because this access may occur on a background thread.
+  338.                   }	            
+  339.               }
+  340. >             if(fXalanProperties != null) {
+  341.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  342.               }
+
+src/org/apache/xml/dtm/ref/ObjectFactory.java:292: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `ref.ObjectFactory.class$org$apache$xml$dtm$ref$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  290.               }
+  291.   
+  292. >             synchronized (ObjectFactory.class) {
+  293.                   boolean loadProperties = false;
+  294.                   FileInputStream fis = null;
+
+src/org/apache/xml/serializer/ObjectFactory.java:339: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `serializer.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.lookUpFactoryClass(...)`.
+ Reporting because this access may occur on a background thread.
+  337.                   }	            
+  338.               }
+  339. >             if(fXalanProperties != null) {
+  340.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  341.               }
+
+src/org/apache/xml/serializer/ObjectFactory.java:291: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `serializer.ObjectFactory.class$org$apache$xml$serializer$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  289.               }
+  290.   
+  291. >             synchronized (ObjectFactory.class) {
+  292.                   boolean loadProperties = false;
+  293.                   FileInputStream fis = null;
+
+src/org/apache/xml/utils/ObjectFactory.java:340: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` reads without synchronization from `utils.ObjectFactory.fXalanProperties`. Potentially races with write in method `ObjectFactory.lookUpFactoryClass(...)`.
+ Reporting because this access may occur on a background thread.
+  338.                   }	            
+  339.               }
+  340. >             if(fXalanProperties != null) {
+  341.                   factoryClassName = fXalanProperties.getProperty(factoryId);
+  342.               }
+
+src/org/apache/xml/utils/ObjectFactory.java:292: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String ObjectFactory.lookUpFactoryClassName(String,String,String)` writes to field `utils.ObjectFactory.class$org$apache$xml$utils$ObjectFactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  290.               }
+  291.   
+  292. >             synchronized (ObjectFactory.class) {
+  293.                   boolean loadProperties = false;
+  294.                   FileInputStream fis = null;
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:807: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `int XSLTC.nextAttributeSetSerial()` writes to field `this._attributeSetSerial` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  805.   
+  806.       public int nextAttributeSetSerial() {
+  807. > 	return _attributeSetSerial++;
+  808.       }
+  809.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:803: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `int XSLTC.nextHelperClassSerial()` writes to field `this._helperClassSerial` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  801.   
+  802.       public int nextHelperClassSerial() {
+  803. > 	return _helperClassSerial++;
+  804.       }
+  805.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:787: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `int XSLTC.nextModeSerial()` writes to field `this._modeSerial` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  785.   
+  786.       public int nextModeSerial() {
+  787. > 	return _modeSerial++;
+  788.       }
+  789.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:795: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `int XSLTC.nextStepPatternSerial()` writes to field `this._stepPatternSerial` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  793.   
+  794.       public int nextStepPatternSerial() {
+  795. > 	return _stepPatternSerial++;
+  796.       }
+  797.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:791: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `int XSLTC.nextStylesheetSerial()` writes to field `this._stylesheetSerial` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  789.   
+  790.       public int nextStylesheetSerial() {
+  791. > 	return _stylesheetSerial++;
+  792.       }
+  793.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:498: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void XSLTC.printErrors()` indirectly reads without synchronization from `this._parser._errors`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  496.        */
+  497.       public void printErrors() {
+  498. > 	_parser.printErrors();
+  499.       }
+  500.   
+
+src/org/apache/xml/dtm/DTMException.java:289: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void DTMException.printStackTrace()` indirectly reads without synchronization from `this.containedException`. Potentially races with write in method `DTMException.initCause(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  287.        */
+  288.       public void printStackTrace() {
+  289. >         printStackTrace(new java.io.PrintWriter(System.err, true));
+  290.       }
+  291.   
+
+src/org/apache/xml/dtm/DTMException.java:299: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void DTMException.printStackTrace(PrintStream)` indirectly reads without synchronization from `this.containedException`. Potentially races with write in method `DTMException.initCause(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  297.        */
+  298.       public void printStackTrace(java.io.PrintStream s) {
+  299. >         printStackTrace(new java.io.PrintWriter(s));
+  300.       }
+  301.   
+
+src/org/apache/xml/dtm/DTMException.java:336: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void DTMException.printStackTrace(PrintWriter)` indirectly reads without synchronization from `this.containedException`. Potentially races with write in method `DTMException.initCause(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  334.           // The following code is only required when using jdk 1.3 or lower                
+  335.           if (!isJdk14OrHigher) {
+  336. >             Throwable exception = getException();
+  337.       
+  338.               for (int i = 0; (i < 10) && (null != exception); i++) {
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:505: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void XSLTC.printWarnings()` indirectly reads without synchronization from `this._parser._warnings`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  503.        */
+  504.       public void printWarnings() {
+  505. > 	_parser.printWarnings();
+  506.       }
+  507.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:645: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `int XSLTC.registerAttribute(QName)` writes to field `this._nextGType` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  643.   	Integer code = (Integer)_attributes.get(name.toString());
+  644.   	if (code == null) {
+  645. > 	    code = new Integer(_nextGType++);
+  646.   	    _attributes.put(name.toString(), code);
+  647.   	    final String uri = name.getNamespace();
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:643: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerAttribute(QName)` reads without synchronization from `this._attributes`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  641.        */
+  642.       public int registerAttribute(QName name) {
+  643. > 	Integer code = (Integer)_attributes.get(name.toString());
+  644.   	if (code == null) {
+  645.   	    code = new Integer(_nextGType++);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:650: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerAttribute(QName)` reads without synchronization from `this._namesIndex`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  648.   	    final String local = "@"+name.getLocalPart();
+  649.   	    if ((uri != null) && (uri.length() != 0))
+  650. > 		_namesIndex.addElement(uri+":"+local);
+  651.   	    else
+  652.   		_namesIndex.addElement(local);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:654: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerAttribute(QName)` indirectly reads without synchronization from `this._namespaceIndex`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  652.   		_namesIndex.addElement(local);
+  653.   	    if (name.getLocalPart().equals("*")) {
+  654. > 		registerNamespace(name.getNamespace());
+  655.   	    }
+  656.   	}
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:672: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerElement(QName)` indirectly reads without synchronization from `this._namespaceIndex`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  670.   	}
+  671.   	if (name.getLocalPart().equals("*")) {
+  672. > 	    registerNamespace(name.getNamespace());
+  673.   	}
+  674.   	return code.intValue();
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:666: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerElement(QName)` reads without synchronization from `this._elements`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  664.       public int registerElement(QName name) {
+  665.   	// Register element (full QName)
+  666. > 	Integer code = (Integer)_elements.get(name.toString());
+  667.   	if (code == null) {
+  668.   	    _elements.put(name.toString(), code = new Integer(_nextGType++));
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:669: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerElement(QName)` reads without synchronization from `this._namesIndex`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  667.   	if (code == null) {
+  668.   	    _elements.put(name.toString(), code = new Integer(_nextGType++));
+  669. > 	    _namesIndex.addElement(name.toString());
+  670.   	}
+  671.   	if (name.getLocalPart().equals("*")) {
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:668: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `int XSLTC.registerElement(QName)` writes to field `this._nextGType` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  666.   	Integer code = (Integer)_elements.get(name.toString());
+  667.   	if (code == null) {
+  668. > 	    _elements.put(name.toString(), code = new Integer(_nextGType++));
+  669.   	    _namesIndex.addElement(name.toString());
+  670.   	}
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:718: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerNamespace(String)` reads without synchronization from `this._namespaces`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  716.        */
+  717.       public int registerNamespace(String namespaceURI) {
+  718. > 	Integer code = (Integer)_namespaces.get(namespaceURI);
+  719.   	if (code == null) {
+  720.   	    code = new Integer(_nextNSType++);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:722: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerNamespace(String)` reads without synchronization from `this._namespaceIndex`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  720.   	    code = new Integer(_nextNSType++);
+  721.   	    _namespaces.put(namespaceURI,code);
+  722. > 	    _namespaceIndex.addElement(namespaceURI);
+  723.   	}
+  724.   	return code.intValue();
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:708: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerNamespacePrefix(String)` reads without synchronization from `this._namesIndex`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  706.               code = new Integer(_nextGType++);
+  707.               _namespacePrefixes.put(name, code);
+  708. >             _namesIndex.addElement("?"+name);
+  709.           }
+  710.           return code.intValue();
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:706: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `int XSLTC.registerNamespacePrefix(String)` writes to field `this._nextGType` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  704.           Integer code = (Integer)_namespacePrefixes.get(name);
+  705.           if (code == null) {   
+  706. >             code = new Integer(_nextGType++);
+  707.               _namespacePrefixes.put(name, code);
+  708.               _namesIndex.addElement("?"+name);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:704: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerNamespacePrefix(String)` reads without synchronization from `this._namespacePrefixes`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  702.        */
+  703.       public int registerNamespacePrefix(String name) {
+  704. >         Integer code = (Integer)_namespacePrefixes.get(name);
+  705.           if (code == null) {   
+  706.               code = new Integer(_nextGType++);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:684: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerNamespacePrefix(QName)` reads without synchronization from `this._namespacePrefixes`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  682.       public int registerNamespacePrefix(QName name) {
+  683.       
+  684. >     Integer code = (Integer)_namespacePrefixes.get(name.toString());
+  685.       if (code == null) {   
+  686.           code = new Integer(_nextGType++);
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:691: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerNamespacePrefix(QName)` reads without synchronization from `this._namesIndex`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  689.           if ((uri != null) && (uri.length() != 0)){
+  690.               // namespace::ext2:ped2 will be made empty in TypedNamespaceIterator
+  691. >             _namesIndex.addElement("?"); 
+  692.           } else{        
+  693.              _namesIndex.addElement("?"+name.getLocalPart());        
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:686: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `int XSLTC.registerNamespacePrefix(QName)` writes to field `this._nextGType` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  684.       Integer code = (Integer)_namespacePrefixes.get(name.toString());
+  685.       if (code == null) {   
+  686. >         code = new Integer(_nextGType++);
+  687.           _namespacePrefixes.put(name.toString(), code); 
+  688.           final String uri = name.getNamespace();
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:749: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `int XSLTC.registerStylesheetPrefixMappingForRuntime(Hashtable,int)` writes to field `this._prefixURIPairs` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  747.   
+  748.           if (_prefixURIPairs == null) {
+  749. >             _prefixURIPairs = new Vector();
+  750.           }
+  751.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:752: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerStylesheetPrefixMappingForRuntime(Hashtable,int)` reads without synchronization from `this._prefixURIPairsIdx`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  750.           }
+  751.   
+  752. >         if (_prefixURIPairsIdx == null) {
+  753.               _prefixURIPairsIdx = new Vector();
+  754.           }
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:744: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerStylesheetPrefixMappingForRuntime(Hashtable,int)` reads without synchronization from `this._stylesheetNSAncestorPointers`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  742.       public int registerStylesheetPrefixMappingForRuntime(Hashtable prefixMap,
+  743.                                                            int ancestorID) {
+  744. >         if (_stylesheetNSAncestorPointers == null) {
+  745.               _stylesheetNSAncestorPointers = new Vector();
+  746.           }
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:748: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `int XSLTC.registerStylesheetPrefixMappingForRuntime(Hashtable,int)` reads without synchronization from `this._prefixURIPairs`. Potentially races with write in method `XSLTC.compile(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  746.           }
+  747.   
+  748. >         if (_prefixURIPairs == null) {
+  749.               _prefixURIPairs = new Vector();
+  750.           }
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:745: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `int XSLTC.registerStylesheetPrefixMappingForRuntime(Hashtable,int)` writes to field `this._stylesheetNSAncestorPointers` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  743.                                                            int ancestorID) {
+  744.           if (_stylesheetNSAncestorPointers == null) {
+  745. >             _stylesheetNSAncestorPointers = new Vector();
+  746.           }
+  747.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:753: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `int XSLTC.registerStylesheetPrefixMappingForRuntime(Hashtable,int)` writes to field `this._prefixURIPairsIdx` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  751.   
+  752.           if (_prefixURIPairsIdx == null) {
+  753. >             _prefixURIPairsIdx = new Vector();
+  754.           }
+  755.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:525: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTC.setCallsNodeset(boolean)` indirectly writes to field `this._multiDocument` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  523.        */
+  524.       protected void setCallsNodeset(boolean flag) {
+  525. > 	if (flag) setMultiDocument(flag);
+  526.   	_callsNodeset = flag;
+  527.       }
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:553: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTC.setClassName(String)` writes to field `this._className` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  551.   
+  552.   	if (_packageName == null)
+  553. > 	    _className = name;
+  554.   	else
+  555.   	    _className = _packageName + '.' + name;
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:534: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTC.setHasIdCall(boolean)` writes to field `this._hasIdCall` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  532.   
+  533.       protected void setHasIdCall(boolean flag) {
+  534. >     	_hasIdCall = flag;
+  535.       }
+  536.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:513: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTC.setMultiDocument(boolean)` writes to field `this._multiDocument` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  511.        */
+  512.       protected void setMultiDocument(boolean flag) {
+  513. > 	_multiDocument = flag;
+  514.       }
+  515.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:604: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTC.setPackageName(String)` indirectly writes to field `this._className` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  602.       public void setPackageName(String packageName) {
+  603.   	_packageName = packageName;
+  604. > 	if (_className != null) setClassName(_className);
+  605.       }
+  606.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:628: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTC.setStylesheet(Stylesheet)` writes to field `this._stylesheet` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  626.        */
+  627.       public void setStylesheet(Stylesheet stylesheet) {
+  628. > 	if (_stylesheet == null) _stylesheet = stylesheet;
+  629.       }
+  630.   
+
+src/org/apache/xalan/xsltc/compiler/XSLTC.java:468: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTC.setXMLReader(XMLReader)` writes to field `this._reader` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  466.        */
+  467.       public void setXMLReader(XMLReader reader) {
+  468. > 	_reader = reader;
+  469.       }
+  470.   
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:256: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTProcessorApplet.start()` writes to field `this.m_tfactory` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  254.       try
+  255.       {
+  256. >       m_tfactory = TransformerFactory.newInstance();
+  257.         this.showStatus("Causing Transformer and Parser to Load and JIT...");
+  258.   
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:249: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTProcessorApplet.start()` writes to field `this.m_trustedAgent` outside of synchronization.
+ Reporting because this access may occur on a background thread.
+  247.     {
+  248.   
+  249. >     m_trustedAgent = new TrustedAgent();
+  250.       Thread currentThread = Thread.currentThread();
+  251.       m_trustedWorker = new Thread(currentThread.getThreadGroup(),
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:251: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void XSLTProcessorApplet.start()` reads without synchronization from `this.m_trustedAgent`. Potentially races with write in method `XSLTProcessorApplet.start()`.
+ Reporting because this access may occur on a background thread.
+  249.       m_trustedAgent = new TrustedAgent();
+  250.       Thread currentThread = Thread.currentThread();
+  251. >     m_trustedWorker = new Thread(currentThread.getThreadGroup(),
+  252.                                    m_trustedAgent);
+  253.       m_trustedWorker.start();
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:253: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void XSLTProcessorApplet.start()` reads without synchronization from `this.m_trustedWorker`. Potentially races with write in method `XSLTProcessorApplet.stop()`.
+ Reporting because this access may occur on a background thread.
+  251.       m_trustedWorker = new Thread(currentThread.getThreadGroup(),
+  252.                                    m_trustedAgent);
+  253. >     m_trustedWorker.start();
+  254.       try
+  255.       {
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:267: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void XSLTProcessorApplet.start()` reads with synchronization from `this.m_tfactory`. Potentially races with unsynchronized write in method `XSLTProcessorApplet.start()`.
+ Reporting because this access may occur on a background thread.
+  265.         synchronized (m_tfactory)
+  266.         {
+  267. >         Templates templates = m_tfactory.newTemplates(new StreamSource(xslbuf));
+  268.           Transformer transformer = templates.newTransformer();
+  269.           transformer.transform(new StreamSource(xmlbuf), new StreamResult(pw));
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:178: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void TemplatesHandlerImpl.startDocument()` indirectly mutates container `space` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  176.       public void startDocument() {
+  177.           XSLTC xsltc = _parser.getXSLTC();
+  178. >         xsltc.init();   // calls _parser.init()
+  179.           xsltc.setOutputType(XSLTC.BYTEARRAY_OUTPUT);
+  180.           _parser.startDocument();
+
+src/org/apache/xalan/xsltc/trax/TemplatesHandlerImpl.java:297: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void TemplatesHandlerImpl.startElement(String,String,String,Attributes)` indirectly mutates container `space` via call to `put` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  295.           Attributes attributes) throws SAXException
+  296.       {
+  297. >         _parser.startElement(uri, localname, qname, attributes);
+  298.       }
+  299.   
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:299: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `void XSLTProcessorApplet.stop()` writes to field `this.m_trustedWorker` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  297.   
+  298.         // m_trustedWorker.destroy();
+  299. >       m_trustedWorker = null;
+  300.       }
+  301.   
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:294: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `void XSLTProcessorApplet.stop()` reads without synchronization from `this.m_trustedWorker`. Potentially races with write in method `XSLTProcessorApplet.start()`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  292.     public void stop()
+  293.     {
+  294. >     if (null != m_trustedWorker)
+  295.       {
+  296.         m_trustedWorker.stop();
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:632: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String XSLTProcessorApplet.transformToHtml(String)` indirectly writes to field `this.m_callThread` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  630.       m_styleURL = null;
+  631.   
+  632. >     return getHtmlText();
+  633.     }
+  634.   
+
+src/org/apache/xalan/client/XSLTProcessorApplet.java:610: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `String XSLTProcessorApplet.transformToHtml(String,String)` indirectly writes to field `this.m_callThread` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  608.       }
+  609.   
+  610. >     return getHtmlText();
+  611.     }
+  612.   
+
+Summary of the reports
+
+  THREAD_SAFETY_VIOLATION: 238
+         NULL_DEREFERENCE: 40
+            RESOURCE_LEAK: 14

@@ -1,0 +1,17 @@
+[INFO] output of locale.getdefaultlocale(): ('pt_PT', 'UTF-8')
+[INFO] encoding we chose in the end: UTF-8
+[INFO] Running command /opt/infer-linux64-v0.17.0/lib/infer/infer/bin/../lib/python/infer.py -j 4 --project-root /home/jfrm/Desktop/ThesisProj/xalan-j --out /home/jfrm/Desktop/ThesisProj/xalan-j/infer-out -- ant
+[INFO] Path to infer script /opt/infer-linux64-v0.17.0/lib/infer/infer/bin/../lib/python/infer.py (/opt/infer-linux64-v0.17.0/lib/infer/infer/lib/python/infer.py)
+[INFO] Platform: Linux-4.15.0-96-generic-x86_64-with-Ubuntu-16.04-xenial
+[INFO] PATH=/opt/maven/bin:/opt/gradle/gradle-6.3/bin:/home/jfrm/bin:/home/jfrm/.local/bin:/opt/gradle/gradle-6.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:usr/lib/jvm/usr/lib/jvm/java-8-oracle/bin:/usr/local/ant/bin:/snap/bin:/usr/lib/jvm/jdk-11.0.1/bin:/usr/lib/jvm/jdk-11.0.1/db/bin:home/jfrm/Desktop/ThesisProj/defects4j/framework/bin
+[INFO] SHELL=/bin/bash
+[INFO] PWD=/home/jfrm/Desktop/ThesisProj/xalan-j
+[INFO] java versions:
+java version "1.8.0_161"
+Java(TM) SE Runtime Environment (build 1.8.0_161-b12)
+Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)
+javac 1.8.0_161
+
+[INFO] Apache Ant(TM) version 1.9.6 compiled on July 20 2018
+
+[INFO] Capture phase was successful

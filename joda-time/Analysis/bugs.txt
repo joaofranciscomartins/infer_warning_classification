@@ -1,0 +1,782 @@
+Found 92 issues
+
+src/test/java/org/joda/time/TestDateTimeUtils.java:50: error: NULL_DEREFERENCE
+  object returned by `getProperty("java.version")` could be null and is dereferenced at line 50.
+  48.           String str = System.getProperty("java.version");
+  49.           boolean old = true;
+  50. >         if (str.length() > 3 &&
+  51.               str.charAt(0) == '1' &&
+  52.               str.charAt(1) == '.' &&
+
+src/test/java/org/joda/time/TestDateTimeZone.java:60: error: NULL_DEREFERENCE
+  object returned by `getProperty("java.version")` could be null and is dereferenced at line 60.
+  58.           String str = System.getProperty("java.version");
+  59.           boolean old = true;
+  60. >         if (str.length() > 3 &&
+  61.               str.charAt(0) == '1' &&
+  62.               str.charAt(1) == '.' &&
+
+src/test/java/org/joda/time/TestDateTimeZone.java:762: error: NULL_DEREFERENCE
+  object returned by `getProperty("java.version")` could be null and is dereferenced at line 762.
+  760.           try {
+  761.               String str = System.getProperty("java.version");
+  762. >             jdk9 = str.startsWith("9");
+  763.           } catch (Exception ex) {
+  764.               jdk9 = false;
+
+src/main/java/org/joda/time/chrono/LenientChronology.java:67: error: NULL_DEREFERENCE
+  object returned by `getBase()` could be null and is dereferenced at line 67.
+  65.                   iWithUTC = this;
+  66.               } else {
+  67. >                 iWithUTC = LenientChronology.getInstance(getBase().withUTC());
+  68.               }
+  69.           }
+
+src/main/java/org/joda/time/chrono/StrictChronology.java:67: error: NULL_DEREFERENCE
+  object returned by `getBase()` could be null and is dereferenced at line 67.
+  65.                   iWithUTC = this;
+  66.               } else {
+  67. >                 iWithUTC = StrictChronology.getInstance(getBase().withUTC());
+  68.               }
+  69.           }
+
+src/test/java/org/joda/time/convert/TestConverterManager.java:65: error: NULL_DEREFERENCE
+  object returned by `getProperty("java.version")` could be null and is dereferenced at line 65.
+  63.           String str = System.getProperty("java.version");
+  64.           boolean old = true;
+  65. >         if (str.length() > 3 &&
+  66.               str.charAt(0) == '1' &&
+  67.               str.charAt(1) == '.' &&
+
+src/main/java/org/joda/time/tz/ZoneInfoProvider.java:85: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `openResource(...)` at line 85 is not released after line 85.
+  83.           iLoader = null;
+  84.   
+  85. >         iZoneInfoMap = loadZoneInfoMap(openResource("ZoneInfoMap"));
+  86.           iZoneInfoKeys = Collections.unmodifiableSortedSet(new TreeSet<String>(iZoneInfoMap.keySet()));
+  87.       }
+
+src/main/java/org/joda/time/chrono/LenientChronology.java:83: error: NULL_DEREFERENCE
+  object returned by `getBase()` could be null and is dereferenced at line 83.
+  81.               return this;
+  82.           }
+  83. >         return LenientChronology.getInstance(getBase().withZone(zone));
+  84.       }
+  85.   
+
+src/main/java/org/joda/time/chrono/StrictChronology.java:83: error: NULL_DEREFERENCE
+  object returned by `getBase()` could be null and is dereferenced at line 83.
+  81.               return this;
+  82.           }
+  83. >         return StrictChronology.getInstance(getBase().withZone(zone));
+  84.       }
+  85.   
+
+src/test/java/org/joda/time/TestPartial_Properties.java:87: error: NULL_DEREFERENCE
+  object returned by `__new(org.joda.time.Partial).getChronology()` could be null and is dereferenced at line 87.
+  85.       public void testPropertyGetHour() {
+  86.           Partial test = new Partial(TYPES, VALUES);
+  87. >         assertSame(test.getChronology().hourOfDay(), test.property(DateTimeFieldType.hourOfDay()).getField());
+  88.           assertEquals("hourOfDay", test.property(DateTimeFieldType.hourOfDay()).getName());
+  89.           assertEquals("Property[hourOfDay]", test.property(DateTimeFieldType.hourOfDay()).toString());
+
+src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java:99: error: RESOURCE_LEAK
+  resource of type `java.io.DataInputStream` acquired by call to `new()` at line 99 is not released after line 99.
+  97.               return readFrom((DataInput)in, id);
+  98.           } else {
+  99. >             return readFrom((DataInput)new DataInputStream(in), id);
+  100.           }
+  101.       }
+
+src/test/java/org/joda/time/format/TestPeriodFormatter.java:123: error: RESOURCE_LEAK
+  resource of type `java.io.CharArrayWriter` acquired by call to `new()` at line 121 is not released after line 123.
+  121.           CharArrayWriter out = new CharArrayWriter();
+  122.           f.printTo(out, p);
+  123. >         assertEquals("P1Y2M3W4DT5H6M7.008S", out.toString());
+  124.           
+  125.           out = new CharArrayWriter();
+
+src/test/java/org/joda/time/format/TestPeriodFormatter.java:130: error: RESOURCE_LEAK
+  resource of type `java.io.CharArrayWriter` acquired by call to `new()` at line 121 is not released after line 130.
+**Note**: potential exception at line 122
+  128.               fail();
+  129.           } catch (IllegalArgumentException ex) {}
+  130. >     }
+  131.   
+  132.       //-----------------------------------------------------------------------
+
+src/test/java/org/joda/time/format/TestPeriodFormatter.java:127: error: RESOURCE_LEAK
+  resource of type `java.io.CharArrayWriter` acquired by call to `new()` at line 125 is not released after line 127.
+**Note**: potential exception at line 127
+  125.           out = new CharArrayWriter();
+  126.           try {
+  127. >             f.printTo(out, null);
+  128.               fail();
+  129.           } catch (IllegalArgumentException ex) {}
+
+src/test/java/org/joda/time/tz/TestCompiler.java:131: error: NULL_DEREFERENCE
+  object returned by `compileAndLoad(this,"# Rules for building just America/Los_Angeles time zone.\\n\\nRule    US  1918    1919    -   Mar lastSun 2:00    1:00    D\\nRule    US  1918    1919    -   Oct lastSun 2:00    0   S\\nRule    US  1942    only    -   Feb 9   2:00    1:00    W # War\\nRule    US  1945    only    -   Aug 14  23:00u  1:00    P # Peace\\nRule    US  1945    only    -   Sep 30  2:00    0   S\\nRule    US  1967    max -   Oct lastSun 2:00    0   S\\nRule    US  1967    1973    -   Apr lastSun 2:00    1:00    D\\nRule    US  1974    only    -   Jan 6   2:00    1:00    D\\nRule    US  1975    only    -   Feb 23  2:00    1:00    D\\nRule    US  1976    1986    -   Apr lastSun 2:00    1:00    D\\nRule    US  1987    max -   Apr Sun>=1  2:00    1:00    D\\n\\nRule    CA  1948    only    -   Mar 14  2:00    1:00    D\\nRule    CA  1949    only    -   Jan  1  2:00    0   S\\nRule    CA  1950    1966    -   Apr lastSun 2:00    1:00    D\\nRule    CA  1950    1961    -   Sep lastSun 2:00    0   S\\nRule    CA  1962    1966    -   Oct lastSun 2:00    0   S\\n\\nZone America/Los_Angeles -7:52:58 - LMT 1883 Nov 18 12:00\\n            -8:00   US  P%sT    1946\\n            -8:00   CA  P%sT    1967\\n            -8:00   US  P%sT").getZone("America/Los_Angeles")` could be null and is dereferenced at line 131.
+  129.           DateTimeZone tz = provider.getZone("America/Los_Angeles");
+  130.   
+  131. >         assertEquals("America/Los_Angeles", tz.getID());
+  132.           assertEquals(false, tz.isFixed());
+  133.           TestBuilder.testForwardTransitions(tz, TestBuilder.AMERICA_LOS_ANGELES_DATA);
+
+src/main/java/org/joda/time/chrono/LimitChronology.java:162: error: NULL_DEREFERENCE
+  object returned by `getBase()` could be null and is dereferenced at line 162.
+  160.           
+  161.           LimitChronology chrono = getInstance
+  162. >             (getBase().withZone(zone), lowerLimit, upperLimit);
+  163.   
+  164.           if (zone == DateTimeZone.UTC) {
+
+src/test/java/org/joda/time/chrono/ThreadContention.java:151: error: NULL_DEREFERENCE
+  object returned by `getInstance(__cast(__new(java.util.ArrayList).iterator().next(),org.joda.time.DateTimeZone)).getZone()` could be null and is dereferenced at line 151.
+  149.               for (DateTimeZone zn : shuffled) {
+  150.                   ISOChronology chrono = ISOChronology.getInstance(zn);
+  151. >                 count = count + chrono.getZone().getID().length();
+  152.               }
+  153.           }
+
+src/test/java/org/joda/time/tz/TestCompiler.java:194: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired by call to `FileOutputStream(...)` at line 185 is not released after line 194.
+**Note**: potential exception at line 188
+  192.           in.close();
+  193.   
+  194. >         return tempDir;
+  195.       }
+  196.   
+
+src/main/java/org/joda/time/chrono/BuddhistChronology.java:184: error: NULL_DEREFERENCE
+  object returned by `getZone()` could be null and is dereferenced at line 184.
+  182.           if (obj instanceof BuddhistChronology) {
+  183.               BuddhistChronology chrono = (BuddhistChronology) obj;
+  184. >             return getZone().equals(chrono.getZone());
+  185.           }
+  186.           return false;
+
+src/main/java/org/joda/time/chrono/ISOChronology.java:184: error: NULL_DEREFERENCE
+  object returned by `getZone()` could be null and is dereferenced at line 184.
+  182.           if (obj instanceof ISOChronology) {
+  183.               ISOChronology chrono = (ISOChronology) obj;
+  184. >             return getZone().equals(chrono.getZone());
+  185.           }
+  186.           return false;
+
+src/main/java/org/joda/time/chrono/BuddhistChronology.java:196: error: NULL_DEREFERENCE
+  object returned by `getZone()` could be null and is dereferenced at line 196.
+  194.        */
+  195.       public int hashCode() {
+  196. >         return "Buddhist".hashCode() * 11 + getZone().hashCode();
+  197.       }
+  198.   
+
+src/main/java/org/joda/time/chrono/ISOChronology.java:196: error: NULL_DEREFERENCE
+  object returned by `getZone()` could be null and is dereferenced at line 196.
+  194.        */
+  195.       public int hashCode() {
+  196. >         return "ISO".hashCode() * 11 + getZone().hashCode();
+  197.       }
+  198.   
+
+src/test/java/org/joda/time/TestPartial_Basics.java:229: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `compareTo(...)` at line 229.
+  227.           
+  228.           try {
+  229. >             test1.compareTo(null);
+  230.               fail();
+  231.           } catch (NullPointerException ex) {}
+
+src/test/java/org/joda/time/format/TestDateTimeFormatter.java:213: error: RESOURCE_LEAK
+  resource of type `java.io.CharArrayWriter` acquired by call to `new()` at line 211 is not released after line 213.
+  211.           CharArrayWriter out = new CharArrayWriter();
+  212.           f.printTo(out, dt);
+  213. >         assertEquals("Wed 2004-06-09T10:20:30Z", out.toString());
+  214.           
+  215.           out = new CharArrayWriter();
+
+src/test/java/org/joda/time/TestYears.java:217: error: NULL_DEREFERENCE
+  object returned by `years(3)` could be null and is dereferenced at line 217.
+  215.           Years result = test2.plus(test3);
+  216.           assertEquals(2, test2.getYears());
+  217. >         assertEquals(3, test3.getYears());
+  218.           assertEquals(5, result.getYears());
+  219.           
+
+src/test/java/org/joda/time/TestYearMonth_Basics.java:243: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `compareTo(...)` at line 243.
+  241.           assertEquals(0, test1.compareTo(p));
+  242.           try {
+  243. >             test1.compareTo(null);
+  244.               fail();
+  245.           } catch (NullPointerException ex) {}
+
+src/test/java/org/joda/time/TestYearMonthDay_Basics.java:245: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `compareTo(...)` at line 245.
+  243.           assertEquals(0, test1.compareTo(p));
+  244.           try {
+  245. >             test1.compareTo(null);
+  246.               fail();
+  247.           } catch (NullPointerException ex) {}
+
+src/test/java/org/joda/time/TestMonthDay_Basics.java:248: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `compareTo(...)` at line 248.
+  246.           assertEquals(0, test1.compareTo(p));
+  247.           try {
+  248. >             test1.compareTo(null);
+  249.               fail();
+  250.           } catch (NullPointerException ex) {}
+
+src/test/java/org/joda/time/TestPartial_Properties.java:240: error: NULL_DEREFERENCE
+  object returned by `__new(org.joda.time.Partial).getChronology()` could be null and is dereferenced at line 240.
+  238.       public void testPropertyGetMinute() {
+  239.           Partial test = new Partial(TYPES, VALUES);
+  240. >         assertSame(test.getChronology().minuteOfHour(), test.property(DateTimeFieldType.minuteOfHour()).getField());
+  241.           assertEquals("minuteOfHour", test.property(DateTimeFieldType.minuteOfHour()).getName());
+  242.           assertEquals("Property[minuteOfHour]", test.property(DateTimeFieldType.minuteOfHour()).toString());
+
+src/test/java/org/joda/time/TestTimeOfDay_Basics.java:266: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `compareTo(...)` at line 266.
+  264.           assertEquals(0, test1.compareTo(p));
+  265.           try {
+  266. >             test1.compareTo(null);
+  267.               fail();
+  268.           } catch (NullPointerException ex) {}
+
+src/test/java/org/joda/time/format/TestDateTimeParserBucket.java:244: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `restoreState(...)` at line 244.
+  242.           DateTimeParserBucket bucket1 = new DateTimeParserBucket(100, ISO_0400, LOCALE, 2000, 2000);
+  243.           DateTimeParserBucket bucket2 = new DateTimeParserBucket(100, BUDDHIST_PARIS, LOCALE, 2000, 2000);
+  244. >         assertEquals(false, bucket1.restoreState(null));
+  245.           assertEquals(false, bucket1.restoreState(""));
+  246.           assertEquals(false, bucket2.restoreState(bucket1.saveState()));
+
+src/test/java/org/joda/time/TestDateTimeZone.java:282: error: INEFFICIENT_KEYSET_ITERATOR
+  Accessing a value using a key that was retrieved from a `keySet` iterator. It is more efficient to use an iterator on the `entrySet` of the map, avoiding the extra `HashMap.get(key)` lookup.
+  280.           map.put("NST", "Pacific/Auckland");
+  281.           for (String key : map.keySet()) {
+  282. >             String value = map.get(key);
+  283.               TimeZone juZone = TimeZone.getTimeZone(key);
+  284.               DateTimeZone zone = DateTimeZone.forTimeZone(juZone);
+
+src/test/java/org/joda/time/TestYears.java:252: error: NULL_DEREFERENCE
+  object returned by `years(3)` could be null and is dereferenced at line 252.
+  250.           Years result = test2.minus(test3);
+  251.           assertEquals(2, test2.getYears());
+  252. >         assertEquals(3, test3.getYears());
+  253.           assertEquals(-1, result.getYears());
+  254.           
+
+src/test/java/org/joda/time/TestSeconds.java:266: error: NULL_DEREFERENCE
+  object returned by `seconds(3)` could be null and is dereferenced at line 266.
+  264.           Seconds result = test2.plus(test3);
+  265.           assertEquals(2, test2.getSeconds());
+  266. >         assertEquals(3, test3.getSeconds());
+  267.           assertEquals(5, result.getSeconds());
+  268.           
+
+src/test/java/org/joda/time/TestMutableInterval_Constructors.java:273: error: NULL_DEREFERENCE
+  object returned by `getInstanceUTC()` could be null and is dereferenced at line 273.
+  271.           Period dur = new Period(0, 6, 0, 3, 1, 0, 0, 0, PeriodType.standard());
+  272.           long result = TEST_TIME_NOW;
+  273. >         result = ISOChronology.getInstanceUTC().months().add(result, 6);
+  274.           result = ISOChronology.getInstanceUTC().days().add(result, 3);
+  275.           result = ISOChronology.getInstanceUTC().hours().add(result, 1);
+
+src/test/java/org/joda/time/TestMinutes.java:276: error: NULL_DEREFERENCE
+  object returned by `minutes(3)` could be null and is dereferenced at line 276.
+  274.           Minutes result = test2.plus(test3);
+  275.           assertEquals(2, test2.getMinutes());
+  276. >         assertEquals(3, test3.getMinutes());
+  277.           assertEquals(5, result.getMinutes());
+  278.           
+
+src/test/java/org/joda/time/TestMonths.java:286: error: NULL_DEREFERENCE
+  object returned by `months(3)` could be null and is dereferenced at line 286.
+  284.           Months result = test2.plus(test3);
+  285.           assertEquals(2, test2.getMonths());
+  286. >         assertEquals(3, test3.getMonths());
+  287.           assertEquals(5, result.getMonths());
+  288.           
+
+src/test/java/org/joda/time/TestHours.java:293: error: NULL_DEREFERENCE
+  object returned by `hours(3)` could be null and is dereferenced at line 293.
+  291.           Hours result = test2.plus(test3);
+  292.           assertEquals(2, test2.getHours());
+  293. >         assertEquals(3, test3.getHours());
+  294.           assertEquals(5, result.getHours());
+  295.           
+
+src/test/java/org/joda/time/TestWeeks.java:296: error: NULL_DEREFERENCE
+  object returned by `weeks(3)` could be null and is dereferenced at line 296.
+  294.           Weeks result = test2.plus(test3);
+  295.           assertEquals(2, test2.getWeeks());
+  296. >         assertEquals(3, test3.getWeeks());
+  297.           assertEquals(5, result.getWeeks());
+  298.           
+
+src/test/java/org/joda/time/TestSerialization.java:294: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 293 is not released after line 294.
+  292.       private void loadAndCompare(Serializable test, String filename, boolean same) throws Exception {
+  293.           FileInputStream fis = new FileInputStream("src/test/resources/" + filename + ".dat");
+  294. >         ObjectInputStream ois = new ObjectInputStream(fis);
+  295.           Object obj = ois.readObject();
+  296.           ois.close();
+
+src/test/java/org/joda/time/TestSerialization.java:315: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 293 is not released after line 315.
+**Note**: potential exception at line 295
+  313.   //            // ignore
+  314.   //        }
+  315. >     }
+  316.   
+  317.       public void inlineCompare(Serializable test, boolean same) throws Exception {
+
+src/test/java/org/joda/time/TestSeconds.java:301: error: NULL_DEREFERENCE
+  object returned by `seconds(3)` could be null and is dereferenced at line 301.
+  299.           Seconds result = test2.minus(test3);
+  300.           assertEquals(2, test2.getSeconds());
+  301. >         assertEquals(3, test3.getSeconds());
+  302.           assertEquals(-1, result.getSeconds());
+  303.           
+
+src/test/java/org/joda/time/TestMinutes.java:311: error: NULL_DEREFERENCE
+  object returned by `minutes(3)` could be null and is dereferenced at line 311.
+  309.           Minutes result = test2.minus(test3);
+  310.           assertEquals(2, test2.getMinutes());
+  311. >         assertEquals(3, test3.getMinutes());
+  312.           assertEquals(-1, result.getMinutes());
+  313.           
+
+src/test/java/org/joda/time/TestMonths.java:321: error: NULL_DEREFERENCE
+  object returned by `months(3)` could be null and is dereferenced at line 321.
+  319.           Months result = test2.minus(test3);
+  320.           assertEquals(2, test2.getMonths());
+  321. >         assertEquals(3, test3.getMonths());
+  322.           assertEquals(-1, result.getMonths());
+  323.           
+
+src/test/java/org/joda/time/TestHours.java:328: error: NULL_DEREFERENCE
+  object returned by `hours(3)` could be null and is dereferenced at line 328.
+  326.           Hours result = test2.minus(test3);
+  327.           assertEquals(2, test2.getHours());
+  328. >         assertEquals(3, test3.getHours());
+  329.           assertEquals(-1, result.getHours());
+  330.           
+
+src/test/java/org/joda/time/TestDays.java:331: error: NULL_DEREFERENCE
+  object returned by `days(3)` could be null and is dereferenced at line 331.
+  329.           Days result = test2.plus(test3);
+  330.           assertEquals(2, test2.getDays());
+  331. >         assertEquals(3, test3.getDays());
+  332.           assertEquals(5, result.getDays());
+  333.           
+
+src/test/java/org/joda/time/TestWeeks.java:331: error: NULL_DEREFERENCE
+  object returned by `weeks(3)` could be null and is dereferenced at line 331.
+  329.           Weeks result = test2.minus(test3);
+  330.           assertEquals(2, test2.getWeeks());
+  331. >         assertEquals(3, test3.getWeeks());
+  332.           assertEquals(-1, result.getWeeks());
+  333.           
+
+src/test/java/org/joda/time/TestMutableInterval_Constructors.java:357: error: NULL_DEREFERENCE
+  object returned by `getInstanceUTC()` could be null and is dereferenced at line 357.
+  355.           Period dur = new Period(0, 6, 0, 3, 1, 0, 0, 0, PeriodType.standard());
+  356.           long result = TEST_TIME_NOW;
+  357. >         result = ISOChronology.getInstanceUTC().months().add(result, -6);
+  358.           result = ISOChronology.getInstanceUTC().days().add(result, -3);
+  359.           result = ISOChronology.getInstanceUTC().hours().add(result, -1);
+
+src/test/java/org/joda/time/TestDateTimeZone.java:399: error: NULL_DEREFERENCE
+  object returned by `getTimeZone("GMT-08:00")` could be null and is dereferenced at line 399.
+  397.           
+  398.           TimeZone tz = TimeZone.getTimeZone("GMT-08:00");
+  399. >         tz.setID("GMT-\u0660\u0668:\u0660\u0660");
+  400.           zone = DateTimeZone.forTimeZone(tz);
+  401.           assertEquals("-08:00", zone.getID());
+
+src/test/java/org/joda/time/TestDays.java:366: error: NULL_DEREFERENCE
+  object returned by `days(3)` could be null and is dereferenced at line 366.
+  364.           Days result = test2.minus(test3);
+  365.           assertEquals(2, test2.getDays());
+  366. >         assertEquals(3, test3.getDays());
+  367.           assertEquals(-1, result.getDays());
+  368.           
+
+src/test/java/org/joda/time/TestInterval_Constructors.java:387: error: NULL_DEREFERENCE
+  object returned by `getInstanceUTC()` could be null and is dereferenced at line 387.
+  385.           Period dur = new Period(0, 6, 0, 3, 1, 0, 0, 0, PeriodType.standard());
+  386.           long result = TEST_TIME_NOW;
+  387. >         result = CopticChronology.getInstanceUTC().months().add(result, 6);
+  388.           result = CopticChronology.getInstanceUTC().days().add(result, 3);
+  389.           result = CopticChronology.getInstanceUTC().hours().add(result, 1);
+
+src/test/java/org/joda/time/TestInterval_Constructors.java:471: error: NULL_DEREFERENCE
+  object returned by `getInstanceUTC()` could be null and is dereferenced at line 471.
+  469.           Period dur = new Period(0, 6, 0, 3, 1, 0, 0, 0, PeriodType.standard());
+  470.           long result = TEST_TIME_NOW;
+  471. >         result = CopticChronology.getInstanceUTC().months().add(result, -6);
+  472.           result = CopticChronology.getInstanceUTC().days().add(result, -3);
+  473.           result = CopticChronology.getInstanceUTC().hours().add(result, -1);
+
+src/test/java/org/joda/time/TestInterval_Basics.java:705: error: NULL_DEREFERENCE
+  object returned by `__new(org.joda.time.Interval).overlap(__new(org.joda.time.Interval))` could be null and is dereferenced at line 705.
+  703.           
+  704.           Interval result = testA.overlap(testB);
+  705. >         assertEquals(ISOChronology.getInstanceUTC(), result.getChronology());
+  706.       }
+  707.   
+
+src/test/java/org/joda/time/TestInterval_Basics.java:769: error: NULL_DEREFERENCE
+  object returned by `__new(org.joda.time.Interval).gap(__new(org.joda.time.Interval))` could be null and is dereferenced at line 769.
+  767.           
+  768.           Interval result = testA.gap(testB);
+  769. >         assertEquals(ISOChronology.getInstanceUTC(), result.getChronology());
+  770.       }
+  771.   
+
+src/test/java/org/joda/time/TestPartial_Basics.java:801: error: NULL_DEREFERENCE
+  object returned by `__new(org.joda.time.Partial).getFormatter()` could be null and is dereferenced at line 801.
+  799.       public void testGetFormatter1() {
+  800.           Partial test = new Partial(DateTimeFieldType.year(), 2005);
+  801. >         assertEquals("2005", test.getFormatter().print(test));
+  802.           
+  803.           test = test.with(DateTimeFieldType.monthOfYear(), 6);
+
+src/test/java/org/joda/time/TestPartial_Basics.java:826: error: NULL_DEREFERENCE
+  object returned by `__new(org.joda.time.Partial).getFormatter()` could be null and is dereferenced at line 826.
+  824.       public void testGetFormatter3() {
+  825.           Partial test = new Partial(DateTimeFieldType.dayOfWeek(), 5);
+  826. >         assertEquals("-W-5", test.getFormatter().print(test));
+  827.           
+  828.           // contrast with testToString5
+
+src/test/java/org/joda/time/TestLocalDate_Basics.java:835: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `toDateTime(...)` at line 835.
+  833.           DateTimeUtils.setCurrentMillisFixed(now);
+  834.           
+  835. >         DateTime test = base.toDateTime((LocalTime) null);
+  836.           check(base, 2005, 6, 9);
+  837.           DateTime expected = new DateTime(2005, 6, 9, 12, 13, 14, 15, COPTIC_LONDON);
+
+src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java:2343: error: NULL_DEREFERENCE
+  object returned by `org.joda.time.format.DateTimeFormatterBuilder$TimeZoneId.GROUPED_IDS.get(__cast(org.joda.time.format.DateTimeFormatterBuilder$TimeZoneId.ALL_IDS.iterator().next(),java.lang.String).substring(0,(__cast(org.joda.time.format.DateTimeFormatterBuilder$TimeZoneId.ALL_IDS.iterator().next(),java.lang.String).indexOf(47)+1)))` could be null and is dereferenced at line 2343.
+  2341.                           GROUPED_IDS.put(prefix, new ArrayList<String>());
+  2342.                       }
+  2343. >                     GROUPED_IDS.get(prefix).add(suffix);
+  2344.                   } else {
+  2345.                       BASE_GROUPED_IDS.add(id);
+
+src/main/java/org/joda/time/PeriodType.java:306: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.dayTime()` reads without synchronization from `time.PeriodType.cDTime`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  304.       public static PeriodType dayTime() {
+  305.           PeriodType type = cDTime;
+  306. >         if (type == null) {
+  307.               type = new PeriodType(
+  308.                   "DayTime",
+
+src/main/java/org/joda/time/PeriodType.java:316: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.dayTime()` writes to field `time.PeriodType.cDTime` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  314.                   new int[] { -1, -1, -1, 0, 1, 2, 3, 4, }
+  315.               );
+  316. >             cDTime = type;
+  317.           }
+  318.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:409: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.days()` reads without synchronization from `time.PeriodType.cDays`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  407.       public static PeriodType days() {
+  408.           PeriodType type = cDays;
+  409. >         if (type == null) {
+  410.               type = new PeriodType(
+  411.                   "Days",
+
+src/main/java/org/joda/time/PeriodType.java:415: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.days()` writes to field `time.PeriodType.cDays` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  413.                   new int[] { -1, -1, -1, 0, -1, -1, -1, -1, }
+  414.               );
+  415. >             cDays = type;
+  416.           }
+  417.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:433: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.hours()` writes to field `time.PeriodType.cHours` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  431.                   new int[] { -1, -1, -1, -1, 0, -1, -1, -1, }
+  432.               );
+  433. >             cHours = type;
+  434.           }
+  435.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:427: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.hours()` reads without synchronization from `time.PeriodType.cHours`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  425.       public static PeriodType hours() {
+  426.           PeriodType type = cHours;
+  427. >         if (type == null) {
+  428.               type = new PeriodType(
+  429.                   "Hours",
+
+src/main/java/org/joda/time/PeriodType.java:487: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.millis()` writes to field `time.PeriodType.cMillis` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  485.                   new int[] { -1, -1, -1, -1, -1, -1, -1, 0, }
+  486.               );
+  487. >             cMillis = type;
+  488.           }
+  489.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:481: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.millis()` reads without synchronization from `time.PeriodType.cMillis`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  479.       public static PeriodType millis() {
+  480.           PeriodType type = cMillis;
+  481. >         if (type == null) {
+  482.               type = new PeriodType(
+  483.                   "Millis",
+
+src/main/java/org/joda/time/PeriodType.java:451: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.minutes()` writes to field `time.PeriodType.cMinutes` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  449.                   new int[] { -1, -1, -1, -1, -1, 0, -1, -1, }
+  450.               );
+  451. >             cMinutes = type;
+  452.           }
+  453.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:445: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.minutes()` reads without synchronization from `time.PeriodType.cMinutes`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  443.       public static PeriodType minutes() {
+  444.           PeriodType type = cMinutes;
+  445. >         if (type == null) {
+  446.               type = new PeriodType(
+  447.                   "Minutes",
+
+src/main/java/org/joda/time/PeriodType.java:373: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.months()` reads without synchronization from `time.PeriodType.cMonths`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  371.       public static PeriodType months() {
+  372.           PeriodType type = cMonths;
+  373. >         if (type == null) {
+  374.               type = new PeriodType(
+  375.                   "Months",
+
+src/main/java/org/joda/time/PeriodType.java:379: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.months()` writes to field `time.PeriodType.cMonths` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  377.                   new int[] { -1, 0, -1, -1, -1, -1, -1, -1, }
+  378.               );
+  379. >             cMonths = type;
+  380.           }
+  381.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:469: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.seconds()` writes to field `time.PeriodType.cSeconds` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  467.                   new int[] { -1, -1, -1, -1, -1, -1, 0, -1, }
+  468.               );
+  469. >             cSeconds = type;
+  470.           }
+  471.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:463: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.seconds()` reads without synchronization from `time.PeriodType.cSeconds`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  461.       public static PeriodType seconds() {
+  462.           PeriodType type = cSeconds;
+  463. >         if (type == null) {
+  464.               type = new PeriodType(
+  465.                   "Seconds",
+
+src/main/java/org/joda/time/PeriodType.java:114: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.standard()` writes to field `time.PeriodType.cStandard` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  112.                   new int[] { 0, 1, 2, 3, 4, 5, 6, 7, }
+  113.               );
+  114. >             cStandard = type;
+  115.           }
+  116.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:103: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.standard()` reads without synchronization from `time.PeriodType.cStandard`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  101.       public static PeriodType standard() {
+  102.           PeriodType type = cStandard;
+  103. >         if (type == null) {
+  104.               type = new PeriodType(
+  105.                   "Standard",
+
+src/main/java/org/joda/time/PeriodType.java:343: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.time()` writes to field `time.PeriodType.cTime` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  341.                   new int[] { -1, -1, -1, -1, 0, 1, 2, 3, }
+  342.               );
+  343. >             cTime = type;
+  344.           }
+  345.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:334: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.time()` reads without synchronization from `time.PeriodType.cTime`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  332.       public static PeriodType time() {
+  333.           PeriodType type = cTime;
+  334. >         if (type == null) {
+  335.               type = new PeriodType(
+  336.                   "Time",
+
+src/main/java/org/joda/time/PeriodType.java:397: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.weeks()` writes to field `time.PeriodType.cWeeks` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  395.                   new int[] { -1, -1, 0, -1, -1, -1, -1, -1, }
+  396.               );
+  397. >             cWeeks = type;
+  398.           }
+  399.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:391: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.weeks()` reads without synchronization from `time.PeriodType.cWeeks`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  389.       public static PeriodType weeks() {
+  390.           PeriodType type = cWeeks;
+  391. >         if (type == null) {
+  392.               type = new PeriodType(
+  393.                   "Weeks",
+
+src/main/java/org/joda/time/PeriodType.java:287: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.yearDay()` writes to field `time.PeriodType.cYD` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  285.                   new int[] { 0, -1, -1, 1, -1, -1, -1, -1, }
+  286.               );
+  287. >             cYD = type;
+  288.           }
+  289.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:279: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.yearDay()` reads without synchronization from `time.PeriodType.cYD`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  277.       public static PeriodType yearDay() {
+  278.           PeriodType type = cYD;
+  279. >         if (type == null) {
+  280.               type = new PeriodType(
+  281.                   "YearDay",
+
+src/main/java/org/joda/time/PeriodType.java:262: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.yearDayTime()` writes to field `time.PeriodType.cYDTime` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  260.                   new int[] { 0, -1, -1, 1, 2, 3, 4, 5, }
+  261.               );
+  262. >             cYDTime = type;
+  263.           }
+  264.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:252: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.yearDayTime()` reads without synchronization from `time.PeriodType.cYDTime`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  250.       public static PeriodType yearDayTime() {
+  251.           PeriodType type = cYDTime;
+  252. >         if (type == null) {
+  253.               type = new PeriodType(
+  254.                   "YearDayTime",
+
+src/main/java/org/joda/time/PeriodType.java:173: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.yearMonthDay()` writes to field `time.PeriodType.cYMD` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  171.                   new int[] { 0, 1, -1, 2, -1, -1, -1, -1, }
+  172.               );
+  173. >             cYMD = type;
+  174.           }
+  175.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:164: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.yearMonthDay()` reads without synchronization from `time.PeriodType.cYMD`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  162.       public static PeriodType yearMonthDay() {
+  163.           PeriodType type = cYMD;
+  164. >         if (type == null) {
+  165.               type = new PeriodType(
+  166.                   "YearMonthDay",
+
+src/main/java/org/joda/time/PeriodType.java:146: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.yearMonthDayTime()` writes to field `time.PeriodType.cYMDTime` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  144.                   new int[] { 0, 1, -1, 2, 3, 4, 5, 6, }
+  145.               );
+  146. >             cYMDTime = type;
+  147.           }
+  148.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:135: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.yearMonthDayTime()` reads without synchronization from `time.PeriodType.cYMDTime`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  133.       public static PeriodType yearMonthDayTime() {
+  134.           PeriodType type = cYMDTime;
+  135. >         if (type == null) {
+  136.               type = new PeriodType(
+  137.                   "YearMonthDayTime",
+
+src/main/java/org/joda/time/PeriodType.java:232: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.yearWeekDay()` writes to field `time.PeriodType.cYWD` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  230.                   new int[] { 0, -1, 1, 2, -1, -1, -1, -1, }
+  231.               );
+  232. >             cYWD = type;
+  233.           }
+  234.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:223: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.yearWeekDay()` reads without synchronization from `time.PeriodType.cYWD`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  221.       public static PeriodType yearWeekDay() {
+  222.           PeriodType type = cYWD;
+  223. >         if (type == null) {
+  224.               type = new PeriodType(
+  225.                   "YearWeekDay",
+
+src/main/java/org/joda/time/PeriodType.java:194: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.yearWeekDayTime()` reads without synchronization from `time.PeriodType.cYWDTime`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  192.       public static PeriodType yearWeekDayTime() {
+  193.           PeriodType type = cYWDTime;
+  194. >         if (type == null) {
+  195.               type = new PeriodType(
+  196.                   "YearWeekDayTime",
+
+src/main/java/org/joda/time/PeriodType.java:205: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.yearWeekDayTime()` writes to field `time.PeriodType.cYWDTime` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  203.                   new int[] { 0, -1, 1, 2, 3, 4, 5, 6, }
+  204.               );
+  205. >             cYWDTime = type;
+  206.           }
+  207.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:361: warning: THREAD_SAFETY_VIOLATION
+  Unprotected write. Non-private method `PeriodType PeriodType.years()` writes to field `time.PeriodType.cYears` outside of synchronization.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  359.                   new int[] { 0, -1, -1, -1, -1, -1, -1, -1, }
+  360.               );
+  361. >             cYears = type;
+  362.           }
+  363.           return type;
+
+src/main/java/org/joda/time/PeriodType.java:355: warning: THREAD_SAFETY_VIOLATION
+  Read/Write race. Non-private method `PeriodType PeriodType.years()` reads without synchronization from `time.PeriodType.cYears`. Potentially races with write in method `PeriodType.forFields(...)`.
+ Reporting because another access to the same memory occurs on a background thread, although this access may not.
+  353.       public static PeriodType years() {
+  354.           PeriodType type = cYears;
+  355. >         if (type == null) {
+  356.               type = new PeriodType(
+  357.                   "Years",
+
+Summary of the reports
+
+             NULL_DEREFERENCE: 48
+      THREAD_SAFETY_VIOLATION: 34
+                RESOURCE_LEAK: 9
+  INEFFICIENT_KEYSET_ITERATOR: 1

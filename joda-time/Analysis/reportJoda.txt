@@ -1,0 +1,22 @@
+Summary of the reports:
+
+             NULL_DEREFERENCE: 48
+      THREAD_SAFETY_VIOLATION: 34
+                RESOURCE_LEAK: 9
+  INEFFICIENT_KEYSET_ITERATOR: 1
+  
+ Total issues found: 92 issues
+  
+Total false_positives: 1
+
+Null_dereference: 1
+
+/************************************************************
+ src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java:2343: error: NULL_DEREFERENCE
+  object returned by `org.joda.time.format.DateTimeFormatterBuilder$TimeZoneId.GROUPED_IDS.get(__cast(org.joda.time.format.DateTimeFormatterBuilder$TimeZoneId.ALL_IDS.iterator().next(),java.lang.String).substring(0,(__cast(org.joda.time.format.DateTimeFormatterBuilder$TimeZoneId.ALL_IDS.iterator().next(),java.lang.String).indexOf(47)+1)))` could be null and is dereferenced at line 2343.
+  2341.                           GROUPED_IDS.put(prefix, new ArrayList<String>());
+  2342.                       }
+  2343. >                     GROUPED_IDS.get(prefix).add(suffix);
+  2344.                   } else {
+  2345.                       BASE_GROUPED_IDS.add(id);
+  

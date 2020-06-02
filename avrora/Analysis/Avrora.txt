@@ -1,0 +1,246 @@
+Koc et. al 2019 - To label a SA report, we first compute the backward call tree from the method that has the
+                reported error line. Then we inspect the code in all callers until
+                either we find a data-flow from an untrusted source (e.g., user
+                input, http request) without any sanity check—indicating a true
+                positive— or we exhaust the call tree without identifying any
+                tainted or unchecked data-flow—indicating a false positive.
+
+
+Avrora- Simulation and Analysis Tool
+
+Lines of Code: 92041
+
+Command to analyze: infer run -- mvn clean install -DskipTests
+
+
+Bugs:
+
+  THREAD_SAFETY_VIOLATION: 94 //RACER-D 
+         NULL_DEREFERENCE: 29 //Biabduction
+            RESOURCE_LEAK: 24 //Biabduction
+
+- Considering only the Biabduction analysis in this case:
+
+    - RESOURCE_LEAK : 
+
+        1. src/main/java/edu/ucla/cs/compilers/avrora/avrora/syntax/atmel/AtmelParser.java:20: error: RESOURCE_LEAK
+        resource of type `java.io.InputStreamReader` acquired by call to `SimpleCharStream(...)` at line 20 is 
+        not released after line 20. 
+        - True Positive (unsure)
+
+        2. src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/radio/noise.java:51: error: RESOURCE_LEAK
+        resource of type `java.io.FileReader` acquired by call to `new()` at line 51 is not released after line 51.
+        - True Positive 
+
+        3. src/main/java/edu/ucla/cs/compilers/avrora/avrora/syntax/objdump/ObjDumpReformatter.java:69: error: RESOURCE_LEAK
+        resource of type `java.io.FileReader` acquired by call to `new()` at line 68 is not released after line 69.
+        - True Positive
+
+        4. src/main/java/edu/ucla/cs/compilers/avrora/jintgen/isdl/verifier/VerifierTestHarness.java:66: error: RESOURCE_LEAK
+        resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 65 is not released 
+        after line 66.
+        - True Positive
+        
+        5.  src/main/java/edu/ucla/cs/compilers/avrora/avrora/test/ProbeTestHarness.java:72: error: RESOURCE_LEAK
+        resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 72 is not released after line 72.
+        - True Positive
+
+        6. src/main/java/edu/ucla/cs/compilers/avrora/avrora/syntax/atmel/AtmelProgramReader.java:87: error: RESOURCE_LEAK
+        resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 85 is not released after line 87.
+        - True Positive
+ 
+        7. src/main/java/edu/ucla/cs/compilers/avrora/avrora/syntax/objdump/ObjDump2ProgramReader.java:87: error: RESOURCE_LEAK
+           resource of type `java.io.FileReader` acquired by call to `new()` at line 86 is not released after line 87.
+        - True Positive
+
+        8. src/main/java/edu/ucla/cs/compilers/avrora/avrora/test/InterruptTestHarness.java:75: error: RESOURCE_LEAK
+        resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 75 is not released after line 75.
+        - True Positive
+        
+        9. src/main/java/edu/ucla/cs/compilers/avrora/avrora/syntax/objdump/ODPPAction.java:91: error: RESOURCE_LEAK
+        resource of type `java.io.FileOutputStream` acquired by call to `FileOutputStream(...)` at line 86 is not released after line 91.
+        - False Positive, confirmed.
+
+        10. src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/radio/TopologyStatic.java:109: error: RESOURCE_LEAK
+        resource of type `java.io.FileReader` acquired by call to `new()` at line 102 is not released after line 109.
+        - True Positive
+
+        11. src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/EnergyMonitor.java:124: error: RESOURCE_LEAK
+        resource of type `java.io.BufferedWriter` acquired by call to `EnergyMonitor$Monitor$Logger(...)` at line 124 is not released after line 124.
+        - False Positive, confirmed.
+
+        12. src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/platform/SerialForwarder.java:131: error: RESOURCE_LEAK
+        resource of type `java.io.InputStream` acquired to `SerialForwarder$1.this$0.newSocket` by call to `accept()` at line 124 is not released after line 131.
+        - False Positive, confirmed
+
+        13. src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/SerialMonitor.java:126: error: RESOURCE_LEAK
+        resource of type `java.io.FileInputStream` acquired by call to `SerialForwarder(...)` at line 126 is not released after line 126.
+        - True Positive (Unsure)
+
+        14. src/main/java/edu/ucla/cs/compilers/avrora/avrora/actions/CFGAction.java:182: error: RESOURCE_LEAK
+            resource of type `java.io.PrintStream` acquired by call to `new()` at line 172 is not released after line 182.
+        - True Positive
+
+        15. src/main/java/edu/ucla/cs/compilers/avrora/avrora/Main.java:190: error: RESOURCE_LEAK
+        resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 190 is not released after line 190.
+        -  True Positive, Stream Remains Open
+
+        16. src/main/java/edu/ucla/cs/compilers/avrora/jintgen/Main.java:200: error: RESOURCE_LEAK
+        resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 199 is not released after line 200.
+        - True positive
+
+        17. src/main/java/edu/ucla/cs/compilers/avrora/avrora/Main.java:201: error: RESOURCE_LEAK
+        resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 201 is not released after line 201.
+        - True Positive, Stream remains open
+
+        18. src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/platform/SerialForwarder.java:211: error: RESOURCE_LEAK
+        resource of type `java.lang.Process` acquired by call to `exec(...)` at line 209 is not released after line 211.
+        - True Positive 
+
+        19. src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/util/MemPrint.java:213: error: RESOURCE_LEAK
+        resource of type `java.io.BufferedWriter` acquired to `out` by call to `new()` at line 208 is not released after line 213.
+        **Note**: potential exception at line 210
+        - True Positive 
+
+        20. src/main/java/edu/ucla/cs/compilers/avrora/cck/util/Options.java:226: error: RESOURCE_LEAK
+        resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 226 is not released after line 226.
+        - True Positive 
+
+        21. src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/SnifferMonitor.java:295: error: RESOURCE_LEAK
+        resource of type `java.io.BufferedWriter` acquired to `out` by call to `new()` at line 287 is not released after line 295.
+        **Note**: potential exception at line 289
+        - True Positive 
+
+
+        22. src/main/java/edu/ucla/cs/compilers/avrora/cck/test/TestEngine.java:378: error: RESOURCE_LEAK
+        resource of type `java.io.FileReader` acquired by call to `new()` at line 347 is not released after line 378.
+        **Note**: potential exception at line 351
+        - True Positive
+
+        23. src/main/java/edu/ucla/cs/compilers/avrora/jintgen/gen/disassembler/Decoder.java:449: error: RESOURCE_LEAK
+        resource of type `java.io.PrintStream` acquired by call to `new()` at line 448 is not released after line 449.
+        - True Positive
+
+        24. src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/Simulation.java:490: error: RESOURCE_LEAK
+        resource of type `java.io.FileInputStream` acquired to `f` by call to `FileInputStream(...)` at line 479 is not released after line 490.
+        **Note**: potential exception at line 480
+        - True Positive
+    
+    - NULL_DEREFERENCE:
+
+        1. src/test/java/edu/ucla/cs/compilers/avrora/test/TestResources.java:30: error: NULL_DEREFERENCE
+        object returned by `folder.listFiles()` could be null and is dereferenced at line 30. 
+        - True Positive
+
+        2. src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/platform/sensors/AccelSensor.java:57: error: NULL_DEREFERENCE
+        object `AccelSensor.adcDevice` last assigned on line 56 could be null and is dereferenced at line 57.
+        - True Positive 
+
+        3. src/main/java/edu/ucla/cs/compilers/avrora/avrora/actions/ELFDumpAction.java:78: error: NULL_DEREFERENCE
+        object returned by `header.getArchitecture()` could be null and is dereferenced by call to `rightJustify(...)` at line 78.
+        - False Positive, confirmed.
+
+        4. src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/mcu/MCUProperties.java:85: error: NULL_DEREFERENCE
+        object `iv` last assigned on line 84 could be null and is dereferenced at line 85.
+        - False positive, confirmed
+        
+        5.  src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/SnifferMonitor.java:91: error: NULL_DEREFERENCE
+        object `radio` last assigned on line 90 could be null and is dereferenced at line 91.
+        - True Positive
+
+        6. src/main/java/edu/ucla/cs/compilers/avrora/avrora/syntax/RawModule.java:90: error: NULL_DEREFERENCE
+        object `RawModule.section` last assigned on line 89 could be null and is dereferenced at line 90.
+        - True Positive
+ 
+        7. src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/mcu/MCUProperties.java:96: error: NULL_DEREFERENCE
+        object returned by `MCUProperties.interruptAssignments.get(s)` could be null and is dereferenced at line 96.
+        - False Positive, confirmed
+
+        8. src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/PacketMonitor.java:105: error: NULL_DEREFERENCE
+        object `radio` last assigned on line 104 could be null and is dereferenced at line 105.
+        - True Positive
+        
+        9. src/main/java/edu/ucla/cs/compilers/avrora/avrora/gui/SingleNodeMonitor.java:101: error: NULL_DEREFERENCE
+        object returned by `SingleNodeMonitor.panelMap.get(n)` could be null and is dereferenced at line 101.
+        - True Positive.
+
+        10. src/main/java/edu/ucla/cs/compilers/avrora/jintgen/types/TypeCon.java:115: error: NULL_DEREFERENCE
+        object `d` last assigned on line 114 could be null and is dereferenced at line 115.
+        - False Positive, confirmed
+
+        11. src/main/java/edu/ucla/cs/compilers/avrora/avrora/gui/SingleNodeMonitor.java:115: error: NULL_DEREFERENCE
+        object returned by `SingleNodeMonitor.panelMap.get(n)` could be null and is dereferenced at line 115.
+        - True Positive.
+
+        12. src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/EnergyProfiler.java:159: error: NULL_DEREFERENCE
+        object returned by `EnergyProfiler$Monitor.program.getCFG()` could be null and is dereferenced at line 159.
+        - False Positive, confirmed
+
+        13. src/main/java/edu/ucla/cs/compilers/avrora/cck/util/Options.java:204: error: NULL_DEREFERENCE
+        object returned by `o.knownValues.get(name)` could be null and is dereferenced at line 204.
+        - False Positive, confirmed
+
+        14. src/main/java/edu/ucla/cs/compilers/avrora/avrora/actions/CFGAction.java:182: error: RESOURCE_LEAK
+            resource of type `java.io.PrintStream` acquired by call to `new()` at line 172 is not released after line 182.
+        - True Positive
+
+        15. src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/TripTimeMonitor.java:223: error: NULL_DEREFERENCE
+        object `loc` last assigned on line 220 could be null and is dereferenced at line 223.
+        -  True Positive
+
+        16. src/main/java/edu/ucla/cs/compilers/avrora/jintgen/gen/disassembler/ReaderImplementation.java:222: error: NULL_DEREFERENCE
+        object returned by `ReaderImplementation.encodingInfo.get(ed)` could be null and is dereferenced at line 222.
+        - True positive
+
+        17. src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/TripTimeMonitor.java:236: error: NULL_DEREFERENCE
+        object `loc` last assigned on line 233 could be null and is dereferenced at line 236.
+        - True Positive
+
+        18. src/main/java/edu/ucla/cs/compilers/avrora/avrora/test/probes/ProbeTest.java:270: error: NULL_DEREFERENCE
+        object `en` last assigned on line 269 could be null and is dereferenced at line 270.
+        - True Positive 
+
+        19. src/main/java/edu/ucla/cs/compilers/avrora/jintgen/gen/disassembler/ReaderImplementation.java:286: error: NULL_DEREFERENCE
+        object `ot` last assigned on line 283 could be null and is dereferenced by call to `getEnumType(...)` at line 286.
+        - False Positive 
+
+        20. src/main/java/edu/ucla/cs/compilers/avrora/avrora/test/probes/ProbeTest.java:291: error: NULL_DEREFERENCE
+        object `en` last assigned on line 290 could be null and is dereferenced at line 291.
+        - True Positive 
+
+        21. src/main/java/edu/ucla/cs/compilers/avrora/avrora/core/CFGBuilder.java:344: error: NULL_DEREFERENCE
+        object `next` last assigned on line 343 could be null and is dereferenced at line 344.
+        - True Positive 
+
+        22. src/main/java/edu/ucla/cs/compilers/avrora/jintgen/isdl/verifier/TypeChecker.java:414: error: NULL_DEREFERENCE
+        object `pm` last assigned on line 413 could be null and is dereferenced at line 414.
+        - True Positive (unsure)
+
+        23. src/main/java/edu/ucla/cs/compilers/avrora/jintgen/jigir/JIGIRTypeEnv.java:430: error: NULL_DEREFERENCE
+        object `tc` last assigned on line 429 could be null and is dereferenced at line 430.
+        - True Positive (unsure)
+
+        24. src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/Simulation.java:490: error: RESOURCE_LEAK
+        resource of type `java.io.FileInputStream` acquired to `f` by call to `FileInputStream(...)` at line 479 is not released after line 490.
+        **Note**: potential exception at line 480
+        - True Positive
+
+        25. src/main/java/edu/ucla/cs/compilers/avrora/jintgen/gen/disassembler/ReaderImplementation.java:451: error: NULL_DEREFERENCE
+        object `td` last assigned on line 450 could be null and is dereferenced at line 451.
+        - False Positive
+
+        26. src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/Simulation.java:480: error: NULL_DEREFERENCE
+        object `eeprom` last assigned on line 476 could be null and is dereferenced at line 480.
+        - True Positive
+
+        27. src/main/java/edu/ucla/cs/compilers/avrora/avrora/stack/Analyzer.java:507: error: NULL_DEREFERENCE
+        object `reg` last assigned on line 505 could be null and is dereferenced by call to `getRegisterAV(...)` at line 507.
+        - True Positive
+
+        28. src/main/java/edu/ucla/cs/compilers/avrora/avrora/stack/AbstractInterpreter.java:1003: error: NULL_DEREFERENCE
+        object returned by `AbstractInterpreter.program.readInstr(npc)` could be null and is dereferenced at line 1003.
+        - False Positive 
+
+        29. src/main/java/edu/ucla/cs/compilers/avrora/avrora/stack/Analyzer.java:1199: error: NULL_DEREFERENCE
+        object `instr` last assigned on line 1198 could be null and is dereferenced at line 1199.
+        - True Positive

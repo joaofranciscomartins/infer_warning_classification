@@ -1,0 +1,438 @@
+Found 53 issues
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/syntax/atmel/AtmelParser.java:20: error: RESOURCE_LEAK
+  resource of type `java.io.InputStreamReader` acquired by call to `SimpleCharStream(...)` at line 20 is not released after line 20.
+  18.       public AtmelParser(InputStream stream, Module m, String fname)
+  19.       {
+  20. >         this(new FileMarkingTokenManager(new SimpleCharStream(stream, 1, 1),
+  21.                   fname));
+  22.   
+
+src/test/java/edu/ucla/cs/compilers/avrora/test/TestResources.java:30: error: NULL_DEREFERENCE
+  object returned by `folder.listFiles()` could be null and is dereferenced at line 30.
+  28.                   instance.getClass().getResource(resourceFolder).getFile());
+  29.           ArrayList<File> files = new ArrayList<>();
+  30. >         for (File fileEntry : folder.listFiles())
+  31.           {
+  32.               if (fileEntry.isFile())
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/radio/noise.java:51: error: RESOURCE_LEAK
+  resource of type `java.io.FileReader` acquired by call to `new()` at line 51 is not released after line 51.
+**Note**: potential exception at line 51
+  49.       public noise(String fileName) throws IOException
+  50.       {
+  51. >         parse(new BufferedReader(new FileReader(fileName)));
+  52.       }
+  53.   
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/platform/sensors/AccelSensor.java:57: error: NULL_DEREFERENCE
+  object `AccelSensor.adcDevice` last assigned on line 56 could be null and is dereferenced at line 57.
+  55.       {
+  56.           adcDevice = (ADC) m.getDevice("adc");
+  57. >         adcDevice.connectADCInput(new ADCInput(), adcChannel);
+  58.           this.asp = asp;
+  59.       }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/syntax/objdump/ObjDumpReformatter.java:69: error: RESOURCE_LEAK
+  resource of type `java.io.FileReader` acquired by call to `new()` at line 68 is not released after line 69.
+  67.               StringBuffer out = new StringBuffer(200000);
+  68.               BufferedReader in = new BufferedReader(new FileReader(inFile));
+  69. >             cleanFile(in, out);
+  70.               // Status.success();
+  71.               return out;
+
+src/main/java/edu/ucla/cs/compilers/avrora/jintgen/isdl/verifier/VerifierTestHarness.java:66: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 65 is not released after line 66.
+  64.               File archfile = new File(filename);
+  65.               FileInputStream fis = new FileInputStream(archfile);
+  66. >             ISDLParser parser = new ISDLParser(fis);
+  67.               ArchDecl a = parser.ArchDecl();
+  68.               new Verifier(a).verify();
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/test/ProbeTestHarness.java:72: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 72 is not released after line 72.
+  70.               super(fname, props);
+  71.   
+  72. >             ProbeParser p = new ProbeParser(new FileInputStream(fname));
+  73.               probeTest = p.ProbeTest();
+  74.               progName = getClass().getResource(props.getProperty("Program")).getFile().toString();
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/actions/ELFDumpAction.java:78: error: NULL_DEREFERENCE
+  object returned by `header.getArchitecture()` could be null and is dereferenced by call to `rightJustify(...)` at line 78.
+  76.           Terminal.print(StringUtil.rightJustify(header.e_version, 3));
+  77.           Terminal.print(StringUtil.rightJustify(header.e_machine, 8));
+  78. >         Terminal.print(StringUtil.rightJustify(header.getArchitecture(), 9));
+  79.           Terminal.print(StringUtil.rightJustify(header.is64Bit() ? "64 bits" : "32 bits", 9));
+  80.           Terminal.print(header.isLittleEndian() ? "  little" : "  big");
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/syntax/atmel/AtmelProgramReader.java:87: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 85 is not released after line 87.
+  85.           FileInputStream fis = new FileInputStream(f);
+  86.           // Status.begin("Parsing");
+  87. >         AtmelParser parser = new AtmelParser(fis, module, f.getName());
+  88.           parser.Module();
+  89.           // Status.success();
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/syntax/objdump/ObjDump2ProgramReader.java:87: error: RESOURCE_LEAK
+  resource of type `java.io.FileReader` acquired by call to `new()` at line 86 is not released after line 87.
+  85.           // Status.begin("Parsing");
+  86.           ObjDumpParser parser = new ObjDumpParser(new FileReader(f), module,
+  87. >                 f.getName());
+  88.           parser.Module();
+  89.           // Status.success();
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/test/InterruptTestHarness.java:75: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 75 is not released after line 75.
+  73.               super(fname, props);
+  74.   
+  75. >             ProbeParser p = new ProbeParser(new FileInputStream(fname));
+  76.               probeTest = p.ProbeTest();
+  77.               progName = getClass().getResource(props.getProperty("Program"))
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/mcu/MCUProperties.java:85: error: NULL_DEREFERENCE
+  object `iv` last assigned on line 84 could be null and is dereferenced at line 85.
+  83.           {
+  84.               Integer iv = interruptAssignments.get(s);
+  85. >             interrupt_name[iv] = s;
+  86.           }
+  87.           return interrupt_name;
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/syntax/objdump/ODPPAction.java:91: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired by call to `FileOutputStream(...)` at line 86 is not released after line 91.
+**Note**: potential exception at line 88
+  89.               p.close();
+  90.           }
+  91. >     }
+  92.   }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/SnifferMonitor.java:91: error: NULL_DEREFERENCE
+  object `radio` last assigned on line 90 could be null and is dereferenced at line 91.
+  89.               Platform platform = simulator.getMicrocontroller().getPlatform();
+  90.               Radio radio = (Radio) platform.getDevice("radio");
+  91. >             radio.getTransmitter().insertProbe(this);
+  92.               radio.getReceiver().insertProbe(this);
+  93.               printer = simulator.getPrinter();
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/syntax/RawModule.java:90: error: NULL_DEREFERENCE
+  object `RawModule.section` last assigned on line 89 could be null and is dereferenced at line 90.
+  88.       {
+  89.           section = sectionMap.get(sect.image);
+  90. >         if (section.name.image.equals(".text")
+  91.                   || section.name.image.equals(".data"))
+  92.               enterProgramSegment();
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/mcu/MCUProperties.java:96: error: NULL_DEREFERENCE
+  object returned by `MCUProperties.interruptAssignments.get(s)` could be null and is dereferenced at line 96.
+  94.           for (String s : interruptAssignments.keySet())
+  95.           {
+  96. >             int v = interruptAssignments.get(s);
+  97.               if (max < v)
+  98.                   max = v;
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/radio/TopologyStatic.java:109: error: RESOURCE_LEAK
+  resource of type `java.io.FileReader` acquired by call to `new()` at line 102 is not released after line 109.
+**Note**: potential exception at line 103
+  107.               f.close();
+  108.           }
+  109. >         catch (IOException e)
+  110.           {
+  111.               throw Util.unexpected(e);
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/PacketMonitor.java:105: error: NULL_DEREFERENCE
+  object `radio` last assigned on line 104 could be null and is dereferenced at line 105.
+  103.               Platform platform = simulator.getMicrocontroller().getPlatform();
+  104.               Radio radio = (Radio) platform.getDevice("radio");
+  105. >             radio.getTransmitter().insertProbe(this);
+  106.               radio.getReceiver().insertProbe(this);
+  107.               printer = simulator.getPrinter();
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/gui/SingleNodeMonitor.java:101: error: NULL_DEREFERENCE
+  object returned by `SingleNodeMonitor.panelMap.get(n)` could be null and is dereferenced at line 101.
+  99.       @Override
+  100.       public void construct(Simulation sim, Simulation.Node n, Simulator s) {
+  101. >         panelMap.get(n).construct(s);
+  102.       }
+  103.   
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/EnergyMonitor.java:124: error: RESOURCE_LEAK
+  resource of type `java.io.BufferedWriter` acquired by call to `EnergyMonitor$Monitor$Logger(...)` at line 124 is not released after line 124.
+**Note**: potential exception at line 124
+  122.               if (!LOG.isBlank())
+  123.               {
+  124. >                 logger = new Logger();
+  125.               }
+  126.           }
+
+src/main/java/edu/ucla/cs/compilers/avrora/jintgen/types/TypeCon.java:115: error: NULL_DEREFERENCE
+  object `d` last assigned on line 114 could be null and is dereferenced at line 115.
+  113.               String name = e.getKey();
+  114.               Dimension d = dimensions.get(name);
+  115. >             Object o = d.build(env, e.getValue());
+  116.               m.put(name, o);
+  117.           }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/gui/SingleNodeMonitor.java:115: error: NULL_DEREFERENCE
+  object returned by `SingleNodeMonitor.panelMap.get(n)` could be null and is dereferenced at line 115.
+  113.       @Override
+  114.       public void destruct(Simulation sim, Simulation.Node n, Simulator s) {
+  115. >         panelMap.get(n).destruct();
+  116.       }
+  117.   
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/platform/SerialForwarder.java:131: error: RESOURCE_LEAK
+  resource of type `java.io.InputStream` acquired to `SerialForwarder$1.this$0.newSocket` by call to `accept()` at line 124 is not released after line 131.
+  129.                           synchronized (this)
+  130.                           {
+  131. >                             newSocket = mySocket;
+  132.                               if (socket == null)
+  133.                               {
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/SerialMonitor.java:126: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `SerialForwarder(...)` at line 126 is not released after line 126.
+**Note**: potential exception at line 126
+  124.           void connect(USART usart)
+  125.           {
+  126. >             new SerialForwarder(usart, infile, outfile);
+  127.           }
+  128.       }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/EnergyProfiler.java:159: error: NULL_DEREFERENCE
+  object returned by `EnergyProfiler$Monitor.program.getCFG()` could be null and is dereferenced at line 159.
+  157.               // scan each basic block and find the corresponding label, e.g.
+  158.               // procedure
+  159. >             Iterator<Block> it = program.getCFG().getSortedBlockIterator();
+  160.               int address;
+  161.               int size;
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/actions/CFGAction.java:182: error: RESOURCE_LEAK
+  resource of type `java.io.PrintStream` acquired by call to `new()` at line 172 is not released after line 182.
+  180.           dumpDotNodes(p);
+  181.           dumpDotEdges(p);
+  182. >         p.endblock();
+  183.       }
+  184.   
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/Main.java:190: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 190 is not released after line 190.
+  188.           {
+  189.               Properties defs = new Properties();
+  190. >             defs.load(new FileInputStream(f));
+  191.               mainOptions.process(defs);
+  192.           }
+
+src/main/java/edu/ucla/cs/compilers/avrora/jintgen/Main.java:200: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 199 is not released after line 200.
+  198.           File archfile = new File(fname);
+  199.           FileInputStream fis = new FileInputStream(archfile);
+  200. >         ISDLParser parser = new ISDLParser(fis);
+  201.           ArchDecl a = parser.ArchDecl();
+  202.           Status.success();
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/Main.java:201: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 201 is not released after line 201.
+  199.           File f = new File(fname);
+  200.           Properties defs = new Properties();
+  201. >         defs.load(new FileInputStream(f));
+  202.           mainOptions.process(defs);
+  203.       }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/platform/SerialForwarder.java:211: error: RESOURCE_LEAK
+  resource of type `java.lang.Process` acquired by call to `exec(...)` at line 209 is not released after line 211.
+  209.               Process p = Runtime.getRuntime().exec(command);
+  210.               in = p.getInputStream();
+  211. >             out = p.getOutputStream();
+  212.           }
+  213.           catch (IOException e)
+
+src/main/java/edu/ucla/cs/compilers/avrora/cck/util/Options.java:204: error: NULL_DEREFERENCE
+  object returned by `o.knownValues.get(name)` could be null and is dereferenced at line 204.
+  202.           for (String name : o.knownValues.keySet())
+  203.           {
+  204. >             String val = o.knownValues.get(name).stringValue();
+  205.               setOption(name, val);
+  206.           }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/util/MemPrint.java:213: error: RESOURCE_LEAK
+  resource of type `java.io.BufferedWriter` acquired to `out` by call to `new()` at line 208 is not released after line 213.
+**Note**: potential exception at line 210
+  211.               out.close();
+  212.           }
+  213. >         catch (Exception e)
+  214.           {// Catch exception if any
+  215.               System.err.println("Error: " + e.getMessage());
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/TripTimeMonitor.java:223: error: NULL_DEREFERENCE
+  object `loc` last assigned on line 220 could be null and is dereferenced at line 223.
+  221.                   for (int cntr = 0; cntr < program.program_end; cntr = program
+  222.                           .getNextPC(cntr))
+  223. >                     addPair(loc.lma_addr, cntr);
+  224.               }
+  225.           }
+
+src/main/java/edu/ucla/cs/compilers/avrora/jintgen/gen/disassembler/ReaderImplementation.java:222: error: NULL_DEREFERENCE
+  object returned by `ReaderImplementation.encodingInfo.get(ed)` could be null and is dereferenced at line 222.
+  220.       String getName(FormatDecl ed)
+  221.       {
+  222. >         return encodingInfo.get(ed).name;
+  223.       }
+  224.   
+
+src/main/java/edu/ucla/cs/compilers/avrora/cck/util/Options.java:226: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 226 is not released after line 226.
+  224.           File f = new File(fname);
+  225.           Properties defs = new Properties();
+  226. >         defs.load(new FileInputStream(f));
+  227.           process(defs);
+  228.       }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/TripTimeMonitor.java:236: error: NULL_DEREFERENCE
+  object `loc` last assigned on line 233 could be null and is dereferenced at line 236.
+  234.                   for (int cntr = 0; cntr < program.program_end; cntr = program
+  235.                           .getNextPC(cntr))
+  236. >                     addPair(cntr, loc.lma_addr);
+  237.               }
+  238.           }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/test/probes/ProbeTest.java:270: error: NULL_DEREFERENCE
+  object `en` last assigned on line 269 could be null and is dereferenced at line 270.
+  268.           {
+  269.               TestEntity en = entities.get(name);
+  270. >             en.insert(value);
+  271.           }
+  272.       }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/monitors/SnifferMonitor.java:295: error: RESOURCE_LEAK
+  resource of type `java.io.BufferedWriter` acquired to `out` by call to `new()` at line 287 is not released after line 295.
+**Note**: potential exception at line 289
+  293.   
+  294.                   }
+  295. >                 catch (Exception e)
+  296.                   {// Catch exception if any
+  297.                       System.err.println("Error: " + e.getMessage());
+
+src/main/java/edu/ucla/cs/compilers/avrora/jintgen/gen/disassembler/ReaderImplementation.java:286: error: NULL_DEREFERENCE
+  object `ot` last assigned on line 283 could be null and is dereferenced by call to `getEnumType(...)` at line 286.
+  284.                   FormatDecl.Cond cond = decl.getCond();
+  285.                   String opname = prefix + o.name.image;
+  286. >                 String et = getEnumType(ot);
+  287.                   if (cond != null && cond.name.image.equals(opname))
+  288.                       computeConditional(opname, et, cond);
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/test/probes/ProbeTest.java:291: error: NULL_DEREFERENCE
+  object `en` last assigned on line 290 could be null and is dereferenced at line 291.
+  289.           {
+  290.               TestEntity en = entities.get(name);
+  291. >             en.remove(value);
+  292.           }
+  293.       }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/core/CFGBuilder.java:344: error: NULL_DEREFERENCE
+  object `next` last assigned on line 343 could be null and is dereferenced at line 344.
+  342.           int npc = pc + i.getSize();
+  343.           LegacyInstr next = (LegacyInstr) program.readInstr(npc);
+  344. >         branch(i, npc + next.getSize());
+  345.       }
+  346.   
+
+src/main/java/edu/ucla/cs/compilers/avrora/cck/test/TestEngine.java:378: error: RESOURCE_LEAK
+  resource of type `java.io.FileReader` acquired by call to `new()` at line 347 is not released after line 378.
+**Note**: potential exception at line 351
+  376.               return harness.newTestCase(fname, vars);
+  377.           } catch (Throwable t) {
+  378. >             return new TestCase.InitFailure(fname, t);
+  379.           }
+  380.       }
+
+src/main/java/edu/ucla/cs/compilers/avrora/jintgen/isdl/verifier/TypeChecker.java:414: error: NULL_DEREFERENCE
+  object `pm` last assigned on line 413 could be null and is dereferenced at line 414.
+  412.               @SuppressWarnings("unchecked")
+  413.               List<Object> pm = (List<Object>) lt.getDimension("types");
+  414. >             Type it = ((TypeRef) pm.get(0)).resolve(typeEnv);
+  415.               Type et = ((TypeRef) pm.get(1)).resolve(typeEnv);
+  416.               typeCheck("indexing", e.index, it, env);
+
+src/main/java/edu/ucla/cs/compilers/avrora/jintgen/jigir/JIGIRTypeEnv.java:430: error: NULL_DEREFERENCE
+  object `tc` last assigned on line 429 could be null and is dereferenced at line 430.
+  428.       {
+  429.           TypeCon tc = resolveTypeCon(ot.name.image);
+  430. >         return tc.newType(this);
+  431.       }
+  432.   
+
+src/main/java/edu/ucla/cs/compilers/avrora/jintgen/gen/disassembler/Decoder.java:449: error: RESOURCE_LEAK
+  resource of type `java.io.PrintStream` acquired by call to `new()` at line 448 is not released after line 449.
+  447.               FileOutputStream fos = new FileOutputStream(name + ".dot");
+  448.               Printer p = new Printer(new PrintStream(fos));
+  449. >             DGUtil.printDotTree(name, e.getValue(), p);
+  450.           }
+  451.       }
+
+src/main/java/edu/ucla/cs/compilers/avrora/jintgen/gen/disassembler/ReaderImplementation.java:451: error: NULL_DEREFERENCE
+  object `td` last assigned on line 450 could be null and is dereferenced at line 451.
+  449.               OperandTypeDecl td = dGen.arch
+  450.                       .getOperandDecl(o.typeRef.getTypeConName());
+  451. >             if (td.isCompound())
+  452.               {
+  453.                   generateCompound(td, vname);
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/Simulation.java:480: error: NULL_DEREFERENCE
+  object `eeprom` last assigned on line 476 could be null and is dereferenced at line 480.
+  478.                   try {
+  479.                       f = new FileInputStream(EELOADIMAGE.get());
+  480. >                     if (f.available() > eeprom.getSize()) {
+  481.                           f.close();
+  482.                           Util.userError("EEPROM image too large", EELOADIMAGE.get());
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/sim/Simulation.java:490: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired to `f` by call to `FileInputStream(...)` at line 479 is not released after line 490.
+**Note**: potential exception at line 480
+  488.                       }
+  489.                       f.close();
+  490. >                 } catch (IOException e) {
+  491.                       throw Util.unexpected(e);
+  492.                   }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/stack/Analyzer.java:507: error: NULL_DEREFERENCE
+  object `reg` last assigned on line 505 could be null and is dereferenced by call to `getRegisterAV(...)` at line 507.
+  505.               LegacyRegister reg = LegacyRegister.getRegisterByNumber(cntr);
+  506.               // get the value that is in the return state
+  507. >             char retval = rstate.getRegisterAV(reg);
+  508.               // interpret the ISE abstract value: is it a new value or an old
+  509.               // value?
+
+src/main/java/edu/ucla/cs/compilers/avrora/jintgen/gen/disassembler/ReaderImplementation.java:528: error: NULL_DEREFERENCE
+  object `reader` last assigned on line 527 could be null and is dereferenced at line 528.
+  526.       {
+  527.           EncodingReader reader = this.encodingRev.get(r);
+  528. >         if (reader.instr != null && !DGUtil.addrModeClassExists(reader.instr))
+  529.               return tr("new NULL_reader($1)", reader.decl.getBitWidth() / 8);
+  530.           else
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/stack/Analyzer.java:810: error: NULL_DEREFERENCE
+  object `reg` last assigned on line 809 could be null and is dereferenced by call to `isRegisterRead(...)` at line 810.
+  808.           {
+  809.               LegacyRegister reg = LegacyRegister.getRegisterByNumber(cntr);
+  810. >             if (!rs.isRegisterRead(reg))
+  811.                   s.setRegisterAV(reg, AbstractArithmetic.UNKNOWN);
+  812.           }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/stack/AbstractInterpreter.java:1003: error: NULL_DEREFERENCE
+  object returned by `AbstractInterpreter.program.readInstr(npc)` could be null and is dereferenced at line 1003.
+  1001.           int pc = state.getPC();
+  1002.           int npc = pc + 2;
+  1003. >         int offset = program.readInstr(npc).getSize() / 2;
+  1004.           branchOnCondition(cond, offset);
+  1005.       }
+
+src/main/java/edu/ucla/cs/compilers/avrora/avrora/stack/Analyzer.java:1199: error: NULL_DEREFERENCE
+  object `instr` last assigned on line 1198 could be null and is dereferenced at line 1199.
+  1197.           Terminal.nextln();
+  1198.           LegacyInstr instr = (LegacyInstr) program.readInstr(s.getPC());
+  1199. >         String str = StringUtil.leftJustify(instr.toString(), 14);
+  1200.           StatePrinter.printState(str, s);
+  1201.       }
+
+Summary of the reports
+
+  NULL_DEREFERENCE: 29
+     RESOURCE_LEAK: 24

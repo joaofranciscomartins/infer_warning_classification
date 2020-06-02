@@ -13,9 +13,9 @@ Avrora | 92041 | 53 | 41 | 12
 Joda-Time | 94973 | 92 | 91 | 1
 Jython | 945500 | 219 | 137 | 82
 
-## Types of bugs
+## Types of False Positive bugs
 
-Program | Nº FP's | *NULL_DEREFERENCE* | *RESOURCE_LEAK* | 
+Program | Total | *NULL_DEREFERENCE* | *RESOURCE_LEAK* | 
 ------------ | ------------- | -------- | ---- |
 Avrora | 12 | 9 | 3 |
 Joda-Time | 1 | 1 | 0 |

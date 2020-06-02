@@ -1,0 +1,700 @@
+Total warnings:
+
+  DEADLOCK: 9665
+  NULL_DEREFERENCE: 113
+  RESOURCE_LEAK: 106
+
+Total false_positives: 82
+Resource_Leak: 11
+Null_dereference: 71
+
+*Note*: I did not analyze the Deadlock warnings
+
+
+/****************************************************************
+
+src/org/python/core/BytecodeLoader.java:37: error: RESOURCE_LEAK
+  resource of type `org.python.core.BytecodeLoader$Loader` acquired by call to `BytecodeLoader$Loader()` at line 31 is not released after line 37.
+  35.               } catch (SecurityException e) {}
+  36.           }
+  37. >         Class<?> c = loader.loadClassFromBytes(name, data);
+  38.           if (ContainsPyBytecode.class.isAssignableFrom(c)) {
+  39.               try {
+
+src/org/python/core/JavaProxyList.java:36: error: NULL_DEREFERENCE
+  object returned by `asList()` could be null and is dereferenced at line 36.
+  34.           protected List newList() {
+  35.               try {
+  36. >                 return (List) asList().getClass().getDeclaredConstructor().newInstance();
+  37.               } catch (ReflectiveOperationException | SecurityException
+  38.                       | IllegalArgumentException e) {
+
+src/org/python/core/io/TextIOWrapper.java:37: error: NULL_DEREFERENCE
+  object `TextIOWrapper.newline` last assigned on line 36 could be null and is dereferenced at line 37.
+  35.           super(bufferedIO);
+  36.           newline = System.getProperty("line.separator");
+  37. >         newlineIsLF = newline.equals("\n");
+  38.       }
+  39.   
+
+src/org/python/core/PyReflectedConstructor.java:70: error: NULL_DEREFERENCE
+  object `method` last assigned on line 39 could be null and is dereferenced at line 70.
+  68.           PyObject obj;
+  69.           try {
+  70. >             obj = (PyObject)((Constructor<?>)method).newInstance(callData.getArgsArray());
+  71.           } catch (Throwable t) {
+  72.               throw Py.JavaError(t);
+
+src/org/python/expose/generate/ExposeTask.java:49: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `FileInputStream(...)` at line 49 is not released after line 49.
+  47.               ExposedTypeProcessor etp;
+  48.               try {
+  49. >                 etp = new ExposedTypeProcessor(new FileInputStream(f));
+  50.               } catch (IOException e) {
+  51.                   throw new BuildException("Unable to read '" + f + "' to expose it", e);
+
+src/org/python/core/JavaProxySet.java:56: error: NULL_DEREFERENCE
+  object `selfSet` last assigned on line 55 could be null and is dereferenced at line 56.
+  54.                   final Set<PyObject> otherPySet = ((BaseSet) other).getSet();
+  55.                   final Set<Object> selfSet = asSet();
+  56. >                 if (selfSet.size() != otherPySet.size()) {
+  57.                       // Sets are different sizes therefore not equal
+  58.                       return Py.False;
+
+
+src/org/python/modules/_hashlib.java:54: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `new$(...)` at line 54.
+  52.   
+  53.       public static PyObject new$(String name) {
+  54. >         return new$(name, null);
+  55.       }
+  56.   
+
+src/org/python/antlr/PythonTreeAdaptor.java:91: error: NULL_DEREFERENCE
+  object `newRootTree` last assigned on line 82 could be null and is dereferenced at line 91.
+  89.   		// is a flat list (i.e., nil-rooted tree).  All children of oldRoot
+  90.   		// are added to newRoot.
+  91. > 		newRootTree.addChild(oldRootTree);
+  92.   		return newRootTree;
+  93.   	}
+
+src/org/python/modules/_hashlib.java:72: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `openssl_md5(...)` at line 72.
+  70.   
+  71.       public static PyObject openssl_md5() {
+  72. >         return openssl_md5(null);
+  73.       }
+  74.   
+
+
+src/org/python/core/buffer/SimpleWritableBuffer.java:79: error: RESOURCE_LEAK
+  resource of type `org.python.core.buffer.SimpleWritableBuffer$SimpleView` acquired by call to `SimpleWritableBuffer$SimpleView(...)` at line 79 is not released after line 79.
+**Note**: potential exception at line 79
+  77.               int compIndex0 = index0 + start;
+  78.               // Create the slice from the sub-range of the buffer
+  79. >             return new SimpleView(getRoot(), flags, storage, compIndex0, count);
+  80.           } else {
+  81.               // Special case for count==0 where above logic would fail. Efficient too.
+
+
+src/org/python/modules/_hashlib.java:80: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `openssl_sha1(...)` at line 80.
+  78.   
+  79.       public static PyObject openssl_sha1() {
+  80. >         return openssl_sha1(null);
+  81.       }
+  82.   
+
+
+src/org/python/antlr/PythonTree.java:84: error: NULL_DEREFERENCE
+  object returned by `getChild(0)` could be null and is dereferenced at line 84.
+  82.           if (node.getToken()==null || node.getToken().getLine()==0) {
+  83.               if ( getChildCount()>0 ) {
+  84. >                 return getChild(0).getLine();
+  85.               }
+  86.               return 1;
+
+
+src/org/python/modules/_hashlib.java:88: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `openssl_sha224(...)` at line 88.
+  86.   
+  87.       public static PyObject openssl_sha224() {
+  88. >         return openssl_sha224(null);
+  89.       }
+  90.   
+
+
+src/org/python/antlr/PythonTree.java:95: error: NULL_DEREFERENCE
+  object returned by `getChild(0)` could be null and is dereferenced at line 95.
+  93.           if (token==null || token.getCharPositionInLine()==-1) {
+  94.               if (getChildCount()>0) {
+  95. >                 return getChild(0).getCharPositionInLine();
+  96.               }
+  97.               return 0;
+
+
+src/org/python/modules/_hashlib.java:96: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `openssl_sha256(...)` at line 96.
+  94.   
+  95.       public static PyObject openssl_sha256() {
+  96. >         return openssl_sha256(null);
+  97.       }
+  98.   
+
+src/org/python/antlr/PythonTreeAdaptor.java:106: error: NULL_DEREFERENCE
+  object `r` last assigned on line 104 could be null and is dereferenced at line 106.
+  104.   				r = r.getChild(0);
+  105.   				// whoever invokes rule will set parent and child index
+  106. > 				r.setParent(null);
+  107.   				r.setChildIndex(-1);
+  108.   			}
+
+src/org/python/modules/bz2/PyBZ2File.java:120: error: RESOURCE_LEAK
+  resource of type `org.apache.commons.compress.compressors.bzip2.BZip2CompressorOutputStream` acquired by call to `new()` at line 118 is not released after line 120.
+**Note**: potential exception at line 120
+  118.                   BZip2CompressorOutputStream writeStream = new BZip2CompressorOutputStream(
+  119.                           new FileOutputStream(fileName), compresslevel);
+  120. >                 buffer = new BinaryIOWrapper(
+  121.                               new BufferedWriter(
+  122.                                   new SkippableStreamIO(writeStream, true),
+
+
+src/org/python/modules/_hashlib.java:104: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `openssl_sha384(...)` at line 104.
+  102.   
+  103.       public static PyObject openssl_sha384() {
+  104. >         return openssl_sha384(null);
+  105.       }
+  106.   
+
+src/org/python/modules/_hashlib.java:112: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `openssl_sha512(...)` at line 112.
+  110.   
+  111.       public static PyObject openssl_sha512() {
+  112. >         return openssl_sha512(null);
+  113.       }
+  114.   
+
+src/org/python/modules/_codecs.java:117: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `encode(...)` at line 117.
+  115.        */
+  116.       public static PyString encode(PyUnicode unicode) {
+  117. >         return encode(unicode, null, null);
+  118.       }
+  119.   
+
+src/org/python/core/JavaProxySet.java:129: error: NULL_DEREFERENCE
+  object returned by `asSet()` could be null and is dereferenced at line 129.
+  127.   
+  128.           protected void differenceUpdate(Collection other) {
+  129. >             asSet().removeAll(other);
+  130.           }
+  131.   
+
+src/org/python/core/JavaProxyMap.java:157: error: NULL_DEREFERENCE
+  object returned by `asMap()` could be null and is dereferenced at line 157.
+  155.           @Override
+  156.           public PyObject __call__() {
+  157. >             return Py.java2py(asMap().size());
+  158.           }
+  159.       };
+
+
+src/org/python/core/PyReflectedFunction.java:174: error: NULL_DEREFERENCE
+  object `match` last assigned on line 164 could be null and is dereferenced at line 174.
+  172.           }
+  173.           Object cself = callData.self;
+  174. >         Method m = (Method)match.method;
+  175.   
+  176.           // If this is a direct call to a Java class instance method with a PyProxy instance as the
+
+
+src/org/python/core/JavaProxyMap.java:170: error: NULL_DEREFERENCE
+  object returned by `asMap()` could be null and is dereferenced at line 170.
+  168.                   StringBuilder repr = new StringBuilder("{");
+  169.                   boolean first = true;
+  170. >                 for (Map.Entry<Object, Object> entry : asMap().entrySet()) {
+  171.                       if (first) {
+  172.                           first=false;
+
+src/org/python/core/ParserFacade.java:175: error: RESOURCE_LEAK
+  resource of type `org.python.core.ParserFacade$ExpectedEncodingBufferedReader` acquired by call to `prepBufReader(...)` at line 170 is not released after line 175.
+  173.               throw fixParseError(bufReader, t, filename);
+  174.           } finally {
+  175. >             close(bufReader);
+  176.           }
+  177.       }
+
+src/org/python/core/JavaProxySet.java:172: error: NULL_DEREFERENCE
+  object `selfSet` last assigned on line 169 could be null and is dereferenced at line 172.
+  170.               Set<Object> intersection = new HashSet<>(selfSet);
+  171.               intersection.retainAll(other);
+  172. >             selfSet.addAll(other);
+  173.               selfSet.removeAll(intersection);
+  174.           }
+
+
+src/org/python/core/ParserFacade.java:207: error: RESOURCE_LEAK
+  resource of type `org.python.core.ParserFacade$ExpectedEncodingBufferedReader` acquired by call to `prepBufReader(...)` at line 202 is not released after line 207.
+  205.               throw fixParseError(bufReader, t, filename);
+  206.           } finally {
+  207. >             close(bufReader);
+  208.           }
+  209.       }
+
+src/org/python/core/ParserFacade.java:228: error: RESOURCE_LEAK
+  resource of type `org.python.core.ParserFacade$ExpectedEncodingBufferedReader` acquired by call to `prepBufReader(...)` at line 219 is not released after line 228.
+  226.               throw p;
+  227.           } finally {
+  228. >             close(reader);
+  229.           }
+  230.       }
+
+
+src/org/python/core/JavaProxyMap.java:233: error: NULL_DEREFERENCE
+  object returned by `asMap()` could be null and is dereferenced at line 233.
+  231.           @Override
+  232.           public PyObject __call__() {
+  233. >             return new JavaIterator(asMap().keySet());
+  234.           }
+  235.       };
+
+src/org/python/core/JavaProxyMap.java:239: error: NULL_DEREFERENCE
+  object returned by `asMap()` could be null and is dereferenced at line 239.
+  237.           @Override
+  238.           public PyObject __call__(PyObject obj) {
+  239. >             return asMap().containsKey(tojava(obj)) ? Py.True : Py.False;
+  240.           }
+  241.       };
+
+src/org/python/core/JavaProxyMap.java:258: error: NULL_DEREFERENCE
+  object `map` last assigned on line 256 could be null and is dereferenced at line 258.
+  256.               Map<Object, Object> map = asMap();
+  257.               Object k = tojava(key);
+  258. >             if (map.containsKey(k)) {
+  259.                   return Py.java2py(map.get(k));
+  260.               } else {
+
+src/org/python/core/JavaProxyMap.java:271: error: NULL_DEREFERENCE
+  object `map` last assigned on line 269 could be null and is dereferenced at line 271.
+  269.               Map<Object, Object> map = asMap();
+  270.               Object k = tojava(key);
+  271. >             if (map.containsKey(k)) {
+  272.                   return Py.java2py(map.get(k));
+  273.               }
+
+src/org/python/core/exceptions.java:278: error: NULL_DEREFERENCE
+  object `filename` last assigned on line 276 could be null and is dereferenced at line 278.
+  276.           PyObject filename = self.__findattr__("filename");
+  277.           PyString result;
+  278. >         if (filename.__nonzero__()) {
+  279.               result = Py.newString("[Errno %s] %s: %s");
+  280.               result = (PyString)result.__mod__(new PyTuple(errno, strerror, filename.__repr__()));
+
+src/org/python/core/JavaProxyMap.java:295: error: NULL_DEREFERENCE
+  object `map` last assigned on line 293 could be null and is dereferenced at line 295.
+  293.               Map<Object, Object> map = asMap();
+  294.               Object k = tojava(key);
+  295. >             if (map.containsKey(k)) {
+  296.                   map.remove(k);
+  297.                   return Py.None;
+
+src/org/python/core/JavaProxyMap.java:306: error: NULL_DEREFERENCE
+  object returned by `asMap()` could be null and is dereferenced at line 306.
+  304.           @Override
+  305.           public PyObject __call__() {
+  306. >             final Iterator<Map.Entry<Object, Object>> entryIterator = asMap().entrySet().iterator();
+  307.               return new PyIterator() {
+  308.                   @Override
+
+src/org/python/core/JavaProxyMap.java:324: error: NULL_DEREFERENCE
+  object returned by `asMap()` could be null and is dereferenced at line 324.
+  322.           @Override
+  323.           public PyObject __call__() {
+  324. >             final Iterator<Object> keyIterator = asMap().keySet().iterator();
+  325.               return new PyIterator() {
+  326.                   @Override
+
+src/org/python/antlr/GrammarActions.java:348: error: NULL_DEREFERENCE
+  object returned by `tree.getChild(i)` could be null and is dereferenced by call to `recurseSetContext(...)` at line 348.
+  346.                     (!(tree instanceof SetComp))) {
+  347.               for (int i=0; i<tree.getChildCount(); i++) {
+  348. >                 recurseSetContext(tree.getChild(i), context);
+  349.               }
+  350.           }
+
+src/org/python/core/PrePy.java:333: error: NULL_DEREFERENCE
+  object `jar` last assigned on line 332 could be null and is dereferenced at line 333.
+  331.       public static String getDefaultBinDir() {
+  332.           String jar = _getJarFileName();
+  333. >         return jar.substring(0, jar.lastIndexOf(File.separatorChar) + 1) + "bin";
+  334.       }
+  335.  
+
+
+src/org/python/core/JavaProxyMap.java:342: error: NULL_DEREFERENCE
+  object returned by `asMap()` could be null and is dereferenced at line 342.
+  340.           @Override
+  341.           public PyObject __call__() {
+  342. >             final Iterator<Object> valueIterator = asMap().values().iterator();
+  343.               return new PyIterator() {
+  344.                   @Override
+
+src/org/python/core/JavaProxyMap.java:360: error: NULL_DEREFERENCE
+  object returned by `asMap()` could be null and is dereferenced at line 360.
+  358.           @Override
+  359.           public PyObject __call__(PyObject key) {
+  360. >             return asMap().containsKey(tojava(key)) ? Py.True : Py.False;
+  361.           }
+  362.       };
+
+src/org/python/core/PyJavaType.java:374: error: NULL_DEREFERENCE
+  object `forClass` last assigned on line 373 could be null and is dereferenced at line 374.
+  372.           // Get the class for which the type is to be initialised.
+  373.           Class<?> forClass = underlying_class != null ? underlying_class : getProxyType();
+  374. >         name = forClass.getName();
+  375.   
+  376.           // Strip the java fully qualified class name from Py classes in core
+
+
+src/org/python/core/JavaProxyMap.java:397: error: NULL_DEREFERENCE
+  object `map` last assigned on line 394 could be null and is dereferenced at line 397.
+  395.               Object key = tojava(pykey);
+  396.               try {
+  397. >                 if (map.containsKey(key)) {
+  398.                       return Py.java2py(map.get(key));
+  399.                   } else {
+
+
+src/org/python/core/JavaProxyMap.java:419: error: NULL_DEREFERENCE
+  object `map` last assigned on line 417 could be null and is dereferenced at line 419.
+  417.               Map<Object, Object> map = asMap();
+  418.               Object k = tojava(key);
+  419. >             if (map.containsKey(k)) {
+  420.                   return Py.java2py(map.remove(k));
+  421.               } else if (_default == null) {
+
+src/org/python/core/JavaProxyList.java:423: error: NULL_DEREFERENCE
+  object returned by `asList()` could be null and is dereferenced at line 423.
+  421.           @Override
+  422.           public PyObject __call__(PyObject value) {
+  423. >             asList().add(value);
+  424.               return Py.None;
+  425.           }
+
+src/org/python/core/JavaProxyMap.java:433: error: NULL_DEREFERENCE
+  object `map` last assigned on line 432 could be null and is dereferenced at line 433.
+  431.           public PyObject __call__() {
+  432.               Map<Object, Object> map = asMap();
+  433. >             Iterator<Entry<Object, Object>> entryIterator = map.entrySet().iterator();
+  434.               if (entryIterator.hasNext()) {
+  435.                   Map.Entry<Object, Object> e = entryIterator.next();
+
+src/org/python/core/JavaProxyList.java:448: error: NULL_DEREFERENCE
+  object `jlist` last assigned on line 445 could be null and is dereferenced at line 448.
+  446.               ListIndexDelegate lid = new ListIndexDelegate(jlist);
+  447.               int idx = lid.fixBoundIndex(index);
+  448. >             jlist.add(idx, object);
+  449.               return Py.None;
+  450.           }
+
+src/org/python/modules/bz2/PyBZ2File.java:465: error: NULL_DEREFERENCE
+  object returned by `asInputStream()` could be null and is dereferenced at line 465.
+  463.                   long skipped = 0;
+  464.                   try {
+  465. >                     skipped = asInputStream().skip(skipBytes);
+  466.                   } catch (IOException ex) {
+  467.                       throw Py.IOError(ex);
+
+src/org/python/core/JavaProxyMap.java:461: error: NULL_DEREFERENCE
+  object `map` last assigned on line 457 could be null and is dereferenced at line 461.
+  459.               Class<? extends Map<Object, Object>> clazz;
+  460.               try {
+  461. >                 clazz = (Class<Map<Object, Object>>) map.getClass();
+  462.                   Constructor<? extends Map<Object, Object>> ctor = clazz.getDeclaredConstructor();
+  463.                   newMap = ctor.newInstance();
+
+src/org/python/core/JavaProxyList.java:461: error: NULL_DEREFERENCE
+  object `jlist` last assigned on line 460 could be null and is dereferenced at line 461.
+  459.           public PyObject __call__(PyObject index) {
+  460.               List jlist = asList();
+  461. >             if (jlist.isEmpty()) {
+  462.                   throw Py.IndexError("pop from empty list");
+  463.               }
+
+
+src/org/python/antlr/PythonTree.java:469: error: NULL_DEREFERENCE
+  object `child` last assigned on line 468 could be null and is dereferenced at line 469.
+  467.           for (int c = offset; c < n; c++) {
+  468.               PythonTree child = getChild(c);
+  469. >             child.setChildIndex(c);
+  470.               child.setParent(this);
+  471.           }
+
+src/org/python/core/JavaProxyList.java:477: error: NULL_DEREFERENCE
+  object returned by `asList()` could be null and is dereferenced at line 477.
+  475.           @Override
+  476.           public PyObject __call__(PyObject object) {
+  477. >             return __call__(object, Py.newInteger(0), Py.newInteger(asList().size()));
+  478.           }
+  479.   
+
+src/org/python/core/JavaProxyList.java:482: error: NULL_DEREFERENCE
+  object returned by `asList()` could be null and is dereferenced at line 482.
+  480.           @Override
+  481.           public PyObject __call__(PyObject object, PyObject start) {
+  482. >             return __call__(object, start, Py.newInteger(asList().size()));
+  483.           }
+  484.  
+
+src/org/python/core/JavaProxyList.java:493: error: NULL_DEREFERENCE
+  object `jlist` last assigned on line 487 could be null and is dereferenced at line 493.
+  491.               int i = start_index;
+  492.               try {
+  493. >                 for (ListIterator it = jlist.listIterator(start_index); it.hasNext(); i++) {
+  494.                       if (i == end_index) {
+  495.                           break;
+
+src/org/python/core/__builtin__.java:508: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `eval(...)` at line 508.
+  506.               throw Py.TypeError("code object passed to eval() may not contain free variables");
+  507.           }
+  508. >         return eval(o, null, null);
+  509.       }
+  510.   
+
+src/org/python/core/JavaProxySet.java:509: error: NULL_DEREFERENCE
+  object returned by `asSet()` could be null and is dereferenced at line 509.
+  507.           public PyObject __call__(PyObject memo) {
+  508.               Set<Object> newSet = new HashSet<>();
+  509. >             for (Object obj : asSet()) {
+  510.                   PyObject pyobj = Py.java2py(obj);
+  511.                   PyObject newobj = pyobj.invoke("__deepcopy__", memo);
+
+src/org/python/core/JavaProxyList.java:513: error: NULL_DEREFERENCE
+  object `jlist` last assigned on line 512 could be null and is dereferenced at line 513.
+  511.               int count = 0;
+  512.               List jlist = asList();
+  513. >             for (int i = 0; i < jlist.size(); i++) {
+  514.                   Object jobj = jlist.get(i);
+  515.                   if (Py.java2py(jobj)._eq(object).__nonzero__()) {
+
+src/org/python/core/packagecache/CachedJarsPackageManager.java:537: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired by call to `outCreateCacheFile(...)` at line 518 is not released after line 537.
+**Note**: potential exception at line 519
+  535.               if (ostream != null) {
+  536.                   try {
+  537. >                     ostream.close();
+  538.                   } catch (IOException ignore) {
+  539.                       // ignore
+
+src/org/python/core/JavaProxySet.java:521: error: NULL_DEREFERENCE
+  object returned by `asSet()` could be null and is dereferenced by call to `JavaIterator(...)` at line 521.
+  519.           @Override
+  520.           public PyObject __call__() {
+  521. >             PyObject args = new PyTuple(new PyList(new JavaIterator(asSet())));
+  522.               PyObject dict = __findattr__("__dict__");
+  523.               if (dict == null) {
+
+src/org/python/core/JavaProxyList.java:534: error: NULL_DEREFERENCE
+  object `jlist` last assigned on line 533 could be null and is dereferenced at line 534.
+  532.           public PyObject __call__(PyObject object) {
+  533.               List jlist = asList();
+  534. >             for (int i = 0; i < jlist.size(); i++) {
+  535.                   Object jobj = jlist.get(i);
+  536.                   if (Py.java2py(jobj)._eq(object).__nonzero__()) {
+
+src/org/python/core/JavaProxySet.java:533: error: NULL_DEREFERENCE
+  object returned by `asSet()` could be null and is dereferenced at line 533.
+  531.           @Override
+  532.           public PyObject __call__(PyObject value) {
+  533. >             return Py.newBoolean(asSet().contains(value.__tojava__(Object.class)));
+  534.           }
+  535.       };
+
+src/org/python/core/JavaProxySet.java:547: error: NULL_DEREFERENCE
+  object returned by `asSet()` could be null and is dereferenced at line 547.
+  545.           @Override
+  546.           public PyObject __call__(PyObject value) {
+  547. >             asSet().remove(value.__tojava__(Object.class));
+  548.               return Py.None;
+  549.           }
+
+src/org/python/core/JavaProxyList.java:557: error: NULL_DEREFERENCE
+  object `jList` last assigned on line 554 could be null and is dereferenced at line 557.
+  555.               List jClone;
+  556.               try {
+  557. >                 jClone = (List) jList.getClass().getDeclaredConstructor().newInstance();
+  558.               } catch (ReflectiveOperationException | SecurityException
+  559.                       | IllegalArgumentException e) {
+
+src/org/python/core/JavaProxySet.java:559: error: NULL_DEREFERENCE
+  object `selfSet` last assigned on line 554 could be null and is dereferenced at line 559.
+  557.                   it = ((NavigableSet) selfSet).descendingIterator();
+  558.               } else {
+  559. >                 it = selfSet.iterator();
+  560.               }
+  561.               try {
+
+src/org/python/core/JavaProxySet.java:573: error: NULL_DEREFERENCE
+  object returned by `asSet()` could be null and is dereferenced at line 573.
+  571.           @Override
+  572.           public PyObject __call__(PyObject value) {
+  573. >             boolean removed = asSet().remove(value.__tojava__(Object.class));
+  574.               if (!removed) {
+  575.                   throw Py.KeyError(value);
+
+src/org/python/core/exceptions.java:613: error: NULL_DEREFERENCE
+  object returned by `self.__findattr__("__slots__")` could be null and is dereferenced at line 613.
+  611.        */
+  612.       private static void initSlots(PyObject self) {
+  613. >         for (PyObject name : self.__findattr__("__slots__").asIterable()) {
+  614.               if (!(name instanceof PyString)) {
+  615.                   continue;
+
+src/org/python/core/JavaProxyList.java:627: error: NULL_DEREFERENCE
+  object returned by `asList()` could be null and is dereferenced by call to `list_sort(...)` at line 627.
+  625.           @Override
+  626.           public PyObject __call__() {
+
+  627. >             list_sort(asList(), Py.None, Py.None, false);
+  628.               return Py.None;
+  629.           }
+
+src/org/python/core/JavaProxyList.java:633: error: NULL_DEREFERENCE
+  object returned by `asList()` could be null and is dereferenced by call to `list_sort(...)` at line 633.
+  631.           @Override
+  632.           public PyObject __call__(PyObject cmp) {
+  633. >             list_sort(asList(), cmp, Py.None, false);
+  634.               return Py.None;
+  635.           }
+
+src/org/python/core/JavaProxyList.java:639: error: NULL_DEREFERENCE
+  object returned by `asList()` could be null and is dereferenced by call to `list_sort(...)` at line 639.
+  637.           @Override
+  638.           public PyObject __call__(PyObject cmp, PyObject key) {
+  639. >             list_sort(asList(), cmp, key, false);
+  640.               return Py.None;
+  641.           }
+
+src/org/python/core/JavaProxyList.java:645: error: NULL_DEREFERENCE
+  object returned by `asList()` could be null and is dereferenced by call to `list_sort(...)` at line 645.
+  643.           @Override
+  644.           public PyObject __call__(PyObject cmp, PyObject key, PyObject reverse) {
+  645. >             list_sort(asList(), cmp, key, reverse.__nonzero__());
+  646.               return Py.None;
+  647.           }
+
+src/org/python/core/packagecache/CachedJarsPackageManager.java:721: error: RESOURCE_LEAK
+  resource of type `java.io.FileOutputStream` acquired by call to `outOpenIndex()` at line 708 is not released after line 721.
+  719.               if (ostream != null) {
+  720.                   try {
+  721. >                     ostream.close();
+  722.                   } catch (IOException ignore) {
+  723.                       // ignore
+
+
+src/org/python/antlr/GrammarActions.java:739: error: NULL_DEREFERENCE
+  object `s` last assigned on line 710 could be null and is dereferenced by call to `Index(...)` at line 739.
+  737.           }
+  738.           else {
+  739. >            return new Index(tok, s);
+  740.           }
+  741.       }
+
+
+src/org/python/core/PySystemState.java:867: error: NULL_DEREFERENCE
+  object `osname` last assigned on line 866 could be null and is dereferenced at line 867.
+  865.       public static String getNativePlatform() {
+  866.           String osname = System.getProperty("os.name");
+  867. >         if (osname.equals("Linux")) {
+  868.               return "linux2";
+  869.           } else if (osname.equals("Mac OS X")) {
+
+
+src/org/python/core/PyJavaType.java:1044: error: NULL_DEREFERENCE
+  object `proxy` last assigned on line 1042 could be null and is dereferenced at line 1044.
+  1042.                   Object proxy = self.getJavaProxy();
+  1043.                   Object oProxy = o.getJavaProxy();
+  1044. >                 return proxy.equals(oProxy) ? Py.True : Py.False;
+  1045.               }
+  1046.           });
+
+
+src/org/python/modules/posix/PosixModule.java:1051: error: NULL_DEREFERENCE
+  object `sysname` last assigned on line 1047 could be null and is dereferenced at line 1051.
+  1049.               boolean win = false;
+  1050.   
+  1051. >             if (sysname.equals("Mac OS X")) {
+  1052.                   sysname = "Darwin";
+  1053.                   sysrelease = Py.getCommandResult("uname", "-r");
+
+src/org/python/core/PyJavaType.java:1053: error: NULL_DEREFERENCE
+  object `proxy` last assigned on line 1051 could be null and is dereferenced at line 1053.
+  1051.                   Object proxy = self.getJavaProxy();
+  1052.                   Object oProxy = o.getJavaProxy();
+  1053. >                 return !proxy.equals(oProxy) ? Py.True : Py.False;
+  1054.               }
+  1055.           });
+
+src/org/python/core/PyJavaType.java:1071: error: NULL_DEREFERENCE
+  object returned by `PyBuiltinMethod.self.getJavaProxy()` could be null and is dereferenced at line 1071.
+  1069.                    * repr() built-in decide how to handle it. (Also applies to __str__.)
+  1070.                    */
+  1071. >                 String toString = self.getJavaProxy().toString();
+  1072.                   return toString == null ? Py.EmptyUnicode : Py.newUnicode(toString);
+  1073.               }
+
+
+src/org/python/core/PyJavaType.java:1174: error: RESOURCE_LEAK
+  resource of type `org.python.core.PyJavaType$CloneInput` acquired by call to `new()` at line 1170 is not released after line 1174.
+  1172.           @SuppressWarnings("unchecked")  // thanks to Bas de Bakker for the tip!
+  1173.           T clone = (T) cin.readObject();
+  1174. >         cin.close();
+  1175.           return clone;
+  1176.       }
+
+src/org/python/core/PyJavaType.java:1175: error: RESOURCE_LEAK
+  resource of type `org.python.core.PyJavaType$CloneInput` acquired to `cin` by call to `new()` at line 1170 is not released after line 1175.
+**Note**: potential exception at line 1173
+  1173.           T clone = (T) cin.readObject();
+  1174.           cin.close();
+  1175. >         return clone;
+  1176.       }
+  1177.   
+
+
+src/org/python/core/PyJavaType.java:1384: error: NULL_DEREFERENCE
+  object returned by `PyBuiltinMethod.self.getJavaProxy()` could be null and is dereferenced at line 1384.
+  1382.               int compare;
+  1383.               try {
+  1384. >                 compare = ((Comparable<Object>) self.getJavaProxy()).compareTo(asjava);
+  1385.               } catch (ClassCastException classCast) {
+  1386.                   return Py.NotImplemented;
+
+
+src/org/python/core/PyJavaType.java:1437: error: NULL_DEREFERENCE
+  object returned by `PyBuiltinMethod.self.getJavaProxy()` could be null and is dereferenced by call to `JavaIterator(...)` at line 1437.
+  1435.               @Override
+  1436.               public PyObject __call__() {
+  1437. >                 return new JavaIterator(((Iterable<Object>) self.getJavaProxy()));
+  1438.               }
+  1439.           };
+
+src/org/python/core/PyJavaType.java:1446: error: NULL_DEREFERENCE
+  object returned by `PyBuiltinMethod.self.getJavaProxy()` could be null and is dereferenced at line 1446.
+  1444.               @Override
+  1445.               public PyObject __call__() {
+  1446. >                 return Py.newInteger(((Collection<?>) self.getJavaProxy()).size());
+  1447.               }
+  1448.           };
+
+
+src/org/python/core/PySystemState.java:1779: error: NULL_DEREFERENCE
+  object returned by `getProperty("os.name")` could be null and is dereferenced at line 1779.
+  1777.        */
+  1778.       public static String getSystemVersionString() {
+  1779. >         if (System.getProperty("os.name").startsWith("Windows")) {
+  1780.               // Windows ver command returns a string similar to:
+  1781.               // "Microsoft Windows [Version 10.0.10586]"
+

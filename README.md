@@ -12,6 +12,7 @@ Program | LoC | Total Warnings | TP | FP
 Avrora | 92041 | 53 | 41 | 12
 Joda-Time | 94973 | 92 | 91 | 1
 Jython | 945500 | 219 | 137 | 82
+Apache Xalan Java | 205644 | 54 | 31 | 23
 
 ## Types of False Positive bugs
 
@@ -20,3 +21,4 @@ Program | Total | *NULL_DEREFERENCE* | *RESOURCE_LEAK* |
 Avrora | 12 | 9 | 3 |
 Joda-Time | 1 | 1 | 0 |
 Jython | 82 | 71 | 11 |
+Apache Xalan-j| 23 | 21 | 2| 

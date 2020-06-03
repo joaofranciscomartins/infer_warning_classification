@@ -7,10 +7,10 @@
 
 All infer reports and their respective analysis are under the subfolder *Analysis* in each program.
 
-Program | LoC | Total Warnings | Test cases TP | FP
+Program | LoC | Total Warnings | Test cases | TP | FP
 ------------ | ------------- | -------- |----| ---- | ----|
 Avrora | 92041 | 53 | 0| 41 | 12
-Joda-Time | 94973 | 92 | 46| 91 | 1
+Joda-Time | 94973 | 44 | |  | 1
 Jython | 945500 | 219 | 0 | 137 | 82
 Xalan-j| 205644 | 54 | 0 | 31 | 23
 

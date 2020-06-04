@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Import",
+            "request": "launch",
+            "mainClass": "org.apache.tomcat.buildutil.translate.Import"
+        }
+    ]
+}

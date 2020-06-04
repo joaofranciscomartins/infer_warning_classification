@@ -1,0 +1,1013 @@
+Summary of the reports
+
+      THREAD_SAFETY_VIOLATION: 1461 - RacerD
+      NULL_DEREFERENCE: 220
+      RESOURCE_LEAK: 74
+      STARVATION: 2 - RacerD
+      DEADLOCK: 2
+      INEFFICIENT_KEYSET_ITERATOR: 1
+
+
+False positives total: 119
+
+Null_dereference: 108
+
+Resource_leak: 11
+
+
+
+
+java/org/apache/catalina/core/ApplicationMapping.java:58: error: NULL_DEREFERENCE
+  object `path` last assigned on line 57 could be null and is dereferenced at line 58.
+  56.                       case EXTENSION:
+  57.                           String path = mappingData.wrapperPath.toString();
+  58. >                         int extIndex = path.lastIndexOf('.');
+  59.                           mapping = new MappingImpl(path.substring(1, extIndex),
+  60.                                   "*" + path.substring(extIndex), mappingData.matchType, servletName);
+
+java/org/apache/catalina/core/ApplicationMapping.java:53: error: NULL_DEREFERENCE
+  object returned by `ApplicationMapping.mappingData.wrapperPath.toString()` could be null and is dereferenced at line 53.
+  51.                           break;
+  52.                       case EXACT:
+  53. >                         mapping = new MappingImpl(mappingData.wrapperPath.toString().substring(1),
+  54.                                   mappingData.wrapperPath.toString(), mappingData.matchType, servletName);
+  55.                           break;
+
+java/org/apache/catalina/ssi/SSIEcho.java:63: error: NULL_DEREFERENCE
+  object `originalValue` last assigned on line 44 could be null and is dereferenced by call to `getVariableValue(...)` at line 63.
+  61.               }
+  62.           }
+  63. >         String variableValue = ssiMediator.getVariableValue(originalValue, encoding);
+  64.           if (variableValue == null) {
+  65.               variableValue = MISSING_VARIABLE_VALUE;
+  
+  java/org/apache/tomcat/dbcp/dbcp2/DataSourceConnectionFactory.java:44: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `DataSourceConnectionFactory(...)` at line 44.
+  42.        */
+  43.       public DataSourceConnectionFactory(final DataSource dataSource) {
+  44. >         this(dataSource, null, (char[]) null);
+  45.       }
+  46.   
+  
+  java/org/apache/catalina/util/LifecycleMBeanBase.java:57: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 57.
+  55.           // preRegister().
+  56.           if (oname == null) {
+  57. >             mserver = Registry.getRegistry(null, null).getMBeanServer();
+  58.   
+  59.               oname = register(this, getObjectNameKeyProperties());
+  
+  
+  java/javax/servlet/jsp/el/ScopedAttributeELResolver.java:64: error: NULL_DEREFERENCE
+  object `page` last assigned on line 63 could be null and is dereferenced at line 64.
+  62.                   String key = property.toString();
+  63.                   PageContext page = (PageContext) context.getContext(JspContext.class);
+  64. >                 result = page.findAttribute(key);
+  65.   
+  66.                   if (result == null) {
+  
+  java/javax/el/ELManager.java:56: error: NULL_DEREFERENCE
+  object returned by `getELContext().getFunctionMapper()` could be null and is dereferenced at line 56.
+  54.   
+  55.       public void mapFunction(String prefix, String function, Method method) {
+  56. >         getELContext().getFunctionMapper().mapFunction(
+  57.                   prefix, function, method);
+  58.       }
+  
+  java/org/apache/catalina/ha/backend/CollectedInfo.java:59: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 59.
+  57.           int iport = 0;
+  58.           String shost = null;
+  59. >         mBeanServer = Registry.getRegistry(null, null).getMBeanServer();
+  60.           String onStr = "*:type=ThreadPool,*";
+  61.           ObjectName objectName = new ObjectName(onStr);
+
+  java/javax/el/ELManager.java:61: error: NULL_DEREFERENCE
+  object returned by `getELContext().getVariableMapper()` could be null and is dereferenced at line 61.
+  59.   
+  60.       public void setVariable(String variable, ValueExpression expression) {
+  61. >         getELContext().getVariableMapper().setVariable(variable, expression);
+  62.       }
+  63.   
+  
+  java/org/apache/catalina/manager/JMXProxyServlet.java:70: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 70.
+  68.           // Retrieve the MBean server
+  69.           registry = Registry.getRegistry(null, null);
+  70. >         mBeanServer = Registry.getRegistry(null, null).getMBeanServer();
+  71.       }
+  72.   
+  
+  java/org/apache/tomcat/websocket/pojo/PojoMethodMapping.java:182: error: NULL_DEREFERENCE
+  object `clazzPojoMethods` last assigned on line 83 could be null and is dereferenced by call to `isOverridenWithoutAnnotation(...)` at line 182.
+  180.           for (MessageHandlerInfo messageHandler : onMessage) {
+  181.               if (messageHandler.m.getDeclaringClass() != clazzPojo
+  182. >                     && isOverridenWithoutAnnotation(clazzPojoMethods, messageHandler.m, OnMessage.class)) {
+  183.                   overriddenOnMessage.add(messageHandler);
+  184.               }
+
+  java/org/apache/catalina/ant/ValidatorTask.java:107: error: RESOURCE_LEAK
+  resource of type `java.io.PrintStream` acquired by call to `handleErrorOutput(...)` at line 103 is not released after line 107.
+**Note**: potential exception at line 94
+  105.           } finally {
+  106.               Thread.currentThread().setContextClassLoader(oldCL);
+  107. >             closeRedirector();
+  108.           }
+  109.   
+
+java/javax/el/ELManager.java:81: error: NULL_DEREFERENCE
+  object `localBeans` last assigned on line 78 could be null and is dereferenced at line 81.
+  79.   
+  80.           if (bean == null) {
+  81. >             return localBeans.remove(name);
+  82.           } else {
+  83.               return localBeans.put(name, bean);
+  
+  java/javax/el/ELManager.java:83: error: NULL_DEREFERENCE
+  object `localBeans` last assigned on line 78 could be null and is dereferenced at line 83.
+  81.               return localBeans.remove(name);
+  82.           } else {
+  83. >             return localBeans.put(name, bean);
+  84.           }
+  85.     
+  
+  java/org/apache/juli/AsyncFileHandler.java:78: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `AsyncFileHandler(...)` at line 78.
+  76.   
+  77.       public AsyncFileHandler(String directory, String prefix, String suffix) {
+  78. >         this(directory, prefix, suffix, null);
+  79.       }
+  80.   
+  
+  java/javax/servlet/jsp/el/ImplicitObjectELResolver.java:100: error: NULL_DEREFERENCE
+  object `page` last assigned on line 88 could be null and is dereferenced by call to `get(...)` at line 100.
+  98.                       return ScopeManager.get(page).getHeaderValues();
+  99.                   case INITPARAM:
+  100. >                     return ScopeManager.get(page).getInitParam();
+  101.                   case PAGECONTEXT:
+  102.                       return ScopeManager.get(page).getPageContext();
+
+java/javax/servlet/jsp/el/ImplicitObjectELResolver.java:102: error: NULL_DEREFERENCE
+  object `page` last assigned on line 88 could be null and is dereferenced by call to `get(...)` at line 102.
+  100.                       return ScopeManager.get(page).getInitParam();
+  101.                   case PAGECONTEXT:
+  102. >                     return ScopeManager.get(page).getPageContext();
+  103.                   case PAGESCOPE:
+  104.                       return ScopeManager.get(page).getPageScope();
+
+java/javax/servlet/jsp/el/ImplicitObjectELResolver.java:104: error: NULL_DEREFERENCE
+  object `page` last assigned on line 88 could be null and is dereferenced by call to `get(...)` at line 104.
+  102.                       return ScopeManager.get(page).getPageContext();
+  103.                   case PAGESCOPE:
+  104. >                     return ScopeManager.get(page).getPageScope();
+  105.                   case PARAM:
+  106.                       return ScopeManager.get(page).getParam();
+
+java/javax/servlet/jsp/el/ImplicitObjectELResolver.java:106: error: NULL_DEREFERENCE
+  object `page` last assigned on line 88 could be null and is dereferenced by call to `get(...)` at line 106.
+  104.                       return ScopeManager.get(page).getPageScope();
+  105.                   case PARAM:
+  106. >                     return ScopeManager.get(page).getParam();
+  107.                   case PARAM_VALUES:
+  108.                       return ScopeManager.get(page).getParamValues();
+
+java/javax/servlet/jsp/el/ImplicitObjectELResolver.java:108: error: NULL_DEREFERENCE
+  object `page` last assigned on line 88 could be null and is dereferenced by call to `get(...)` at line 108.
+  106.                       return ScopeManager.get(page).getParam();
+  107.                   case PARAM_VALUES:
+  108. >                     return ScopeManager.get(page).getParamValues();
+  109.                   case REQUEST_SCOPE:
+  110.                       return ScopeManager.get(page).getRequestScope();
+
+java/javax/servlet/jsp/el/ImplicitObjectELResolver.java:110: error: NULL_DEREFERENCE
+  object `page` last assigned on line 88 could be null and is dereferenced by call to `get(...)` at line 110.
+  108.                       return ScopeManager.get(page).getParamValues();
+  109.                   case REQUEST_SCOPE:
+  110. >                     return ScopeManager.get(page).getRequestScope();
+  111.                   case SESSION_SCOPE:
+  112.                       return ScopeManager.get(page).getSessionScope();
+
+java/javax/servlet/jsp/el/ImplicitObjectELResolver.java:112: error: NULL_DEREFERENCE
+  object `page` last assigned on line 88 could be null and is dereferenced by call to `get(...)` at line 112.
+  110.                       return ScopeManager.get(page).getRequestScope();
+  111.                   case SESSION_SCOPE:
+  112. >                     return ScopeManager.get(page).getSessionScope();
+  113.                   }
+  114.               }
+
+java/javax/servlet/jsp/el/ImplicitObjectELResolver.java:92: error: NULL_DEREFERENCE
+  object `page` last assigned on line 88 could be null and is dereferenced by call to `get(...)` at line 92.
+  90.                   switch (idx) {
+  91.                   case APPLICATIONSCOPE:
+  92. >                     return ScopeManager.get(page).getApplicationScope();
+  93.                   case COOKIE:
+  94.                       return ScopeManager.get(page).getCookie();
+
+java/javax/servlet/jsp/el/ImplicitObjectELResolver.java:94: error: NULL_DEREFERENCE
+  object `page` last assigned on line 88 could be null and is dereferenced by call to `get(...)` at line 94.
+  92.                       return ScopeManager.get(page).getApplicationScope();
+  93.                   case COOKIE:
+  94. >                     return ScopeManager.get(page).getCookie();
+  95.                   case HEADER:
+  96.                       return ScopeManager.get(page).getHeader();
+
+java/javax/servlet/jsp/el/ImplicitObjectELResolver.java:96: error: NULL_DEREFERENCE
+  object `page` last assigned on line 88 could be null and is dereferenced by call to `get(...)` at line 96.
+  94.                       return ScopeManager.get(page).getCookie();
+  95.                   case HEADER:
+  96. >                     return ScopeManager.get(page).getHeader();
+  97.                   case HEADERVALUES:
+  98.                       return ScopeManager.get(page).getHeaderValues();
+
+java/javax/servlet/jsp/el/ImplicitObjectELResolver.java:98: error: NULL_DEREFERENCE
+  object `page` last assigned on line 88 could be null and is dereferenced by call to `get(...)` at line 98.
+  96.                       return ScopeManager.get(page).getHeader();
+  97.                   case HEADERVALUES:
+  98. >                     return ScopeManager.get(page).getHeaderValues();
+  99.                   case INITPARAM:
+  100.                       return ScopeManager.get(page).getInitParam();
+  
+java/org/apache/jasper/servlet/JspServlet.java:152: error: NULL_DEREFERENCE
+  object returned by `JspServlet.options.getScratchDir()` could be null and is dereferenced at line 152.
+  150.           if (log.isDebugEnabled()) {
+  151.               log.debug(Localizer.getMessage("jsp.message.scratch.dir.is",
+  152. >                     options.getScratchDir().toString()));
+  153.               log.debug(Localizer.getMessage("jsp.message.dont.modify.servlets"));
+  154.           }
+
+*doubt - it is true it can be null but we have a catch to catch the null pointer exception so no problem*
+  java/org/apache/catalina/tribes/transport/bio/MultipointBioSender.java:96: error: NULL_DEREFERENCE
+  object `sender` last assigned on line 95 could be null and is dereferenced at line 96.
+  94.               try {
+  95.                   BioSender sender = bioSenders.get(mbr);
+  96. >                 sender.disconnect();
+  97.               }catch ( Exception e ) {
+  98.                   if ( x == null ) x = new ChannelException(e);
+  
+  java/org/apache/catalina/ha/session/DeltaSession.java:96: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `DeltaSession(...)` at line 96.
+  94.   
+  95.       public DeltaSession() {
+  96. >         this(null);
+  97.       }
+  98.   
+  
+  java/javax/el/ExpressionFactory.java:170: error: NULL_DEREFERENCE
+  object returned by `clazz.getConstructor(__new_array(java.lang.Class*[_*_]))` could be null and is dereferenced at line 170.
+  168.               }
+  169.               if (constructor == null) {
+  170. >                 result = (ExpressionFactory) clazz.getConstructor().newInstance();
+  171.               } else {
+  172.                   result =
+
+java/org/apache/catalina/manager/StatusManagerServlet.java:104: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 104.
+  102.   
+  103.           // Retrieve the MBean server
+  104. >         mBeanServer = Registry.getRegistry(null, null).getMBeanServer();
+  105.   
+  106.           try {
+
+  java/org/apache/jasper/compiler/JspReader.java:119: error: RESOURCE_LEAK
+  resource of type `java.io.CharArrayWriter` acquired to `caw` by call to `new()` at line 113 is not released after line 119.
+**Note**: potential exception at line 115
+  117.               caw.close();
+  118.               current = new Mark(this, caw.toCharArray(), fname);
+  119. >         } catch (Throwable ex) {
+  120.               ExceptionUtils.handleThrowable(ex);
+  121.               log.error(Localizer.getMessage("jsp.error.file.cannot.read", fname), ex);
+  
+  java/org/apache/catalina/tribes/group/interceptors/SimpleCoordinator.java:114: error: NULL_DEREFERENCE
+  object returned by `getLocalMember(0)` could be null and is dereferenced at line 114.
+  112.   
+  113.       public boolean isCoordinator() {
+  114. >         return view == null ? false : getLocalMember(false).equals(
+  115.                   getCoordinator());
+  116.       }
+  
+  java/org/apache/coyote/http2/HpackEncoder.java:133: error: NULL_DEREFERENCE
+  object returned by `headers.getName(it)` could be null and is dereferenced at line 133.
+  131.           while (it < currentHeaders.size()) {
+  132.               // FIXME: Review lowercase policy
+  133. >             String headerName = headers.getName(it).toString().toLowerCase(Locale.US);
+  134.               boolean skip = false;
+  135.               if (firstPass) {
+  
+  java/org/apache/jasper/compiler/TldCache.java:134: error: RESOURCE_LEAK
+  resource of type `java.net.HttpURLConnection` acquired by call to `openConnection()` at line 132 is not released after line 134.
+  132.                   URLConnection conn = url.openConnection();
+  133.                   result[0] = conn.getLastModified();
+  134. >                 if ("file".equals(url.getProtocol())) {
+  135.                       // Reading the last modified time opens an input stream so we
+  136.                       // need to make sure it is closed again otherwise the TLD file
+
+java/org/apache/jasper/compiler/TldCache.java:134: error: RESOURCE_LEAK
+  resource of type `javax.net.ssl.HttpsURLConnection` acquired by call to `openConnection()` at line 132 is not released after line 134.
+  132.                   URLConnection conn = url.openConnection();
+  133.                   result[0] = conn.getLastModified();
+  134. >                 if ("file".equals(url.getProtocol())) {
+  135.                       // Reading the last modified time opens an input stream so we
+  136.                       // need to make sure it is closed again otherwise the TLD file
+  
+  ava/javax/servlet/jsp/el/ScopedAttributeELResolver.java:133: error: NULL_DEREFERENCE
+  object `page` last assigned on line 132 could be null and is dereferenced at line 133.
+  131.                   String key = property.toString();
+  132.                   PageContext page = (PageContext) context.getContext(JspContext.class);
+  133. >                 int scope = page.getAttributesScope(key);
+  134.                   if (scope != 0) {
+  135.                       page.setAttribute(key, value, scope);
+
+java/org/apache/catalina/tribes/membership/cloud/CloudMembershipService.java:127: error: NULL_DEREFERENCE
+  object returned by `getRegistry(MembershipServiceBase.channel)` could be null and is dereferenced at line 127.
+  125.               if (membershipProvider != null && membershipProvider.stop(level)) {
+  126.                   if (oname != null) {
+  127. >                     JmxRegistry.getRegistry(channel).unregisterJmx(oname);
+  128.                       oname = null;
+  129.                   }
+  
+  
+  ava/org/apache/catalina/ha/deploy/FarmWarDeployer.java:176: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 176.
+  174.   
+  175.           // Retrieve the MBean server
+  176. >         mBeanServer = Registry.getRegistry(null, null).getMBeanServer();
+  177.   
+  178.           started = true;
+  
+  
+  java/org/apache/juli/FileHandler.java:162: error: NULL_DEREFERENCE
+  object `null` is dereferenced by call to `FileHandler(...)` at line 162.
+  160.   
+  161.       public FileHandler(String directory, String prefix, String suffix) {
+  162. >         this(directory, prefix, suffix, null);
+  163.       }
+  164.   
+
+  
+  java/org/apache/catalina/manager/HTMLManagerServlet.java:217: error: NULL_DEREFERENCE
+  object `cn` last assigned on line 184 could be null and is dereferenced by call to `reload(...)` at line 217.
+  215.                       smClient);
+  216.           } else if (command.equals("/reload")) {
+  217. >             message = reload(cn, smClient);
+  218.           } else if (command.equals("/undeploy")) {
+  219.               message = undeploy(cn, smClient);
+
+  java/org/apache/catalina/mbeans/NamingResourcesMBean.java:192: error: NULL_DEREFERENCE
+  object `resource.resources` last assigned on line 185 could be null and is dereferenced by call to `createObjectName(...)` at line 192.
+  190.           // Return the corresponding MBean name
+  191.           ManagedBean managed = registry.findManagedBean("ContextResource");
+  192. >         ObjectName oname = MBeanUtils.createObjectName(managed.getDomain(), resource);
+  193.           return oname.toString();
+  194.       }JmxRegistry.getRegistry(channel).unregisterJmx(oname);
+
+  java/org/apache/catalina/ssi/SSIServlet.java:207: error: RESOURCE_LEAK
+  resource of type `java.io.FileInputStream` acquired by call to `getInputStream()` at line 198 is not released after line 207.
+  205.               isr = new InputStreamReader(resourceInputStream);
+  206.           } else {
+  207. >             isr = new InputStreamReader(resourceInputStream, encoding);
+  208.           }
+  209.           BufferedReader bufferedReader = new BufferedReader(isr);
+
+  
+  java/org/apache/catalina/util/LifecycleMBeanBase.java:187: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 187.
+  185.           name.append(':');
+  186.           name.append(objectNameKeyProperties);
+  187. >         Registry.getRegistry(null, null).unregisterComponent(name.toString());
+  188.       }
+  189.   
+
+  java/org/apache/catalina/tribes/group/ChannelInterceptorBase.java:187: error: NULL_DEREFERENCE
+  object returned by `getRegistry(ChannelInterceptorBase.channel)` could be null and is dereferenced at line 187.
+  185.           if (getNext() != null) getNext().stop(svc);
+  186.           if (oname != null) {
+  187. >             JmxRegistry.getRegistry(channel).unregisterJmx(oname);
+  188.               oname = null;
+  189.           }
+  
+  java/org/apache/catalina/util/LifecycleMBeanBase.java:201: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 201.
+  199.        */
+  200.       protected final void unregister(ObjectName on) {
+  201. >         Registry.getRegistry(null, null).unregisterComponent(on);
+  202.       }
+  203.   
+
+  *doubt*
+  java/org/apache/catalina/mbeans/NamingResourcesMBean.java:225: error: NULL_DEREFERENCE
+  object `oname` last assigned on line 224 could be null and is dereferenced at line 225.
+  223.           ManagedBean managed = registry.findManagedBean("ContextResourceLink");
+  224.           ObjectName oname = MBeanUtils.createObjectName(managed.getDomain(), resourceLink);
+  225. >         return oname.toString();
+  226.       }
+  227.   
+
+*doubt*
+java/org/apache/catalina/mbeans/NamingResourcesMBean.java:224: error: NULL_DEREFERENCE
+  object `resourceLink.resources` last assigned on line 217 could be null and is dereferenced by call to `createObjectName(...)` at line 224.
+  222.           // Return the corresponding MBean name
+  223.           ManagedBean managed = registry.findManagedBean("ContextResourceLink");
+  224. >         ObjectName oname = MBeanUtils.createObjectName(managed.getDomain(), resourceLink);
+  225.           return oname.toString();
+  226.       }
+
+*doubt*
+  java/org/apache/tomcat/util/http/fileupload/impl/FileItemIteratorImpl.java:219: error: NULL_DEREFERENCE
+  object `multi` last assigned on line 213 could be null and is dereferenced at line 219.
+  217.                   nextPart = multi.skipPreamble();
+  218.               } else {
+  219. >                 nextPart = multi.readBoundary();
+  220.               }
+  221.               if (!nextPart) {
+
+
+  java/org/apache/coyote/http11/Http11Processor.java:222: error: NULL_DEREFERENCE
+  object returned by `*inputFilters[i].getEncodingName().toString()` could be null and is dereferenced at line 222.
+  220.           } else {
+  221.               for (int i = pluggableFilterIndex; i < inputFilters.length; i++) {
+  222. >                 if (inputFilters[i].getEncodingName().toString().equals(encodingName)) {
+  223.                       inputBuffer.addActiveFilter(inputFilters[i]);
+  224.                       return;
+
+  
+  java/org/apache/catalina/manager/ManagerServlet.java:275: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 275.
+  273.   
+  274.           // Retrieve the MBean server
+  275. >         mBeanServer = Registry.getRegistry(null, null).getMBeanServer();
+  276.   
+  277.       }
+
+ 
+  *doubt*
+  java/org/apache/catalina/tribes/group/interceptors/NonBlockingCoordinator.java:268: error: NULL_DEREFERENCE
+  object returned by `msg.getMembers()` could be null and is dereferenced by call to `nextIndex(...)` at line 268.
+  266.   
+  267.       protected void sendElectionMsgToNextInline(Member local, CoordinationMessage msg) throws ChannelException {
+  268. >         int next = Arrays.nextIndex(local,msg.getMembers());
+  269.           int current = next;
+  270.           msg.leader = msg.getMembers()[0];
+
+  
+  java/org/apache/tomcat/util/http/fileupload/disk/DiskFileItem.java:274: error: NULL_DEREFERENCE
+  object returned by `DiskFileItem.dfos.getData()` could be null and is dereferenced at line 274.
+  272.               return cachedContent.length;
+  273.           } else if (dfos.isInMemory()) {
+  274. >             return dfos.getData().length;
+  275.           } else {
+  276.               return dfos.getFile().length();
+
+  java/org/apache/catalina/ha/session/JvmRouteBinderValve.java:286: error: NULL_DEREFERENCE
+  object returned by `getManager(request)` could be null and is dereferenced at line 286.
+  284.               Session catalinaSession = null;
+  285.               try {
+  286. >                 catalinaSession = getManager(request).findSession(sessionId);
+  287.               } catch (IOException e) {
+  288.                   // Hups!
+
+java/org/apache/catalina/ha/session/JvmRouteBinderValve.java:299: error: NULL_DEREFERENCE
+  object returned by `getManager(request)` could be null and is dereferenced at line 299.
+  297.               } else {
+  298.                   try {
+  299. >                     catalinaSession = getManager(request).findSession(newSessionID);
+  300.                   } catch (IOException e) {
+  301.                       // Hups!
+
+  java/org/apache/tomcat/util/http/fileupload/FileUploadBase.java:288: error: NULL_DEREFERENCE
+  object `item` last assigned on line 286 could be null and is dereferenced at line 288.
+  286.                   final FileItemStream item = iter.next();
+  287.                   // Don't use getName() here to prevent an InvalidFileNameException.
+  288. >                 final String fileName = ((FileItemStreamImpl) item).getName();
+  289.                   FileItem fileItem = fac.createItem(item.getFieldName(), item.getContentType(),
+  290.                                                      item.isFormField(), fileName);
+
+  java/org/apache/catalina/tribes/transport/nio/ParallelNioSender.java:300: error: NULL_DEREFERENCE
+  object `sender` last assigned on line 299 could be null and is dereferenced at line 300.
+  298.               try {
+  299.                   NioSender sender = nioSenders.get(mbr);
+  300. >                 sender.disconnect();
+  301.               }catch ( Exception e ) {
+  302.                   if ( x == null ) x = new ChannelException(e);
+
+*doubt*
+  java/org/apache/tomcat/util/descriptor/tld/TldRuleSet.java:296: error: NULL_DEREFERENCE
+  object `variable` last assigned on line 294 could be null and is dereferenced at line 296.
+  294.               Variable variable = (Variable) digester.pop();
+  295.               TagXml tag = (TagXml) digester.peek();
+  296. >             tag.getVariables().add(variable.toTagVariableInfo());
+  297.           }
+  298.       }
+
+  java/org/apache/jasper/compiler/SmapStratum.java:347: error: NULL_DEREFERENCE
+  object `li` last assigned on line 346 could be null and is dereferenced at line 347.
+  345.           for (int i = 0; i < bound; i++) {
+  346.               LineInfo li = lineData.get(i);
+  347. >             out.append(li.getString());
+  348.           }
+  349.   
+
+  ava/org/apache/jasper/compiler/TagLibraryInfoImpl.java:329: error: NULL_DEREFERENCE
+  object `path` last assigned on line 319 could be null and is dereferenced by call to `parseTagFileDirectives(...)` at line 329.
+  327.   
+  328.           TagInfo tagInfo =
+  329. >                 TagFileProcessor.parseTagFileDirectives(parserController, name, path, jar, this);
+  330.           return new TagFileInfo(name, path, tagInfo);
+  331.       }
+
+  java/org/apache/catalina/tribes/group/interceptors/TcpFailureDetector.java:350: error: NULL_DEREFERENCE
+  object `data.address` last assigned on line 343 could be null and is dereferenced by call to `createDataPackage(...)` at line 350.
+  348.                   else options = (options & (~Channel.SEND_OPTIONS_USE_ACK));
+  349.                   data.setOptions(options);
+  350. >                 byte[] message = XByteBuffer.createDataPackage(data);
+  351.                   socket.getOutputStream().write(message);
+  352.                   if ( readTest ) {
+
+java/org/apache/catalina/core/ApplicationFilterConfig.java:360: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 360.
+  358.           try {
+  359.               oname = new ObjectName(onameStr);
+  360. >             Registry.getRegistry(null, null).registerComponent(this, oname, null);
+  361.           } catch (Exception ex) {
+  362.               log.warn(sm.getString("applicationFilterConfig.jmxRegisterFail",
+
+  java/org/apache/tomcat/dbcp/pool2/impl/SoftReferenceObjectPool.java:338: error: NULL_DEREFERENCE
+  object `ref` last assigned on line 337 could be null and is dereferenced at line 338.
+  336.                   try {
+  337.                       final PooledSoftReference<T> ref = iter.next();
+  338. >                     if (null != ref.getObject()) {
+  339.                           factory.destroyObject(ref);
+  340.                       }
+
+
+  *doubt*
+  java/org/apache/catalina/tribes/group/interceptors/NonBlockingCoordinator.java:344: error: NULL_DEREFERENCE
+  object `local` last assigned on line 343 could be null and is dereferenced at line 344.
+  342.       protected void handleToken(CoordinationMessage msg, Membership merged) throws ChannelException {
+  343.           Member local = getLocalMember(false);
+  344. >         if ( local.equals(msg.getSource()) ) {
+  345.               //my message msg.src=local
+  346.               handleMyToken(local, msg, merged);
+
+  java/org/apache/catalina/core/ApplicationFilterConfig.java:372: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 372.
+  370.           if (oname != null) {
+  371.               try {
+  372. >                 Registry.getRegistry(null, null).unregisterComponent(oname);
+  373.                   if (log.isDebugEnabled())
+  374.                       log.debug(sm.getString("applicationFilterConfig.jmxUnregister",
+
+java/org/apache/catalina/startup/Tomcat.java:372: error: NULL_DEREFERENCE
+  object `ctx` last assigned on line 371 could be null and is dereferenced by call to `addServlet(...)` at line 372.
+  370.               String servletClass) {
+  371.           Container ctx = getHost().findChild(contextPath);
+  372. >         return addServlet((Context) ctx, servletName, servletClass);
+  373.       }
+  374.   
+
+  
+ java/org/apache/catalina/tribes/membership/McastService.java:372: error: NULL_DEREFERENCE
+  object returned by `getRegistry(MembershipServiceBase.channel)` could be null and is dereferenced at line 372.
+  370.               if ( impl != null && impl.stop(svc) ) {
+  371.                   if (oname != null) {
+  372. >                     JmxRegistry.getRegistry(channel).unregisterJmx(oname);
+  373.                       oname = null;
+  374.                   }
+ 
+  
+  java/org/apache/jasper/JspCompilationContext.java:410: error: RESOURCE_LEAK
+  resource of type `java.net.HttpURLConnection` acquired by call to `openConnection()` at line 389 is not released after line 410.
+  408.               if (uc != null) {
+  409.                   try {
+  410. >                     uc.getInputStream().close();
+  411.                   } catch (IOException e) {
+  412.                       if (log.isDebugEnabled()) {
+
+java/org/apache/jasper/JspCompilationContext.java:410: error: RESOURCE_LEAK
+  resource of type `javax.net.ssl.HttpsURLConnection` acquired by call to `openConnection()` at line 389 is not released after line 410.
+  408.               if (uc != null) {
+  409.                   try {
+  410. >                     uc.getInputStream().close();
+  411.                   } catch (IOException e) {
+  412.                       if (log.isDebugEnabled()) {
+
+java/org/apache/tomcat/util/codec/binary/BaseNCodec.java:411: error: NULL_DEREFERENCE
+  object returned by `getBytesUtf8(pArray)` could be null and is dereferenced by call to `decode(...)` at line 411.
+  409.        */
+  410.       public byte[] decode(final String pArray) {
+  411. >         return decode(StringUtils.getBytesUtf8(pArray));
+  412.       }
+  413.   
+
+  java/org/apache/catalina/startup/WebAnnotationSet.java:429: error: NULL_DEREFERENCE
+  object `type` last assigned on line 423 could be null and is dereferenced by call to `convertPrimitiveType(...)` at line 429.
+  427.               }
+  428.           }
+  429. >         return Introspection.convertPrimitiveType(type).getCanonicalName();
+  430.       }
+  431.   
+
+  java/org/apache/jasper/servlet/JspCServletContext.java:424: error: NULL_DEREFERENCE
+  object returned by `getResource(path)` could be null and is dereferenced at line 424.
+  422.       public InputStream getResourceAsStream(String path) {
+  423.           try {
+  424. >             return getResource(path).openStream();
+  425.           } catch (Throwable t) {
+  426.               ExceptionUtils.handleThrowable(t);
+
+  
+java/org/apache/catalina/loader/WebappLoader.java:457: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 457.
+  455.                           classLoader.getClass().getSimpleName() + ",host=" +
+  456.                           context.getParent().getName() + ",context=" + contextName);
+  457. >                 Registry.getRegistry(null, null).unregisterComponent(cloname);
+  458.               } catch (Exception e) {
+  459.                   log.warn(sm.getString("webappLoader.stopError"), e);
+
+  
+  java/org/apache/tomcat/util/http/MimeHeaders.java:432: error: NULL_DEREFERENCE
+  object returned by `NamesEnumerator.headers.getName(NamesEnumerator.pos)` could be null and is dereferenced at line 432.
+  430.           next=null;
+  431.           for(; pos< size; pos++ ) {
+  432. >             next=headers.getName( pos ).toString();
+  433.               for( int j=0; j<pos ; j++ ) {
+  434.                   if( headers.getName( j ).equalsIgnoreCase( next )) {
+
+  
+  java/org/apache/catalina/startup/Bootstrap.java:466: error: NULL_DEREFERENCE
+  object `org.apache.catalina.startup.Bootstrap.daemon.catalinaDaemon` last assigned on line 441 could be null and is dereferenced by call to `load(...)` at line 466.
+  464.               if (command.equals("startd")) {
+  465.                   args[args.length - 1] = "start";
+  466. >                 daemon.load(args);
+  467.                   daemon.start();
+  468.               } else if (command.equals("stopd")) {
+
+java/org/apache/catalina/startup/Bootstrap.java:481: error: NULL_DEREFERENCE
+  object `org.apache.catalina.startup.Bootstrap.daemon.catalinaDaemon` last assigned on line 441 could be null and is dereferenced by call to `load(...)` at line 481.
+  479.                   daemon.stopServer(args);
+  480.               } else if (command.equals("configtest")) {
+  481. >                 daemon.load(args);
+  482.                   if (null == daemon.getServer()) {
+  483.                       System.exit(1);
+
+java/org/apache/catalina/startup/Bootstrap.java:472: error: NULL_DEREFERENCE
+  object `org.apache.catalina.startup.Bootstrap.daemon.catalinaDaemon` last assigned on line 441 could be null and is dereferenced by call to `setAwait(...)` at line 472.
+  470.                   daemon.stop();
+  471.               } else if (command.equals("start")) {
+  472. >                 daemon.setAwait(true);
+  473.                   daemon.load(args);
+  474.                   daemon.start();
+
+java/org/apache/catalina/startup/Bootstrap.java:470: error: NULL_DEREFERENCE
+  object `org.apache.catalina.startup.Bootstrap.daemon.catalinaDaemon` last assigned on line 441 could be null and is dereferenced by call to `stop()` at line 470.
+  468.               } else if (command.equals("stopd")) {
+  469.                   args[args.length - 1] = "stop";
+  470. >                 daemon.stop();
+  471.               } else if (command.equals("start")) {
+  472.                   daemon.setAwait(true);
+
+java/org/apache/catalina/startup/Bootstrap.java:479: error: NULL_DEREFERENCE
+  object `org.apache.catalina.startup.Bootstrap.daemon.catalinaDaemon` last assigned on line 441 could be null and is dereferenced by call to `stopServer(...)` at line 479.
+  477.                   }
+  478.               } else if (command.equals("stop")) {
+  479. >                 daemon.stopServer(args);
+  480.               } else if (command.equals("configtest")) {
+  481.                   daemon.load(args);
+
+  java/org/apache/catalina/tribes/group/GroupChannel.java:529: error: NULL_DEREFERENCE
+  object returned by `getRegistry(this)` could be null and is dereferenced at line 529.
+  527.           }
+  528.           if (oname != null) {
+  529. >             JmxRegistry.getRegistry(this).unregisterJmx(oname);
+  530.               oname = null;
+  531.           }
+
+  java/org/apache/catalina/core/NamingContextListener.java:534: error: NULL_DEREFERENCE
+  object `NamingContextListener.compCtx` last assigned on line 533 could be null and is dereferenced at line 534.
+  532.           } else {
+  533.               compCtx = namingContext.createSubcontext("comp");
+  534. >             envCtx = compCtx.createSubcontext("env");
+  535.           }
+  536.   
+
+  java/org/apache/jasper/compiler/Validator.java:534: error: NULL_DEREFERENCE
+  object `version` last assigned on line 533 could be null and is dereferenced at line 534.
+  532.               JspUtil.checkAttributes("Jsp:root", n, jspRootAttrs, err);
+  533.               String version = n.getTextAttribute("version");
+  534. >             if (!version.equals("1.2") && !version.equals("2.0") &&
+  535.                       !version.equals("2.1") && !version.equals("2.2") &&
+  536.                       !version.equals("2.3")) {
+
+  
+  java/org/apache/catalina/startup/Catalina.java:562: error: NULL_DEREFERENCE
+  object `resource` last assigned on line 561 could be null and is dereferenced at line 562.
+  560.   
+  561.           try (ConfigurationSource.Resource resource = ConfigFileLoader.getSource().getServerXml()) {
+  562. >             InputStream inputStream = resource.getInputStream();
+  563.               InputSource inputSource = new InputSource(resource.getURI().toURL().toString());
+  564.               inputSource.setByteStream(inputStream);
+
+  java/org/apache/catalina/mbeans/MBeanUtils.java:548: error: NULL_DEREFERENCE
+  object `org.apache.catalina.mbeans.MBeanUtils.registry` last assigned on line 545 could be null and is dereferenced at line 548.
+  546.               ClassLoader cl = MBeanUtils.class.getClassLoader();
+  547.   
+  548. >             registry.loadDescriptors("org.apache.catalina.mbeans",  cl);
+  549.               registry.loadDescriptors("org.apache.catalina.authenticator", cl);
+  550.               registry.loadDescriptors("org.apache.catalina.core", cl);
+
+  
+  java/org/apache/catalina/startup/HostConfig.java:641: error: NULL_DEREFERENCE
+  object `context` last assigned on line 560 could be null and is dereferenced at line 641.
+  639.               // default to appBase dir + name
+  640.               expandedDocBase = new File(host.getAppBaseFile(), cn.getBaseName());
+  641. >             if (context.getDocBase() != null
+  642.                       && !context.getDocBase().toLowerCase(Locale.ENGLISH).endsWith(".war")) {
+  643.                   // first assume docBase is absolute
+
+  java/org/apache/catalina/tribes/io/XByteBuffer.java:562: error: RESOURCE_LEAK
+  resource of type `org.apache.catalina.tribes.io.ReplicationStream` acquired by call to `new()` at line 559 is not released after line 562.
+  560.               message = stream.readObject();
+  561.               instream.close();
+  562. >             stream.close();
+  563.           }
+  564.           if ( message == null ) {
+
+  java/org/apache/catalina/tribes/io/XByteBuffer.java:569: error: RESOURCE_LEAK
+  resource of type `org.apache.catalina.tribes.io.ReplicationStream` acquired by call to `new()` at line 559 is not released after line 569.
+**Note**: potential exception at line 560
+  567.               return (Serializable) message;
+  568.           else {
+  569. >             throw new ClassCastException(sm.getString("xByteBuffer.wrong.class", message.getClass().getName()));
+  570.           }
+  571.       }
+
+  
+java/org/apache/catalina/mbeans/MBeanUtils.java:576: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 576.
+  574.       public static synchronized MBeanServer createServer() {
+  575.           if (mserver == null) {
+  576. >             mserver = Registry.getRegistry(null, null).getMBeanServer();
+  577.           }
+  578.           return mserver;
+
+
+
+java/org/apache/catalina/users/MemoryUserDatabase.java:685: error: RESOURCE_LEAK
+  resource of type `java.net.HttpURLConnection` acquired by call to `openConnection()` at line 661 is not released after line 685.
+  683.                   try {
+  684.                       // Can't close a uConn directly. Have to do it like this.
+  685. >                     uConn.getInputStream().close();
+  686.                   } catch (IOException ioe) {
+  687.                       log.warn(sm.getString("memoryUserDatabase.fileClose", pathname), ioe);
+
+java/org/apache/catalina/users/MemoryUserDatabase.java:685: error: RESOURCE_LEAK
+  resource of type `javax.net.ssl.HttpsURLConnection` acquired by call to `openConnection()` at line 661 is not released after line 685.
+  683.                   try {
+  684.                       // Can't close a uConn directly. Have to do it like this.
+  685. >                     uConn.getInputStream().close();
+  686.                   } catch (IOException ioe) {
+  687.                       log.warn(sm.getString("memoryUserDatabase.fileClose", pathname), ioe);
+
+
+java/org/apache/catalina/mbeans/MBeanFactory.java:669: error: NULL_DEREFERENCE
+  object `loader.context` last assigned on line 658 could be null and is dereferenced by call to `createObjectName(...)` at line 669.
+  667.           //ObjectName oname = loader.getObjectName();
+  668.           ObjectName oname =
+  669. >             MBeanUtils.createObjectName(pname.getDomain(), loader);
+  670.           return oname.toString();
+  671.   
+
+java/org/apache/coyote/AbstractProtocol.java:700: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 700.
+  698.               if (oname != null) {
+  699.                   if (mserver == null) {
+  700. >                     Registry.getRegistry(null, null).unregisterComponent(oname);
+  701.                   } else {
+  702.                       // Possibly registered with a different MBeanServer
+
+java/org/apache/coyote/AbstractProtocol.java:713: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 713.
+  711.   
+  712.               if (rgOname != null) {
+  713. >                 Registry.getRegistry(null, null).unregisterComponent(rgOname);
+  714.               }
+  715.           }
+
+
+
+java/org/apache/catalina/startup/HostConfig.java:766: error: NULL_DEREFERENCE
+  object returned by `cn.getBaseName()` could be null and is dereferenced by call to `validateContextPath(...)` at line 766.
+  764.   
+  765.                   // Check for WARs with /../ /./ or similar sequences in the name
+  766. >                 if (!validateContextPath(appBase, cn.getBaseName())) {
+  767.                       log.error(sm.getString(
+  768.                               "hostConfig.illegalWarName", files[i]));
+
+
+java/org/apache/jasper/compiler/SmapUtil.java:773: error: NULL_DEREFERENCE
+  object `is` last assigned on line 770 could be null and is dereferenced at line 773.
+  771.                   // Alternative approach would be to read the class file as per the
+  772.                   // JLS. That would require duplicating a lot of BCEL functionality.
+  773. >                 int b = is.read();
+  774.                   while (b != -1) {
+  775.                       if (b == 'S') {
+
+java/org/apache/catalina/core/StandardServer.java:852: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 852.
+  850.               // Note: Hard-coded domain used since this object is per Server/JVM
+  851.               ObjectName sname = new ObjectName("Catalina:type=StoreConfig");
+  852. >             MBeanServer server = Registry.getRegistry(null, null).getMBeanServer();
+  853.               if (server.isRegistered(sname)) {
+  854.                   server.invoke(sname, "storeConfig", null, null);
+
+
+java/org/apache/catalina/core/StandardServer.java:882: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 882.
+  880.               // Note: Hard-coded domain used since this object is per Server/JVM
+  881.               ObjectName sname = new ObjectName("Catalina:type=StoreConfig");
+  882. >             MBeanServer server = Registry.getRegistry(null, null).getMBeanServer();
+  883.               if (server.isRegistered(sname)) {
+  884.                   server.invoke(sname, "store",
+
+java/org/apache/catalina/connector/Response.java:952: error: NULL_DEREFERENCE
+  object returned by `headers.getName(i).toString()` could be null and is dereferenced at line 952.
+  950.           int n = headers.size();
+  951.           for (int i = 0; i < n; i++) {
+  952. >             if (headers.getName(i).toString().equals(headername)) {
+  953.                   if (headers.getValue(i).toString().startsWith(startsWith)) {
+  954.                       headers.getValue(i).setString(header);
+
+
+java/org/apache/jasper/compiler/Generator.java:987: error: NULL_DEREFERENCE
+  object returned by `attr.getEL()` could be null and is dereferenced at line 987.
+  985.               } else if (attr.isELInterpreterInput()) {
+  986.                   v = elInterpreter.interpreterCall(ctxt, this.isTagFile, v,
+  987. >                         expectedType, attr.getEL().getMapName());
+  988.                   if (encode) {
+  989.                       return "org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("
+
+
+java/org/apache/catalina/core/NamingContextListener.java:1018: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 1018.
+  1016.                   ObjectName on = createObjectName(resource);
+  1017.                   actualResource = envCtx.lookup(resource.getName());
+  1018. >                 Registry.getRegistry(null, null).registerComponent(actualResource, on, null);
+  1019.                   objectNames.put(resource.getName(), on);
+  1020.               } catch (Exception e) {
+
+java/org/apache/catalina/core/StandardWrapper.java:1003: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 1003.
+  1001.               try {
+  1002.                   jspMonitorON = new ObjectName(oname.toString());
+  1003. >                 Registry.getRegistry(null, null).registerComponent(instance, jspMonitorON, null);
+  1004.               } catch (Exception ex) {
+  1005.                   log.warn(sm.getString("standardWrapper.jspMonitorError", instance));
+
+
+java/org/apache/catalina/startup/Tomcat.java:1062: error: NULL_DEREFERENCE
+  object `ctx` last assigned on line 1061 could be null and is dereferenced by call to `initWebappDefaults(...)` at line 1062.
+  1060.       public void initWebappDefaults(String contextPath) {
+  1061.           Container ctx = getHost().findChild(contextPath);
+  1062. >         initWebappDefaults((Context) ctx);
+  1063.       }
+  1064.   
+
+java/org/apache/tomcat/dbcp/pool2/impl/GenericObjectPool.java:1130: error: NULL_DEREFERENCE
+  object `pooledObjectType` last assigned on line 1129 could be null and is dereferenced at line 1130.
+  1128.               final Class<?> pooledObjectType =
+  1129.                       PoolImplUtils.getFactoryType(factory.getClass());
+  1130. >             result.append(pooledObjectType.getName());
+  1131.               result.append('>');
+  1132.               factoryType = result.toString();
+
+java/org/apache/coyote/AbstractProtocol.java:1151: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 1151.
+  1149.                               getLog().debug("Unregister [" + rpName + "]");
+  1150.                           }
+  1151. >                         Registry.getRegistry(null, null).unregisterComponent(
+  1152.                                   rpName);
+  1153.                           rp.setRpName(null);
+
+java/org/apache/tomcat/util/net/AbstractEndpoint.java:1160: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 1160.
+  1158.               // Register endpoint (as ThreadPool - historical name)
+  1159.               oname = new ObjectName(domain + ":type=ThreadPool,name=\"" + getName() + "\"");
+  1160. >             Registry.getRegistry(null, null).registerComponent(this, oname, null);
+  1161.   
+  1162.               ObjectName socketPropertiesOname = new ObjectName(domain +
+
+java/org/apache/tomcat/util/net/AbstractEndpoint.java:1185: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 1185.
+  1183.               sslHostConfig.setObjectName(sslOname);
+  1184.               try {
+  1185. >                 Registry.getRegistry(null, null).registerComponent(sslHostConfig, sslOname, null);
+  1186.               } catch (Exception e) {
+  1187.                   getLog().warn(sm.getString("endpoint.jmxRegistrationFailed", sslOname), e);
+
+java/org/apache/catalina/core/NamingContextListener.java:1211: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 1211.
+  1209.           ObjectName on = objectNames.get(name);
+  1210.           if (on != null) {
+  1211. >             Registry.getRegistry(null, null).unregisterComponent(on);
+  1212.           }
+  1213.   
+
+java/org/apache/tomcat/util/net/AbstractEndpoint.java:1218: error: NULL_DEREFERENCE
+  object `registry` last assigned on line 1217 could be null and is dereferenced at line 1218.
+  1216.       private void unregisterJmx(SSLHostConfig sslHostConfig) {
+  1217.           Registry registry = Registry.getRegistry(null, null);
+  1218. >         registry.unregisterComponent(sslHostConfig.getObjectName());
+  1219.           for (SSLHostConfigCertificate sslHostConfigCert : sslHostConfig.getCertificates()) {
+  1220.               registry.unregisterComponent(sslHostConfigCert.getObjectName());
+
+java/org/apache/tomcat/util/net/AbstractEndpoint.java:1282: error: NULL_DEREFERENCE
+  object `registry` last assigned on line 1281 could be null and is dereferenced at line 1282.
+  1280.           }
+  1281.           Registry registry = Registry.getRegistry(null, null);
+  1282. >         registry.unregisterComponent(oname);
+  1283.           registry.unregisterComponent(socketProperties.getObjectName());
+  1284.           for (SSLHostConfig sslHostConfig : findSslHostConfigs()) {
+
+java/org/apache/catalina/startup/HostConfig.java:1563: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 1563.
+  1561.                   (hostON.getDomain() + ":type=Deployer,host=" + host.getName());
+  1562.               Registry.getRegistry(null, null).registerComponent
+  1563. >                 (this, oname, this.getClass().getName());
+  1564.           } catch (Exception e) {
+  1565.               log.warn(sm.getString("hostConfig.jmx.register", oname), e);
+
+
+
+java/org/apache/catalina/startup/HostConfig.java:1591: error: NULL_DEREFERENCE
+  object returned by `getRegistry(null,null)` could be null and is dereferenced at line 1591.
+  1589.           if (oname != null) {
+  1590.               try {
+  1591. >                 Registry.getRegistry(null, null).unregisterComponent(oname);
+  1592.               } catch (Exception e) {
+  1593.                   log.warn(sm.getString("hostConfig.jmx.unregister", oname), e);
+
+java/org/apache/jasper/compiler/Validator.java:1791: error: NULL_DEREFERENCE
+  object `tagInfo` last assigned on line 1785 could be null and is dereferenced at line 1791.
+  1789.   
+  1790.               @SuppressWarnings("null") // tagInfo can't be null here
+  1791. >             ValidationMessage[] errors = tagInfo.validate(n.getTagData());
+  1792.               if (errors != null && errors.length != 0) {
+  1793.                   StringBuilder errMsg = new StringBuilder();
+
+java/org/apache/jasper/compiler/Generator.java:2265: error: NULL_DEREFERENCE
+  object returned by `n.getTextAttribute("fragment")` could be null and is dereferenced by call to `toGetterMethod(...)` at line 2265.
+  2263.               // Invoke fragment, unless fragment is null
+  2264.               out.printin("if (");
+  2265. >             out.print(toGetterMethod(n.getTextAttribute("fragment")));
+  2266.               out.println(" != null) {");
+  2267.               out.pushIndent();
+
+java/org/apache/tomcat/util/net/AprEndpoint.java:2661: error: NULL_DEREFERENCE
+  object `buffer` last assigned on line 2640 could be null and is dereferenced at line 2661.
+  2659.                                       } else {
+  2660.                                           @SuppressWarnings("null") // Not possible
+  2661. >                                         int remaining = buffer.remaining();
+  2662.                                           write(block == BlockingMode.BLOCK, buffer);
+  2663.                                           nBytes = remaining - buffer.remaining();
+
+
+java/org/apache/catalina/core/StandardContext.java:3069: error: NULL_DEREFERENCE
+  object returned by `getNamingResources()` could be null and is dereferenced at line 3069.
+  3067.       @Deprecated
+  3068.       public void addMessageDestinationRef(MessageDestinationRef mdr) {
+  3069. >         getNamingResources().addMessageDestinationRef(mdr);
+  3070.       }
+  3071.   
+
+java/org/apache/catalina/core/StandardContext.java:3474: error: NULL_DEREFERENCE
+  object returned by `getNamingResources()` could be null and is dereferenced at line 3474.
+  3472.       @Deprecated
+  3473.       public MessageDestinationRef findMessageDestinationRef(String name) {
+  3474. >         return getNamingResources().findMessageDestinationRef(name);
+  3475.       }
+  3476.   
+
+java/org/apache/catalina/core/StandardContext.java:3488: error: NULL_DEREFERENCE
+  object returned by `getNamingResources()` could be null and is dereferenced at line 3488.
+  3486.       @Deprecated
+  3487.       public MessageDestinationRef[] findMessageDestinationRefs() {
+  3488. >         return getNamingResources().findMessageDestinationRefs();
+  3489.       }
+  3490.   
+
+java/org/apache/catalina/core/StandardContext.java:3982: error: NULL_DEREFERENCE
+  object returned by `getNamingResources()` could be null and is dereferenced at line 3982.
+  3980.       @Deprecated
+  3981.       public void removeMessageDestinationRef(String name) {
+  3982. >         getNamingResources().removeMessageDestinationRef(name);
+  3983.       }
+  3984.   
+
+java/org/apache/catalina/core/StandardContext.java:6048: error: NULL_DEREFERENCE
+  object `temp` last assigned on line 6047 could be null and is dereferenced at line 6048.
+  6046.   
+  6047.               String temp = getBaseName();
+  6048. >             if (temp.startsWith("/"))
+  6049.                   temp = temp.substring(1);
+  6050.               temp = temp.replace('/', '_');
+
+  

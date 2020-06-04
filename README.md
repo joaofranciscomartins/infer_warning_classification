@@ -13,7 +13,7 @@ Avrora | 92041 | 53 | 0| 41 | 12
 Joda-Time | 94973 | 58 | 47 | 10 | 1
 Jython | 945500 | 219 | 50 | 97 | 82
 Xalan-j| 205644 | 54 | 0 | 31 | 23
-tomcat | 435438 | 277 | 0 |158 | 119
+tomcat | 435438 | 297 | 0 |178 | 119
 
 ## Types of False Positive bugs
 

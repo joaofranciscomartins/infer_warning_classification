@@ -15,7 +15,17 @@ Jython | 945500 | 219 | 50 | 97 | 82
 Xalan-j| 205644 | 54 | 0 | 31 | 23
 tomcat | 435438 | 297 | 0 |178 | 119
 
-## Types of False Positive bugs
+## Types of bugs
+Program  | Total  | *NULL_DEREFERENCE* | *RESOURCE_LEAK* |
+------------ | ------------- | -------- |----| 
+Avrora | 53 | 53 | 0| 41 
+Joda-Time | 37 | 58 | 47 | 10 
+Jython | 945500 | 219 | 50 | 97 
+Xalan-j| 205644 | 54 | 0 | 31 
+tomcat | 435438 | 297 | 0 |178 
+
+
+## False Positive bugs
 
 Program | Total | *NULL_DEREFERENCE* | *RESOURCE_LEAK* | 
 ------------ | ------------- | -------- | ---- |

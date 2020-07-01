@@ -20,7 +20,7 @@ Program  | Total  | *NULL_DEREFERENCE* | *RESOURCE_LEAK* |  *INEFFICIENT_KEYSET_
 ------------ | ------------- | -------- |----|----|----|
 Avrora | 53 | 29 | 24 | 0 | 0 
 Joda-Time | 11 | 8 | 2 | 1 | 0
-Jython | 169 | * | * | 0 | 0
+Jython | 179 | * | * | 0 | 0
 Xalan-j| 54 | 40 | 14 | 0 | 0
 tomcat | 297 | 220 | 74 | 1 | 2
 

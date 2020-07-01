@@ -19,10 +19,10 @@ tomcat | 435438 | 297 | 0 |178 | 119
 Program  | Total  | *NULL_DEREFERENCE* | *RESOURCE_LEAK* |
 ------------ | ------------- | -------- |----| 
 Avrora | 53 | 53 | 0| 41 
-Joda-Time | 37 | 58 | 47 | 10 
-Jython | 945500 | 219 | 50 | 97 
-Xalan-j| 205644 | 54 | 0 | 31 
-tomcat | 435438 | 297 | 0 |178 
+Joda-Time | 11 | 58 | 47 | 10 
+Jython | 169 | 219 | 50 | 97 
+Xalan-j| 54 | 54 | 0 | 31 
+tomcat | 297 | 297 | 0 |178
 
 
 ## False Positive bugs

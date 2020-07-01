@@ -16,13 +16,13 @@ Xalan-j| 205644 | 54 | 0 | 31 | 23
 tomcat | 435438 | 297 | 0 |178 | 119
 
 ## Types of bugs
-Program  | Total  | *NULL_DEREFERENCE* | *RESOURCE_LEAK* |
------------- | ------------- | -------- |----| 
-Avrora | 53 | 53 | 0| 41 
-Joda-Time | 11 | 58 | 47 | 10 
-Jython | 169 | 219 | 50 | 97 
-Xalan-j| 54 | 54 | 0 | 31 
-tomcat | 297 | 297 | 0 |178
+Program  | Total  | *NULL_DEREFERENCE* | *RESOURCE_LEAK* |  *INEFFICIENT_KEYSET_ITERATOR* | *DEADLOCK*
+------------ | ------------- | -------- |----|----|
+Avrora | 53 | 29 | 24 | 0 | 0 
+Joda-Time | 11 | 8 | 2 | 1 | 0
+Jython | 169 | * | * | 0 |0
+Xalan-j| 54 | 40 | 14 | 14| 0
+tomcat | 297 | 220 | 74 | 1 | 2
 
 
 ## False Positive bugs

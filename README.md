@@ -10,7 +10,7 @@ All infer reports and their respective analysis are under the subfolder *Analysi
 Program | LoC | Total Warnings | Test cases | TP | FP
 ------------ | ------------- | -------- |----| ---- | ----| 
 Avrora | 92041 | 51 | 0| 41 | 12
-Joda-Time | 94973 | 58 | 47 | 10 | 1
+Joda-Time | 94973 | 58 | 45 | 12 | 1
 Jython | 945500 | 219 | 50 | 97 | 82
 Xalan-j| 205644 | 54 | 0 | 31 | 23
 tomcat | 435438 | 297 | 0 |178 | 119
@@ -19,7 +19,7 @@ tomcat | 435438 | 297 | 0 |178 | 119
 Program  | Total  | *NULL_DEREFERENCE* | *RESOURCE_LEAK* |  *INEFFICIENT_KEYSET_ITERATOR* | *DEADLOCK*
 ------------ | ------------- | -------- |----|----|----|
 Avrora | 51 | 27 | 24 | 0 | 0 
-Joda-Time | 11 | 8 | 2 | 1 | 0
+Joda-Time | 13 | 10 | 2 | 1 | 0
 Jython | 179 | 95 | 85 | 0 | ***9665***
 Xalan-j| 54 | 40 | 14 | 0 | 0
 tomcat | 297 | 220 | 74 | 1 | 2

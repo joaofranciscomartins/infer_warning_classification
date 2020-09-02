@@ -35,6 +35,7 @@ Jython | 82 | 71 | 11 |
 Xalan-j| 23 | 21 | 2| 
 tomcat | 119 | 108 | 11 |
 
+**---------------------------------------------------------------------------------------------------------**
 
 ## Reports found
 Program  | Total  | True Positives | False positives |  
@@ -44,7 +45,25 @@ Joda-Time | 12 | 11 | 1 |
 Jython | 165 | 83 | 82 | 
 Xalan-j| 50 | 27 | 23 | 
 tomcat | 265 | 153 | 112 |
-**TOTAL**| 543 | 313 | 230 |
+**TOTAL | 543 | 313 | 230 |**
 
 We have 42% of false positives.
 
+
+## False Positive bugs
+Program | Total | *NULL_DEREFERENCE* | *RESOURCE_LEAK* | 
+------------ | ------------- | -------- | ---- |
+Avrora | 12 | 9 | 3 |
+Joda-Time | 1 | 1 | 0 |
+Jython | 82 | 71 | 11 |
+Xalan-j| 23 | 21 | 2| 
+tomcat | 112 | 102 | 10 |
+
+## True Positive bugs
+Program | Total | *NULL_DEREFERENCE* | *RESOURCE_LEAK* | 
+------------ | ------------- | -------- | ---- |
+Avrora | 39 |  |  |
+Joda-Time | 11 |  |  |
+Jython | 83 |  |  |
+Xalan-j| 27 |  | | 
+tomcat | 153 | |  |

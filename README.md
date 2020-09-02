@@ -33,4 +33,18 @@ Avrora | 12 | 9 | 3 |
 Joda-Time | 1 | 1 | 0 |
 Jython | 82 | 71 | 11 |
 Xalan-j| 23 | 21 | 2| 
-tomcat | 119 | 108 | 11
+tomcat | 119 | 108 | 11 |
+
+
+## Reports found
+Program  | Total  | True Positives | False positives |  
+------------ | ------------- | -------- |----|
+Avrora | 51 | 39 | 12 |
+Joda-Time | 12 | 11 | 1 |
+Jython | 165 | 83 | 82 | 
+Xalan-j| 50 | 27 | 23 | 
+tomcat | 265 | 153 | 112 |
+**TOTAL**| 543 | 313 | 230 |
+
+We have 42% of false positives.
+

@@ -37,6 +37,14 @@ tomcat | 119 | 108 | 11 |
 
 **---------------------------------------------------------------------------------------------------------**
 
+As can be seen before besides *Null derefence* and "Resource leak* bugs no false positives were found regarding 
+other different types of bugs. Therefore, we chose only to analyse these two kinds of issues.
+
+The reports found below were run in a  Debian 10 server with 32 cores and 64Gb of RAM.
+Infer 0.17.0 was installed from source ***https://github.com/facebook/infer/blob/master/INSTALL.md***
+We had to run infer with the flag *--debug* to get all the files containg the reports concerning the infer analysis.
+Unfortunately some files were not created and lead to the loss of certain bugs present in the original execution.
+
 ## Reports found
 Program  | Total  | True Positives | False positives |  
 ------------ | ------------- | -------- |----|

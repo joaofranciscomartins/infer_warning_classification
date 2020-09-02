@@ -1,4 +1,4 @@
-# Infer warning classification
+ # Infer warning classification
 
 **Repository for the analysis and classification of Infer warnings when analyzing real-worls programs of the Dacapo Benchmark.**
 
@@ -73,6 +73,6 @@ Program | Total | *NULL_DEREFERENCE* | *RESOURCE_LEAK* |
 ------------ | ------------- | -------- | ---- |
 Avrora | 39 |18 | 21 |
 Joda-Time | 11 | 9 | 2 |
-Jython | 83 |  |  |
-Xalan-j| 27 |  | | 
+Jython | 83 | 27 | 56 |
+Xalan-j| 27 | 18 | 9 | 
 tomcat | 153 | |  |

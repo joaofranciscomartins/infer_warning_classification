@@ -54,7 +54,7 @@ Joda-Time | 12 | 11 | 1 |
 Jython | 165 | 83 | 82 | 
 Xalan-j| 50 | 27 | 23 | 
 tomcat | 265 | 153 | 112 |
-**TOTAL** | **543 | 313 | 230 |**
+**TOTAL** | 543 | 313 | 230 |
 
 We have 42% of false positives.
 

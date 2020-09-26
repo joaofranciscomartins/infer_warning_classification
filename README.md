@@ -35,7 +35,7 @@ Jython | 82 | 71 | 11 |
 Xalan-j| 23 | 21 | 2| 
 tomcat | 119 | 108 | 11 |
 
-**-------------------------------------------------------------------------------------------------------------------------------------------------------------**
+**---------------------------------------------------------------------------------------------------------------------------------------------------------------**
 
 As can be seen before besides *Null derefence* and *Resource leak* bugs no false positives were found regarding 
 other different types of bugs. Therefore, we chose only to analyse these two kinds of bugs.
